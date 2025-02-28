@@ -25,5 +25,12 @@ if($uninstall){
 }
 
 if($setup){
-    wsl -d $distro --exec bash -c "sudo apt update && sudo apt install -y ansible"
+    # wsl -d $distro --exec bash -c "sudo apt update && sudo apt install -y ansible"
+    wsl -d $distro --exec bash -c "cd; rm -rf dev_setup; git clone https://github.com/13janderson/dev_setup; cd dev_setup; ls"
+    # Push-Location
+    # Set-Location -Path ../wsl/init/docker
+    # wsl -d $distro --exec bash -c install-docker.sh
+
+
+    # Pop-Location
 }
