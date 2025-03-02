@@ -18,15 +18,18 @@ if($install){
 }
 
 if($uninstall){
-    $distros = wsl --list
-    if($distros.Contains($distro)){
-        wsl --unregister $distro
-    }
+    wsl --unregister $distro
 }
 
 if($setup){
     wsl -d $distro --exec bash -c "sudo apt update && sudo apt install -y ansible"
-    wsl -d $distro --exec bash -c "cd; rm -rf dev_setup; git clone https://github.com/13janderson/dev_setup; cd dev_setup; rm -r install-wsl;cd wsl/init/docker/$distro; bash install-docker.sh"
+    wsl -d $distro --exec bash -c "curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm get-docker.sh;"
 
-    # Pop-Location
+    # Pull down setup repo into wsl instance
+    wsl -d $distro --exec bash "git pull https://github.com/13janderson/dev_setup setup; cd setup; rm -rf install-wsl; cd wsl/init/$distro; bash setup.sh"
+
+
+
 }
+
+
