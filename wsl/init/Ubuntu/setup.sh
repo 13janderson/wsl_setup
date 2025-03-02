@@ -5,6 +5,7 @@ sudo apt update && sudo apt install -y ansible
 
 # docker setup
 curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm get-docker.sh;
+sudo newgrp docker
 
 # Install wslu - adds browser capability among other things (i guess)
 sudo add-apt-repository ppa:wslutilities/wslu
