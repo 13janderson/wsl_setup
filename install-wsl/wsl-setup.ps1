@@ -21,12 +21,10 @@ if($install){
         # Launch new instance which should prompt for default username and password.
         # Currently reliant on user exiting this command for us. logout or exit
         wsl -d $distro --cd ~
-        return
         Write-Host "Logged out". -ForegroundColor Green
 
         Write-Host "Running setup script for $distro." -ForegroundColor Green
         # Pull down setup repo into wsl instance
-        wsl -d $distro --exec bash -c "git clone https://github.com/13janderson/dev_setup.git;" 
         wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/dev_setup.git; cd dev_setup; cd wsl/init/$distro; sudo bash setup.sh"
         wsl -d $distro --exec bash -c "cd; cd dev_setup; cd dotfiles; cp .* ~;"
 
