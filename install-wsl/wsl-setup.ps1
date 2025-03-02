@@ -29,7 +29,7 @@ if($install){
         wsl -d $distro --exec bash -c "cd; cd dev_setup; cd dotfiles; cp .* ~;"
 
         # Force use to be in docker group so we can run docker commands w/out sudo
-        wsl -d $distro --exec bash -c "sudo usermod -aG docker $USER"
+        wsl -d $distro --exec bash -c 'sudo usermod -aG docker $USER'
         wsl -d $distro --shutdown
 
         wsl -d $distro --cd ~
