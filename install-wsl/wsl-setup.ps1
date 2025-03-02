@@ -1,7 +1,7 @@
 param(
     [switch]$install,
     [switch]$uninstall,
-    [switch]$setup,
+    [switch]$reinstall,
     [string]$distro = "Ubuntu"
 )
 
@@ -17,7 +17,7 @@ if($install){
         Write-Host "Launching new $distro instance. Provide login details for default linux user and then type 'logout'." -ForegroundColor Green
 
         # Set new distro as default
-        wsl --set-default -s $distro
+        wsl --set-default $distro
         # Launch new instance
         wsl -d $distro 
         Write-Host "Logged out". -ForegroundColor Green
@@ -28,12 +28,17 @@ if($install){
         wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/dev_setup.git; cd dev_setup; cd wsl/init/$distro; sudo bash setup.sh"
         wsl -d $distro --exec bash -c "cd; cd dev_setup; cd dotfiles; cp .* ~;"
 
+        # Restart wsl
+        wsl -d $distro --shutdown
+        wsl -d $distro --cd ~
+
     }
 }
 
 if($uninstall){
     wsl --unregister $distro
 }
+
 
 
 
