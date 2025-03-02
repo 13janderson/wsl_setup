@@ -19,12 +19,12 @@ if($install){
         # Set new distro as default
         wsl --set-default $distro
         # Launch new instance
-        wsl -d $distro 
+        wsl -d $distro --cd ~
         Write-Host "Logged out". -ForegroundColor Green
 
         Write-Host "Running setup script for $distro." -ForegroundColor Green
         # Pull down setup repo into wsl instance
-        wsl -d $distro --exec bash -c "git clone https://github.com/13janderson/dev_setup.git setup; cp -r dotfiles/. ~/" 
+        wsl -d $distro --exec bash -c "git clone https://github.com/13janderson/dev_setup.git setup;" 
         wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/dev_setup.git; cd dev_setup; cd wsl/init/$distro; sudo bash setup.sh"
         wsl -d $distro --exec bash -c "cd; cd dev_setup; cd dotfiles; cp .* ~;"
 
