@@ -22,12 +22,16 @@ if($uninstall){
 }
 
 if($setup){
-    wsl -d $distro --exec bash -c "sudo apt update && sudo apt install -y ansible"
-    wsl -d $distro --exec bash -c "curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm get-docker.sh;"
+    Write-Host "Installing ansible on WSL." -ForegroundColor Green
+    # wsl -d $distro --exec bash -c "sudo apt update && sudo apt install -y ansible"
 
+    Write-Host "Installing docker on WSL." -ForegroundColor Green
+    # wsl -d $distro --exec bash -c "curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm get-docker.sh;"
+
+    Write-Host "Running setup script for $distro." -ForegroundColor Green
     # Pull down setup repo into wsl instance
-    wsl -d $distro --exec bash "git pull https://github.com/13janderson/dev_setup setup; cd setup; rm -rf install-wsl; cd wsl/init/$distro; bash setup.sh"
-
+    wsl -d $distro --exec bash -c "git clone https://github.com/13janderson/dev_setup.git setup; cp -r dotfiles/. ~/" 
+    # wsl -d $distro --exec bash "git clone https://github.com/13janderson/dev_setup setup; cd setup; cd wsl/init/$distro; bash setup.sh"
 
 
 }
