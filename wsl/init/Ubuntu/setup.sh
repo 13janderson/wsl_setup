@@ -22,4 +22,3 @@ git config --global user.email "$github_email"
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 
 
-# Pulldown dotfiles
