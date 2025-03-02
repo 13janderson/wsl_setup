@@ -15,4 +15,12 @@ sudo apt update && sudo apt install gh -y
 gh auth login
 gh auth setup-git 
 
+# Prompt user for GitHub username and email
+read -p "Enter your GitHub username: " github_username
+read -p "Enter your GitHub email: " github_email
+
+# Configure Git with the provided username and email
+git config --global user.name "$github_username"
+git config --global user.email "$github_email"
+
 
