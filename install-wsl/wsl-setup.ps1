@@ -18,7 +18,8 @@ if($install){
 
         # Set new distro as default
         wsl --set-default $distro
-        # Launch new instance
+        # Launch new instance which should prompt for default username and password.
+        # Currently reliant on user exiting this command for us. logout or exit
         wsl -d $distro --cd ~
         Write-Host "Logged out". -ForegroundColor Green
 
@@ -28,7 +29,8 @@ if($install){
         wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/dev_setup.git; cd dev_setup; cd wsl/init/$distro; sudo bash setup.sh"
         wsl -d $distro --exec bash -c "cd; cd dev_setup; cd dotfiles; cp .* ~;"
 
-        # Restart wsl
+        # Force use to be in docker group so we can run docker commands w/out sudo
+        wsl -d $distro --exec bash -c "sudo usermod -aG docker $USER"
         wsl -d $distro --shutdown
         wsl -d $distro --cd ~
 
