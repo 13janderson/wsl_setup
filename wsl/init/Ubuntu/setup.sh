@@ -5,7 +5,7 @@
 
 # docker setup
 curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm get-docker.sh;
-sudo newgrp docker
+
 
 # git setup using git credential manager
 
