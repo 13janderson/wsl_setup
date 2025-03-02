@@ -23,8 +23,9 @@ git config --global user.email "$github_email"
 sudo apt update && sudo apt install gh -y
 
 # gh auth with gh cli
-while ! gh auth login; do 
-    echo "gh auth login timed out. Trying again"
+while ! gh auth login; do
+    echo "FAILED gh auth login"
+    gh auth login 
 done
 
 echo "gh auth login success"
