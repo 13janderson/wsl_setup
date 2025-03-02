@@ -15,6 +15,8 @@ if($install){
     if(-not $distros.Contains($distro)){
         wsl --install -d $distro -n
         Write-Host "Launching new $distro instance. Provide login details for default linux user and then type 'logout'." -ForegroundColor Green
+        # Set new distro as default
+        wsl --set-default -s $distro
         # Launch new instance
         wsl -d $distro 
         Write-Host "Logged out". -ForegroundColor Green
@@ -28,7 +30,7 @@ if($install){
         # Pull down setup repo into wsl instance
         # wsl -d $distro --exec bash -c "git clone https://github.com/13janderson/dev_setup.git setup; cp -r dotfiles/. ~/" 
         wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/dev_setup.git; cd dev_setup; cd wsl/init/$distro; bash setup.sh"
-        wsl -d $distro --exec bash -c "cd; cd setup; cd dotfiles; cp * ~;"
+        wsl -d $distro --exec bash -c "cd; cd dev_setup; cd dotfiles; cp * ~;"
 
     }
 }
