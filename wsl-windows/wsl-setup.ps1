@@ -25,7 +25,7 @@ if($install){
 
         Write-Host "Running setup script for $distro." -ForegroundColor Green
         # Pull down setup repo into wsl instance
-        wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/dev_setup.git; cd dev_setup; cd wsl/init/$distro; sudo bash setup.sh"
+        wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/dev_setup.git; cd dev_setup; cd wsl-linux/init/$distro; sudo bash setup.sh"
         wsl -d $distro --exec bash -c "cd; cd dev_setup; cd dotfiles; cp .* ~;"
 
         # Force use to be in docker group so we can run docker commands w/out sudo
