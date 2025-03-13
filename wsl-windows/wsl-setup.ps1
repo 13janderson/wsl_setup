@@ -2,13 +2,15 @@ param(
     [switch]$install,
     [switch]$uninstall,
     [switch]$reinstall,
-    [string]$distro = "ubuntu"
+    [switch]$compile,
+    [string]$distro = "Ubuntu"
 )
+
 
 # Generate executables and add to path
 $binPath = "$PSScriptRoot\bin"
 $userPath = [Environment]::GetEnvironmentVariable("Path","User")
-if(!$userPath.Contains($binPath)){
+if(!$userPath.Contains($binPath) -or $compile ){
     # Install ps2exe module
     if($null -eq (Get-Module -ListAvailable -Name ps2exe)){
         Install-Module -Name ps2exe -Repository PSGallery -Scope CurrentUser
@@ -22,7 +24,7 @@ if(!$userPath.Contains($binPath)){
     $files = Get-ChildItem -Path $PSScriptRoot 
     $files | ForEach-Object {
         if($_.Extension -eq ".ps1"){
-            ps2exe $_ -outputFile "$binPath/$($_.Name.Replace($_.Extension, '')).exe"| Out-Null
+            ps2exe $_ -outputFile "$binPath/$($_.Name.Replace($_.Extension, '')).exe" -
         }
     }
 }else{
