@@ -1,3 +1,9 @@
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+alias code="/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe "
+alias wr="cd /mnt/c/Users/jack.anderson"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
