@@ -37,7 +37,8 @@ if(-not ($install -xor $uninstall -xor $setup)){
 
 if($install){
     $distros = wsl --list
-    if(-not $distros.contains($distro)){
+    Write-Host $distros
+    if($distros | Where-Object{$_.StartsWith($distro)}.Count -eq 0){
         wsl --install -d $distro -n
         write-host "launching new $distro instance. provide login details for default linux user and then type 'logout'." -foregroundcolor green
 
@@ -47,19 +48,19 @@ if($install){
         # currently reliant on user exiting this command for us. logout or exit
         wsl -d $distro --cd ~
         write-host "logged out". -foregroundcolor green
-
-        write-host "running setup script for $distro." -foregroundcolor green
-        # pull down setup repo into wsl instance
-        wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/dev_setup.git; cd dev_setup; cd wsl-linux/init/$distro; sudo bash setup.sh"
-        wsl -d $distro --exec bash -c "cd; cd dev_setup; cd dotfiles; cp .* ~;"
-
-        # force use to be in docker group so we can run docker commands w/out sudo
-        wsl -d $distro --exec bash -c 'sudo usermod -ag docker $user'
-        wsl -d $distro --shutdown
-
-        wsl -d $distro --cd ~
-
     }
+
+    write-host "running setup script for $distro." -foregroundcolor green
+    # pull down setup repo into wsl instance
+    wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/dev_setup.git; cd dev_setup; cd wsl-linux/init/$distro; sudo bash setup.sh"
+    wsl -d $distro --exec bash -c "cd; cd dev_setup; cd dotfiles; cp .* ~;"
+
+    # force use to be in docker group so we can run docker commands w/out sudo
+    wsl -d $distro --exec bash -c 'sudo usermod -ag docker $user'
+    wsl -d $distro --shutdown
+
+    wsl -d $distro --cd ~
+
 }
 
 if($uninstall){
