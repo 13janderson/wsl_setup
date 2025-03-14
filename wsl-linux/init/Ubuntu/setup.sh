@@ -14,7 +14,7 @@ read -p "Enter your GitHub email: " github_email
 
 git config --global user.name "$github_username"
 git config --global user.email "$github_email"
-git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager-wincred.exe"
+git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
 
 # Instal zsh and pre-configure it with oh-my-zsh
 apt-get install zsh
