@@ -6,7 +6,8 @@ export EDITOR="$VISUAL"
 
 # Aliases
 alias code="/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe -r"
-alias wr="cd /home/jackanderson"
+alias wr="cd /home/jackanderson/dev_setup/wsl-linux"
+alias swr='sed -i -E "s|(wr=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 alias pr="cd /mnt/c/Users/jack.anderson/CVS"
 
 # If you come from bash you might have to change your $PATH.
@@ -123,3 +124,5 @@ source $ZSH/oh-my-zsh.sh
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+wr
