@@ -12,7 +12,7 @@ alias dd="cd ~/dev_setup"
 alias pd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
-# Dot file sync. dfu for syncing dotfiles up to git; dfd for syncing dotfiles down from git
+# Dot file sync
 alias dfu='
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from system root directory to here
@@ -152,5 +152,3 @@ source $ZSH/oh-my-zsh.sh
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-
