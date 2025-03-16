@@ -17,12 +17,10 @@ ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from system root directory to here
   cp ~/$(basename ~/$df) ~/dev_setup/dotfiles/ 
 done
-cdr = $(pwd)
-echo $cdr
 cd ~/dev_setup/dotfiles/
 git commit -am "dotfile sync $(date)"
 git push
-cd $cdr
+cd -
 '
 
 # If you come from bash you might have to change your $PATH.
