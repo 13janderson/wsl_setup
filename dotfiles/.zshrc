@@ -8,7 +8,7 @@ export EDITOR="$VISUAL"
 # dd is the directory for dev_setup stuff
 alias dd="cd ~/dev_setup"
 # alias sdd='sed -i -E "s|(dd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
-# pd is then a simple way to bookmark the curent project directory
+# spd is then a simple way to bookmark the curent project directory; pd then changes to that directory
 alias pd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
@@ -26,7 +26,7 @@ cd -
 alias dfd='
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from git to root directory
-  cp ~/dev_setup/dotfiles/ ~/$(basename ~/$df)
+  cp $df ~/$(basename ~/$df)
 done
 # Additionally source .zshrc here as well 
 source ~/.zshrc
@@ -153,7 +153,4 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
-# Launch project directory when we open new shell
-pd
 
