@@ -4,23 +4,20 @@ eval "$(dircolors -b ~/.dircolors)"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-
+# Aliases
 # dd is the directory for dev_setup stuff
 alias dd="cd ~/dev_setup"
 # alias sdd='sed -i -E "s|(dd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
-# Project Aliases
 # pr is the project root
 alias pr="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
-alias spr='sed -i -E "s|(pr=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
-
+alias spd='sed -i -E "s|(pr=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 # spd is then a simple way to bookmark the curent project directory; pd then changes to that directory
 alias pd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # Dot file sync
 alias dfu='
->>>>>>> b2261e3 (dotfile sync Sun Mar 16 22:39:40 GMT 2025)
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from system root directory to here
   cp ~/$(basename ~/$df) ~/dev_setup/dotfiles/ 
@@ -30,7 +27,6 @@ git commit -am "dotfile sync $(date)"
 git push
 cd -
 '
-
 alias dfd='
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from git to root directory
@@ -39,6 +35,9 @@ done
 # Additionally source .zshrc here as well 
 source ~/.zshrc
 '
+
+# fzf default options, opens vs code if a file is picked and the command is not aborted
+export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
 
 # fzf default options, opens vs code if a file is picked and the command is not aborted
 export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
