@@ -5,15 +5,13 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # Aliases
-# dd is the directory for dev_setup stuff
-alias dd="cd ~/dev_setup"
-# alias sdd='sed -i -E "s|(dd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
-# pd is then a simple way to bookmark the curent project directory
-alias pd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
+alias wd="cd /home/jackanderson/dev_setup"
+alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
+alias pd="cd /mnt/c/Users/jack.anderson/CVS"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
-# Dot file sync. dfu for syncing dotfiles up to git; dfd for syncing dotfiles down from git
-alias dfu='
+# Dot file sync
+alias dfs='
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from system root directory to here
   cp ~/$(basename ~/$df) ~/dev_setup/dotfiles/ 
@@ -23,14 +21,9 @@ git commit -am "dotfile sync $(date)"
 git push
 cd -
 '
-alias dfd='
-ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
-  # Copy all dotfiles from git to root directory
-  cp $df  ~/$(basename ~/$df)
-done
-# Additionally source .zshrc here as well 
-source ~/.zshrc
-'
+
+# fzf default options, opens vs code if a file is picked and the command is not aborted
+export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
 
 # fzf default options, opens vs code if a file is picked and the command is not aborted
 export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
@@ -151,6 +144,4 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
-# Launch project directory when we open new shell
-pd
-
+wd
