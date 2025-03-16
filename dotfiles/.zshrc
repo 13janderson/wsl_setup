@@ -152,6 +152,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+<<<<<<< HEAD
 # Launch project directory when we open new shell
 pd
 
+=======
+# Launch working directory when we open new shell
+wd
+>>>>>>> 517118c (dotfile sync Sun Mar 16 17:31:57 GMT 2025)
