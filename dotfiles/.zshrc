@@ -20,7 +20,7 @@ done
 cd ~/dev_setup/dotfiles/
 git commit -am "dotfile sync $(date)"
 git push
-cd ~/dev_setup
+echo "test"
 '
 
 # If you come from bash you might have to change your $PATH.
