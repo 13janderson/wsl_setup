@@ -6,9 +6,19 @@ export EDITOR="$VISUAL"
 
 # Aliases
 alias code="/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe -r"
-alias wr="cd /home/jackanderson/dev_setup/wsl-linux"
+alias wr="cd /home/jackanderson/dev_setup"
 alias swr='sed -i -E "s|(wr=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 alias pr="cd /mnt/c/Users/jack.anderson/CVS"
+
+# Dot file sync
+alias dfs='
+ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
+  # Copy all dotfiles from system root directory to here
+  cp ~/$(basename ~/$df) ~/dev_setup/dotfiles/ 
+done
+cd ~/dev_setup/dotfiles/
+git commit -am "dotfile sync $(date)"
+'
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
@@ -125,4 +135,4 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-wr
+# wr

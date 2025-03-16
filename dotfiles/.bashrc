@@ -1,5 +1,9 @@
+difference
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+alias code="/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe "
+alias wr="cd /mnt/c/Users/jack.anderson"
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
