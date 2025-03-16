@@ -151,10 +151,4 @@ source $ZSH/oh-my-zsh.sh
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-<<<<<<< HEAD
 fi
-=======
-fi
-
-
->>>>>>> 238b192 (dotfile sync Sun Mar 16 22:27:39 GMT 2025)
