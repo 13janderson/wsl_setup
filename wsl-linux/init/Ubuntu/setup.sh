@@ -16,3 +16,6 @@ gh auth login
 # Instal zsh and pre-configure it with oh-my-zsh
 apt-get install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Install fzf. Default opts configured in dotfiles
+apt-get install fzf -y
