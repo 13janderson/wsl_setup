@@ -10,8 +10,8 @@ alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zs
 alias pd="cd /mnt/c/Users/jack.anderson/CVS"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
-# Dot file sync
-alias dfs='
+# Dot file sync. dfu for syncing dotfiles up to git; dfd for syncing dotfiles down from git
+alias dfu='
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from system root directory to here
   cp ~/$(basename ~/$df) ~/dev_setup/dotfiles/ 
@@ -20,6 +20,14 @@ cd ~/dev_setup/dotfiles/
 git commit -am "dotfile sync $(date)"
 git push
 cd -
+'
+alias dfd='
+ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
+  # Copy all dotfiles from git to root directory
+  cp ~/dev_setup/dotfiles/ ~/$(basename ~/$df)
+done
+# Additionally source .zshrc here as well 
+source ~/.zshrc
 '
 
 # fzf default options, opens vs code if a file is picked and the command is not aborted
@@ -144,4 +152,5 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+# Launch working directory when we open new shell
 wd
