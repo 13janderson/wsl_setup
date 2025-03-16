@@ -8,6 +8,10 @@ export EDITOR="$VISUAL"
 # dd is the directory for dev_setup stuff
 alias dd="cd ~/dev_setup"
 # alias sdd='sed -i -E "s|(dd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
+
+# pr is the project root
+alias pr="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
+alias spd='sed -i -E "s|(pr=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 # spd is then a simple way to bookmark the curent project directory; pd then changes to that directory
 alias pd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
