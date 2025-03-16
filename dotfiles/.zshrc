@@ -5,9 +5,11 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # Aliases
-alias wd="cd /home/jackanderson/dev_setup"
-alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
-alias pd="cd /mnt/c/Users/jack.anderson/CVS"
+# dd is the directory for dev_setup stuff
+alias dd="cd ~/dev_setup"
+# alias sdd='sed -i -E "s|(dd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
+# pd is then a simple way to bookmark the curent project directory
+alias pd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # Dot file sync
