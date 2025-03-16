@@ -19,6 +19,7 @@ done
 $cdr = $(pwd)
 cd ~/dev_setup/dotfiles/
 git commit -am "dotfile sync $(date)"
+git push
 cd $cdr
 '
 
