@@ -25,7 +25,7 @@ cd -
 alias dfd='
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from git to root directory
-  cp ~/dev_setup/dotfiles/ ~/$(basename ~/$df)
+  cp $df  ~/$(basename ~/$df)
 done
 # Additionally source .zshrc here as well 
 source ~/.zshrc
