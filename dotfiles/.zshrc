@@ -4,6 +4,7 @@ eval "$(dircolors -b ~/.dircolors)"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+<<<<<<< HEAD
 
 # dd is the directory for dev_setup stuff
 alias dd="cd ~/dev_setup"
@@ -18,8 +19,8 @@ alias spr='sed -i -E "s|(pr=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zs
 alias pd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
-# Dot file sync. dfu for syncing dotfiles up to git; dfd for syncing dotfiles down from git
-alias dfu='
+# Dot file sync
+alias dfs='
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from system root directory to here
   cp ~/$(basename ~/$df) ~/dev_setup/dotfiles/ 
@@ -29,6 +30,7 @@ git commit -am "dotfile sync $(date)"
 git push
 cd -
 '
+
 alias dfd='
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from git to root directory
@@ -40,7 +42,6 @@ source ~/.zshrc
 
 # fzf default options, opens vs code if a file is picked and the command is not aborted
 export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
-
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
