@@ -5,7 +5,6 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # Aliases
-alias code="/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe -r"
 # dd is the directory for dev_setup stuff
 alias dd="cd ~/dev_setup"
 # alias sdd='sed -i -E "s|(dd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
