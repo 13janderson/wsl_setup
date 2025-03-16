@@ -18,7 +18,7 @@ alias spr='sed -i -E "s|(pr=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zs
 alias pd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
-# Dot file sync
+# Dot file sync. dfu for syncing dotfiles up to git; dfd for syncing dotfiles down from git
 alias dfu='
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from system root directory to here
@@ -41,8 +41,6 @@ source ~/.zshrc
 # fzf default options, opens vs code if a file is picked and the command is not aborted
 export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
 
-# fzf default options, opens vs code if a file is picked and the command is not aborted
-export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
