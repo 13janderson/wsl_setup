@@ -6,9 +6,10 @@ export EDITOR="$VISUAL"
 
 # Aliases
 alias code="/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe -r"
-alias wr="cd /home/jackanderson/dev_setup"
-alias swr='sed -i -E "s|(wr=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
-alias pr="cd /mnt/c/Users/jack.anderson/CVS"
+alias wd="cd /home/jackanderson/dev_setup"
+alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
+alias pd="cd /mnt/c/Users/jack.anderson/CVS"
+alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # Dot file sync
 alias dfs='
@@ -138,4 +139,5 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# wr
+
+wd
