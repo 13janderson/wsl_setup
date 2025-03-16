@@ -153,10 +153,13 @@ fi
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Launch project directory when we open new shell
 pd
 
 =======
+=======
+>>>>>>> 517118c (dotfile sync Sun Mar 16 17:31:57 GMT 2025)
 # Launch working directory when we open new shell
 wd
 >>>>>>> 517118c (dotfile sync Sun Mar 16 17:31:57 GMT 2025)
