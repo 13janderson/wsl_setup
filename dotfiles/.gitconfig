@@ -1,7 +1,6 @@
 # This is Git's per-user configuration file.
-		
 [pull]
-	rebase = true
+	rebase=false
 [push]
 	autoSetupRemote=true
 [credential "https://github.com"]
