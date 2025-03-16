@@ -8,7 +8,7 @@ export EDITOR="$VISUAL"
 # dd is the directory for dev_setup stuff
 alias dd="cd ~/dev_setup"
 # alias sdd='sed -i -E "s|(dd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
-# pd is then a simple way to bookmark the curent project directory
+# spd is then a simple way to bookmark the curent project directory; pd then changes to that directory
 alias pd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
@@ -23,9 +23,14 @@ git commit -am "dotfile sync $(date)"
 git push
 cd -
 '
-
-# fzf default options, opens vs code if a file is picked and the command is not aborted
-export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
+alias dfd='
+ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
+  # Copy all dotfiles from git to root directory
+  cp $df ~/$(basename ~/$df)
+done
+# Additionally source .zshrc here as well 
+source ~/.zshrc
+'
 
 # fzf default options, opens vs code if a file is picked and the command is not aborted
 export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
@@ -143,4 +148,10 @@ source $ZSH/oh-my-zsh.sh
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+<<<<<<< HEAD
 fi
+=======
+fi
+
+
+>>>>>>> 238b192 (dotfile sync Sun Mar 16 22:27:39 GMT 2025)
