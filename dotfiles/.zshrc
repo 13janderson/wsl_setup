@@ -41,9 +41,17 @@ source ~/.zshrc
 # VimBeGood
 alias vbg="docker run -it --rm brandoncc/vim-be-good:stable"
 
-# fzf default options, opens vs code if a file is picked and the command is not aborted
-export FZF_DEFAULT_OPTS="--bind='enter:become(code {})' --preview 'batcat -n --color=always {}'"
+set_fzf_defaults() {
+  # fzf default options, opens vs code if a file is picked and the command is not aborted
+  export FZF_DEFAULT_OPTS="--bind='enter:become(code {})' --preview 'batcat -n --color=always {}'"
+}
+set_fzf_defaults
 
+unset_fzf_defaults(){
+  unset FZF_DEFAULT_OPTS
+}
+
+alias cht="unset_fzf_defaults; ~/.local/bin/scripts/chtfzf.sh; set_fzf_defaults"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
