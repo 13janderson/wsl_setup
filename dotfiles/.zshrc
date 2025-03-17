@@ -9,11 +9,11 @@ export EDITOR="$VISUAL"
 alias dd="cd ~/dev_setup"
 # alias sdd='sed -i -E "s|(dd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 # spd is then a simple way to bookmark the curent project directory; pd then changes to that directory
-alias pd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration"
+alias pd="cd /home/jackanderson/projects/CVS"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # wd = working directorty
-alias wd="cd /mnt/c/Users/jack.anderson/CVS/CVS-TAS-Document-Migration/function_app_update_permissions_sharepoint"
+alias wd="cd /home/jackanderson/projects/CVS/CVS-TAS-Document-Migration/function_app_update_permissions_sharepoint"
 alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # Dot file sync
