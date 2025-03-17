@@ -19,3 +19,4 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 # Install fzf. Default opts configured in dotfiles
 apt-get install fzf -y
+apt-get install bat -y
