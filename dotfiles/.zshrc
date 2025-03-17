@@ -44,9 +44,6 @@ export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
 # fzf default options, opens vs code if a file is picked and the command is not aborted
 export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
 
-# fzf default options, opens vs code if a file is picked and the command is not aborted
-export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
