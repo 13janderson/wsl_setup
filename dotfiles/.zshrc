@@ -38,6 +38,9 @@ done
 source ~/.zshrc
 '
 
+# VimBeGood
+alias vbg="docker run -it --rm brandoncc/vim-be-good:stable"
+
 # fzf default options, opens vs code if a file is picked and the command is not aborted
 export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
 
@@ -155,4 +158,16 @@ source $ZSH/oh-my-zsh.sh
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Ensure Docker is running on WSL 2. This expects you've installed Docker and
+# Docker Compose directly within your WSL distro instead of Docker Desktop, such as:
+#   - https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
+#   - https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
+#   - https://docs.docker.com/compose/install/linux/
+if grep -q "microsoft" /proc/version > /dev/null 2>&1; then
+    if service docker status 2>&1 | grep -q "is not running"; then
+        wsl.exe --distribution "${WSL_DISTRO_NAME}" --user root \
+            --exec /usr/sbin/service docker start > /dev/null 2>&1
+    fi
 fi
