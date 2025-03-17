@@ -30,10 +30,7 @@ git push
 cd -
 '
 alias dfd='
-ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
-  # Copy all dotfiles from git to root directory
-  cp $df ~/$(basename ~/$df)
-done
+cp -r ~/dev_setup/dotfiles/. ~
 # Additionally source .zshrc here as well 
 source ~/.zshrc
 '
