@@ -8,6 +8,8 @@ export EDITOR="$VISUAL"
 # dd is the directory for dev_setup stuff
 alias dd="cd ~/dev_setup"
 # alias sdd='sed -i -E "s|(dd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
+
+# pd = project directory
 # spd is then a simple way to bookmark the curent project directory; pd then changes to that directory
 alias pd="cd /home/jackanderson/projects/CVS"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
@@ -40,7 +42,7 @@ source ~/.zshrc
 alias vbg="docker run -it --rm brandoncc/vim-be-good:stable"
 
 # fzf default options, opens vs code if a file is picked and the command is not aborted
-export FZF_DEFAULT_OPTS="--bind='enter:become(code {})'"
+export FZF_DEFAULT_OPTS="--bind='enter:become(code {})' --preview 'batcat -n --color=always {}'"
 
 
 # If you come from bash you might have to change your $PATH.
