@@ -1,0 +1,12 @@
+ls
+cat $SHELL
+echo $SHELL
+ls
+exec $SHELL
+ls
+cat $SHEL
+echo $SHELL
+ls
+chsh
+chsh -s /usr/bin/zsh
+exec /usr/bin/zsh
