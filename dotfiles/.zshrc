@@ -26,7 +26,7 @@ ls -A ~/dev_setup/dotfiles/ | while IFS= read -r df; do
   if [ -d $rootdf ]; then
     cp -r $rootdf ~/dev_setup/dotfiles/
   else
-    cp $rootdf ~/dev_setup/dotfiles/
+    cp ~/$rootdf ~/dev_setup/dotfiles/
   fi
 done
 cd ~/dev_setup/dotfiles/
