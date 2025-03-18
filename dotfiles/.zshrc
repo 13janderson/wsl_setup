@@ -22,7 +22,7 @@ alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zs
 alias dfu='
 ls -a ~/dev_setup/dotfiles/.* | tr " " "\n" | while IFS= read -r df; do
   # Copy all dotfiles from system root directory to here
-  cp ~/$(basename ~/$df) ~/dev_setup/dotfiles/ 
+  cp ~/$($df | sed -E s|$HOME/dev_setup/dotfiles||) ~/dev_setup/dotfiles/ 
 done
 cd ~/dev_setup/dotfiles/
 git commit -am "dotfile sync $(date)"
