@@ -33,7 +33,7 @@ function main {
     while :; do # do while
         search=$(curl -sg "cht.sh/$(getPath):list" | 
             grep -v ":list" | 
-            fzf --bind "ctrl-d:print-query" --preview="${BASH_SOURCE[0]} preview "$(getPath){}"")
+                fzf --bind "ctrl-d:print-query" --preview="${BASH_SOURCE[-1]} preview "$(getPath){}"")
 
         if [[ "$search" == "" ]]; then # go up a level on ctrl-d
             popd -n > /dev/null 2>&1
@@ -52,7 +52,6 @@ function main {
     fi
     echo "opening $(getPath)$search"
     openSheet "$(getPath)$search"
-    export $FZF_DEFAULT_OPTS = $SAVE_FZF_DEFAULT_OPTS
 }
 
 function getPath {
@@ -60,14 +59,13 @@ function getPath {
 }
 
 function openSheet {
-    if [[ "$1" == "" ]]; then exit; fi # Exit if empty string
+    if [[ -z "$1" ]]; then exit; fi # Exit if no argument provided
     case "$openMode" in
-        tmux) tmux neww bash -c "curl -sg "cht.sh/$*" | less -R";;
-        bash) curl -sg "cht.sh/$*" | less -R;;
+        tmux) tmux neww bash -c "curl -sg 'cht.sh/$*' | sed $'s/\x1b\[[0-9;]*m//g' | code -";;
+        bash) curl -sg "cht.sh/$*" | sed $'s/\x1b\[[0-9;]*m//g' | code -;;
         *) echo "Unknown openMode, set -t to use tmux, or no args to use bash directly"
     esac
 }
-
 function searchMain {
     if [ -f "$CACHE_DIR/main.list" ]; then
         # Use cached list if it exists

@@ -23,9 +23,12 @@ alias dfu='
 ls -A ~/dev_setup/dotfiles/ | while IFS= read -r df; do
   # Copy all dotfiles from system root directory to here
   rootdf=$(echo "$df" | sed -e "s|$HOME/dev_setup/dotfiles/||")
+  echo $rootdf
   if [ -d $rootdf ]; then
-    cp -r $rootdf ~/dev_setup/dotfiles/
+    echo "is dir"
+    cp -r ~/$rootdf ~/dev_setup/dotfiles/
   else
+    echo "not dir"
     cp ~/$rootdf ~/dev_setup/dotfiles/
   fi
 done
