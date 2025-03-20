@@ -25,10 +25,8 @@ ls -A ~/dev_setup/dotfiles/ | while IFS= read -r df; do
   rootdf=$(echo "$df" | sed -e "s|$HOME/dev_setup/dotfiles/||")
   echo $rootdf
   if [ -d $rootdf ]; then
-    echo "is dir"
     cp -r ~/$rootdf ~/dev_setup/dotfiles/
   else
-    echo "not dir"
     cp ~/$rootdf ~/dev_setup/dotfiles/
   fi
 done
