@@ -15,7 +15,7 @@ alias pd="cd /home/jackanderson/projects/CVS"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # wd = working directorty
-alias wd="cd /home/jackanderson/projects/CVS/CVS-TAS-Document-Migration/function_app_update_permissions_sharepoint"
+alias wd="cd /home/jackanderson/projects/CVS/cvs-data-migration/scripts/Glue/ATI/documentMigration/provingsharepoint"
 alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # Dot file sync
