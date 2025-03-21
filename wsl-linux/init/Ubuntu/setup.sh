@@ -10,7 +10,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm ge
 apt-get install gh
 # Preferable to use SSH keys
 gh auth login 
-# gh auth setup-git 
+gh auth setup-git 
 #git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
 
 # Instal zsh and pre-configure it with oh-my-zsh
