@@ -4,6 +4,7 @@ eval "$(dircolors -b ~/.dircolors)"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+
 # Aliases
 # dd is the directory for dev_setup stuff
 alias dd="cd ~/dev_setup"
