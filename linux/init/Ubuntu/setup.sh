@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Install ansible
-# sudo apt update && sudo apt install -y ansible
-
 # docker setup
 curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm get-docker.sh;
 
