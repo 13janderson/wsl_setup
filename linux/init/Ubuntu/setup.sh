@@ -11,6 +11,7 @@ apt-get install gh
 # Preferable to use SSH keys
 gh auth login 
 gh auth setup-git 
+git config --global core.excludefile ~/.gitignore
 #git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
 
 # Instal zsh and pre-configure it with oh-my-zsh
