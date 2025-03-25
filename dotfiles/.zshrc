@@ -41,6 +41,9 @@ cp -r ~/dev_setup/dotfiles/. ~
 source ~/.zshrc
 '
 
+alias nv='nvim'
+alias vi='nvim'
+
 # VimBeGood
 alias vbg="docker run -it --rm brandoncc/vim-be-good:stable"
 
@@ -192,4 +195,4 @@ fi
 echo -e "\e[?12l"
 
 # Bind ctrl backspace to delete a word
-bindkey '^H' backward-kill-word.
+bindkey '^H' backward-kill-word
