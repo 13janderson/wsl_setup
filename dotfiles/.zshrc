@@ -21,9 +21,15 @@ alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zs
 
 # Dot file sync
 alias dfu='
-ls -A ~/dev_setup/dotfiles/ | while IFS= read -r df; do
+# ls -ARp ~/dev_setup/dotfiles/ | grep -v / | sed -r "/^[\s,\.:]*$/d" | while IFS= read -r df; do
+find ~/dev_setup/dotfiles -type f | while IFS= read -r df; do
   # Copy all dotfiles from system root directory to here
+  # We only want to copy  files that are actually in our dotfiles
+  # basename is not sufficient because we want to preserve the file dir structure
+  # within the dotfiles
+  
   rootdf=$(echo "$df" | sed -e "s|$HOME/dev_setup/dotfiles/||")
+  echo $rootdf
   if [ -d $rootdf ]; then
     cp -r ~/$rootdf ~/dev_setup/dotfiles/
   else
@@ -34,6 +40,7 @@ cd ~/dev_setup/dotfiles/
 git commit -am "dotfile sync $(date)"
 git push
 cd -
+
 '
 alias dfd='
 cp -r ~/dev_setup/dotfiles/. ~
