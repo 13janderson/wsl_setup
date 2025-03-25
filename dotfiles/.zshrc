@@ -30,11 +30,11 @@ find ~/dev_setup/dotfiles/.* -type f | while IFS= read -r df; do
   
   rootdf=$(echo "$df" | sed -e "s|$HOME/dev_setup/dotfiles/||")
   echo $rootdf
-  cp ~/$rootdf ~/dev_setup/dotfiles/
+  cp ~/$rootdf $df
 done
-#cd ~/dev_setup/dotfiles/
-#git commit -am "dotfile sync $(date)"
-#git push
+cd ~/dev_setup/dotfiles/
+git commit -am "dotfile sync $(date)"
+git push
 cd -
 
 '
