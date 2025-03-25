@@ -190,3 +190,6 @@ fi
 
 # Non blinking terminal cursor
 echo -e "\e[?12l"
+
+# Bind ctrl backspace to delete a word
+bindkey '^H' backward-kill-word.
