@@ -1,6 +1,6 @@
 --[[
 
-=====================================================================
+o====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
 ========                                    .-----.          ========
@@ -838,31 +838,21 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'navarasu/onedark.nvim',
+    'rose-pine/neovim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       ---@diagnostic disable-next-line: missing-fields
-      require('onedark').setup {
-        style = '', -- Options: 'dark', 'darker', 'cool', 'deep', 'warm', 'light'
-        transparent = false, -- Whether to make background transparent
-        term_colors = true, -- Enable terminal colors
-        ending_tilde = true, -- Add a tilde to the end of each buffer
-        code_style = {
-          comments = 'none', -- Comments style (italic, bold, etc.)
-          keywords = 'bold', -- Keywords style (italic, bold, etc.)
-          functions = 'bold', -- Functions style
-          strings = 'none', -- Strings style
-          variables = 'none', -- Variables style
-        },
-        diagnostics = {
-          darker = true, -- Make diagnostics darker for contrast
-          undercurl = true, -- Enable undercurl for diagnostics
-          background = false, -- Use background for diagnostics
-        },
-        highlights = {}, -- You can add custom highlight overrides here
+      require('rose-pine').setup {
+        disable_background=true,
+        styles = {
+          transparency = true,
+          italic = false,
+          bold = true,
+        }
+        
       }
 
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'rose-pine-moon'
     end,
   },
 
