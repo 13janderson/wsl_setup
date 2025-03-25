@@ -27,7 +27,6 @@ find ~/dev_setup/dotfiles/.* -type f | while IFS= read -r df; do
   # We only want to copy  files that are actually in our dotfiles
   # basename is not sufficient because we want to preserve the file dir structure
   # within the dotfiles
-  
   rootdf=$(echo "$df" | sed -e "s|$HOME/dev_setup/dotfiles/||")
   cp ~/$rootdf $df
 done
