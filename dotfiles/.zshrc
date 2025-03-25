@@ -29,7 +29,6 @@ find ~/dev_setup/dotfiles/.* -type f | while IFS= read -r df; do
   # within the dotfiles
   
   rootdf=$(echo "$df" | sed -e "s|$HOME/dev_setup/dotfiles/||")
-  echo $rootdf
   cp ~/$rootdf $df
 done
 cd ~/dev_setup/dotfiles/
