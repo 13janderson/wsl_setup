@@ -845,9 +845,8 @@ require('lazy').setup({
       require('rose-pine').setup {
         disable_background=true,
         styles = {
-          transparency = true,
           italic = false,
-          bold = true,
+          bold = false,
         }
         
       }
@@ -876,6 +875,7 @@ require('lazy').setup({
         'vimdoc',
         'go',
         'typescript',
+        'c_sharp',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
