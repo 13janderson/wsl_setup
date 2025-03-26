@@ -89,7 +89,7 @@ P.S. You can delete this when you're done too. It's your config now! :)
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.api.nvim_set_keymap('n', '<leader>y', '"+y', { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
@@ -99,7 +99,7 @@ vim.g.have_nerd_font = false
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Make line numbers default
+-- Relative but normal number for current line
 vim.wo.relativenumber = true
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -109,10 +109,12 @@ vim.opt.number = true
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
+
 vim.opt.showmode = false
 
 -- Enable break indent
 vim.opt.breakindent = true
+vim.opt.wrap = false
 
 -- Save undo history
 vim.opt.undofile = true
@@ -171,14 +173,8 @@ vim.keymap.set('v', '<C-/>', function()
   vim.cmd 'normal! gc'
 end, { noremap = true, silent = true })
 
-vim.cmd [[
-  augroup AutoSave
-    autocmd!
-    autocmd InsertLeave,TextChanged * :wa
-  augroup END
-]]
-
--- TIP: Disable arrow keys in normal mode
+-- FZF current dir
+vim.keymap.set('n', '<leader>pf', ':Files<CR>')
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
@@ -226,10 +222,9 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup({
+require('lazy').setup {
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -240,7 +235,7 @@ require('lazy').setup({
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
   --    {
-  --        'lewis6991/gitsigns.nvim',
+  --        'lewis6990/gitsigns.nvim',
   --        config = function()
   --            require('gitsigns').setup({
   --                -- Your gitsigns configuration here
@@ -253,7 +248,7 @@ require('lazy').setup({
   --
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
+    'lewis6990/gitsigns.nvim',
     opts = {
       signs = {
         add = { text = '+' },
@@ -263,6 +258,63 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
     },
+  },
+  {
+    'ibhagwan/fzf-lua',
+    -- optional for icon support
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    -- or if using mini.icons/mini.nvim
+    -- dependencies = { "echasnovski/mini.icons" },
+    config = function()
+      require('fzf-lua').setup {
+        'fzf-vim',
+        keymap = {
+          -- Below are the default binds, setting any value in these tables will override
+          -- the defaults, to inherit from the defaults change [1] from `false` to `true`
+          builtin = {
+            -- neovim `:tmap` mappings for the fzf win
+            -- true,        -- uncomment to inherit all the below in your custom config
+            ['<M-Esc>'] = 'hide', -- hide fzf-lua, `:FzfLua resume` to continue
+            ['<F1>'] = 'toggle-help',
+            ['<F2>'] = 'toggle-fullscreen',
+            -- Only valid with the 'builtin' previewer
+            ['<F3>'] = 'toggle-preview-wrap',
+            ['<F4>'] = 'toggle-preview',
+            -- Rotate preview clockwise/counter-clockwise
+            ['<F5>'] = 'toggle-preview-ccw',
+            ['<F6>'] = 'toggle-preview-cw',
+            -- `ts-ctx` binds require `nvim-treesitter-context`
+            ['<F7>'] = 'toggle-preview-ts-ctx',
+            ['<F8>'] = 'preview-ts-ctx-dec',
+            ['<F9>'] = 'preview-ts-ctx-inc',
+            ['<S-Left>'] = 'preview-reset',
+            ['<S-down>'] = 'preview-page-down',
+            ['<S-up>'] = 'preview-page-up',
+            ['<M-S-down>'] = 'preview-down',
+            ['<M-S-up>'] = 'preview-up',
+          },
+          fzf = {
+            -- fzf '--bind=' options
+            -- true,        -- uncomment to inherit all the below in your custom config
+            ['ctrl-z'] = 'abort',
+            ['ctrl-u'] = 'unix-line-discard',
+            ['ctrl-f'] = 'half-page-down',
+            ['ctrl-b'] = 'half-page-up',
+            ['ctrl-a'] = 'beginning-of-line',
+            ['ctrl-e'] = 'end-of-line',
+            ['alt-a'] = 'toggle-all',
+            ['alt-g'] = 'first',
+            ['alt-G'] = 'last',
+            -- Only valid with fzf previewers (bat/cat/git/etc)
+            ['f3'] = 'toggle-preview-wrap',
+            ['f4'] = 'toggle-preview',
+            ['shift-down'] = 'preview-page-down',
+            ['shift-up'] = 'preview-page-up',
+          },
+        },
+      }
+    end,
+    opts = {},
   },
   {
     -- Fuzzy Finder (files, lsp, etc)
@@ -570,9 +622,15 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
+        gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        powershell_es = {},
+        csharp_ls = {},
+        bashls = {},
+        dockerls = {},
+        docker_compose_language_service = {},
+        ts_ls = {},
+
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -843,12 +901,11 @@ require('lazy').setup({
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('rose-pine').setup {
-        disable_background=true,
+        disable_background = true,
         styles = {
           italic = false,
           bold = false,
-        }
-        
+        },
       }
 
       vim.cmd.colorscheme 'rose-pine-moon'
@@ -876,6 +933,7 @@ require('lazy').setup({
         'go',
         'typescript',
         'c_sharp',
+        'powershell',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -922,5 +980,4 @@ require('lazy').setup({
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
-}) 
-
+}

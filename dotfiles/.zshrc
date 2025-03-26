@@ -16,7 +16,7 @@ alias pd="cd /home/jackanderson/projects/CVS"
 alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # wd = working directorty
-alias wd="cd /home/jackanderson/projects/todo"
+alias wd="cd /home/jackanderson/projects/CVS/cvs-nop"
 alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # Dot file sync
@@ -50,7 +50,8 @@ alias vbg="docker run -it --rm brandoncc/vim-be-good:stable"
 
 set_fzf_defaults() {
   # fzf default options, opens vs code if a file is picked and the command is not aborted
-  export FZF_DEFAULT_OPTS="--bind='enter:become(code {})' --preview 'batcat -n --color=always {}'"
+  # export FZF_DEFAULT_OPTS="--bind='enter:(nvim {})' --preview 'batcat -n --color=always {}'"
+  export FZF_DEFAULT_OPTS="--preview 'batcat -n --color=always {}'"
 }
 set_fzf_defaults
 
