@@ -89,6 +89,7 @@ P.S. You can delete this when you're done too. It's your config now! :)
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+-- Yank to clipboard by prefixing with <leader>
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
@@ -109,7 +110,6 @@ vim.opt.number = true
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
-
 vim.opt.showmode = false
 
 -- Enable break indent
@@ -164,9 +164,38 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
-vim.keymap.set('n', '<leader><Tab>', '<C-^>')
+-- Alternate between bufffers
+vim.keymap.set('n', '<leader>ab', '<C-^>')
 -- FZF current dir
 vim.keymap.set('n', '<leader>pf', ':Files<CR>')
+
+-- vim.api.nvim_set_current_win(window)
+--
+vim.keymap.set('n', '<leader><Tab>', function()
+  local current_win = vim.api.nvim_get_current_win()
+  local wins = vim.api.nvim_tabpage_list_wins(0)
+  local windex = -1
+  for index, value in ipairs(wins) do
+    if value == current_win then
+      windex = index
+      break
+    end
+  end
+  if windex ~= -1 then
+    -- print("windex", windex, "wins", #wins)
+    local nextwindow = ((windex) % #wins) + 1
+    -- print(nextwindow)
+    vim.api.nvim_set_current_win(wins[nextwindow])
+  end
+
+  --
+  -- print(#(vim.api.nvim_tabpage_list_wins(0)))
+  -- vim.api.nvim_set_current_tabpage(current_tabpage % #(vim.api.nvim_list_tabpages()))
+  -- print((current_tabpage + 1) % #(vim.api.nvim_list_tabpages()))
+end
+)
+
+
 
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -217,7 +246,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup {
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -227,14 +256,14 @@ require('lazy').setup {
 
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
-  --    {
-  --        'lewis6990/gitsigns.nvim',
-  --        config = function()
-  --            require('gitsigns').setup({
-  --                -- Your gitsigns configuration here
-  --            })
-  --        end,
-  --    }
+  -- {
+  --   'lewis6990/gitsigns.nvim',
+  --   config = function()
+  --     require('gitsigns').setup({
+  --       -- Your gitsigns configuration here
+  --     })
+  --   end,
+  -- },
   --
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`.
