@@ -198,3 +198,11 @@ echo -e "\e[?12l"
 
 # Bind ctrl backspace to delete a word
 bindkey '^H' backward-kill-word
+
+# Local scripts add to path
+PATH="$PATH":"$HOME/.local/bin/scripts/"
+
+# Add C-F outside of tmux to go into tmux sessionizer
+bind '"\C-f":"tmux-sessionizer\n"'
+
+
