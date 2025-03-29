@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/projects -mindepth 1 -maxdepth 3 -type d | fzf --preview '')
+    selected=$(find ~/projects ~/dev_setup -mindepth 1 -maxdepth 3 -type d | fzf --preview '')
 fi
 
 if [[ -z $selected ]]; then
