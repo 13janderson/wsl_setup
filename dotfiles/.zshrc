@@ -201,6 +201,6 @@ bindkey '^H' backward-kill-word
 
 
 # Add C-F outside of tmux to go into tmux sessionizer
-bindkey -s ^f "$HOME/.local/bin/scripts/tmux-sessionizer.sh\n"
+bindkey -s ^f "$HOME/.local/bin/scripts/tmux-sessionizer.sh\n;"
 
 
