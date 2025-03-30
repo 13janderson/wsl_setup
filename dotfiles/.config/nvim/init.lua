@@ -123,6 +123,12 @@ vim.opt.showmode = false
 vim.opt.breakindent = true
 vim.opt.wrap = false
 
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.autoindent = true
+
 -- Save undo history
 vim.opt.undofile = true
 
