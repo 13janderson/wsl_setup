@@ -1,4 +1,5 @@
 --[[
+--
 
 o====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
@@ -52,7 +53,7 @@ Kickstart Guide:
       - <enter key>
 
     (If you already know the Neovim basics, you can skip this step.)
-
+--
   Once you've completed that, you can continue working through **AND READING** the rest
   of the kickstart init.lua.
 
@@ -74,7 +75,7 @@ Kickstart Guide:
 
     Throughout the file. These are for you, the reader, to help you understand what is happening.
     Feel free to delete them once you know what you're doing, but they should serve as a guide
-    for when you are first encountering a few different constructs in your Neovim config.
+    for whec you are first encountering a few different constructs in your Neovim config.
 
 If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
 
@@ -91,6 +92,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- Yank to clipboard by prefixing with <leader>
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
+
+
+vim.keymap.set('n', '<C-D>', '<C-D>zz')
+vim.keymap.set('n', '<C-U>', '<C-U>zz')
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
@@ -129,12 +134,11 @@ vim.opt.signcolumn = 'yes'
 -- Decrease update time
 vim.opt.updatetime = 250
 
--- Decrease mapped sequence wait time
-
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
+vim.opt.list = false
+vim.opt.list = false
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -165,9 +169,11 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Alternate between bufffers
-vim.keymap.set('n', '<leader>ab', '<C-^>')
+
+vim.keymap.set('n', '<leader><leader>', '<C-^>', {noremap = false, silent = true})
+--
 -- FZF current dir
-vim.keymap.set('n', '<leader>pf', ':Files<CR>')
+-- vim.keymap.set('n', '<leader>pf', ':Files<CR>', {noremap = false, silent = true})
 
 -- vim.api.nvim_set_current_win(window)
 --
@@ -182,16 +188,10 @@ vim.keymap.set('n', '<leader><Tab>', function()
     end
   end
   if windex ~= -1 then
-    -- print("windex", windex, "wins", #wins)
     local nextwindow = ((windex) % #wins) + 1
-    -- print(nextwindow)
     vim.api.nvim_set_current_win(wins[nextwindow])
   end
 
-  --
-  -- print(#(vim.api.nvim_tabpage_list_wins(0)))
-  -- vim.api.nvim_set_current_tabpage(current_tabpage % #(vim.api.nvim_list_tabpages()))
-  -- print((current_tabpage + 1) % #(vim.api.nvim_list_tabpages()))
 end
 )
 
@@ -314,25 +314,6 @@ require('lazy').setup {
   --   },
   -- },
   {
-    'ibhagwan/fzf-lua',
-    -- optional for icon support
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    -- or if using mini.icons/mini.nvim
-    -- dependencies = { "echasnovski/mini.icons" },
-    config = function()
-      require('fzf-lua').setup {
-        'fzf-vim',
-        keymap = {
-          -- Below are the default binds, setting any value in these tables will override
-          -- the defaults, to inherit from the defaults change [1] from `false` to `true`
-          builtin = {},
-          fzf = {},
-        },
-      }
-    end,
-    opts = {},
-  },
-  {
     -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
@@ -380,20 +361,24 @@ require('lazy').setup {
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
-        -- You can put your default mappings / updates / etc. in here
-        --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        -- pickers = {}
-        extensions = {
-          ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
-          },
-        },
+	      -- You can put your default mappings / updates / etc. in here
+	      --  All the info you're looking for is in `:help telescope.setup()`
+	      --
+	      defaults = {
+		      mappings = {
+			      i = { 
+				      ["C-c>"] = "close",
+				      ["<C-j>"] = "move_selection_next",
+				      ["<C-k>"] = "move_selection_previous",
+			      },
+		      },
+	      },
+	      -- pickers = {}
+	      extensions = {
+		      ['ui-select'] = {
+			      require('telescope.themes').get_dropdown(),
+		      },
+	      },
       }
 
       -- Enable Telescope extensions if they are installed
@@ -407,11 +392,10 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<:eader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -595,7 +579,7 @@ require('lazy').setup {
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
         severity_sort = true,
-        float = { border = 'rounded', source = 'if_many' },
+        float = false,
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
           text = {
@@ -902,6 +886,39 @@ require('lazy').setup {
       vim.cmd.colorscheme 'rose-pine-moon'
     end,
   },
+  {-- You can easily change to a different colorscheme.
+    -- Change the name of the colorscheme plugin below, and then
+    -- change the command in the config to whatever the name of that colorscheme is.
+    --
+    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+    'folke/tokyonight.nvim',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require('tokyonight').setup {
+        disable_background = true,
+        styles = {
+          italic = false,
+          bold = false,
+        },
+      }
+
+      -- vim.cmd.colorscheme 'tokyonight'
+    end,
+  },
+  {
+    'navarasu/onedark.nvim',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require('onedark').setup {
+	      style = 'darker',
+	      transparent = false,
+      }
+
+      vim.cmd.colorscheme 'onedark'
+    end,
+  },
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -935,7 +952,7 @@ require('lazy').setup {
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
       },
-      indent = { enable = true, disable = { 'ruby', 'sql' } },
+      -- indent = { enable = true, disable = { 'ruby', 'sql' } },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
