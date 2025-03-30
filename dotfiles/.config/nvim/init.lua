@@ -212,7 +212,17 @@ end
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
-
+--
+--
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+      vim.cmd [[
+          highlight LineNr guifg=#ffff00 gui=bold
+          highlight CursorLineNr guifg=#ffff00 gui=bold
+      ]]
+  end,
+})
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
