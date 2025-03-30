@@ -97,6 +97,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 vim.keymap.set('n', '<C-D>', '<C-D>zz')
 vim.keymap.set('n', '<C-U>', '<C-U>zz')
 
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>")
+--
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
@@ -882,6 +884,8 @@ require('lazy').setup {
           bold = false,
         },
       }
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
       vim.cmd.colorscheme 'rose-pine-moon'
     end,
@@ -896,7 +900,7 @@ require('lazy').setup {
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
-        disable_background = true,
+        disable_background = false,
         styles = {
           italic = false,
           bold = false,
@@ -916,7 +920,7 @@ require('lazy').setup {
 	      transparent = false,
       }
 
-      vim.cmd.colorscheme 'onedark'
+      -- vim.cmd.colorscheme 'onedark'
     end,
   },
 
