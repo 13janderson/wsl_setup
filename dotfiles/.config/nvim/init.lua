@@ -140,7 +140,6 @@ vim.opt.updatetime = 250
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = false
-vim.opt.list = false
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -174,7 +173,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 vim.keymap.set('n', '<leader><leader>', '<C-^>', {noremap = false, silent = true})
 --
--- FZF current dir
+-- FZF current dir, using telescope instead
 -- vim.keymap.set('n', '<leader>pf', ':Files<CR>', {noremap = false, silent = true})
 
 -- vim.api.nvim_set_current_win(window)
@@ -303,18 +302,6 @@ require('lazy').setup {
       },
     },
   },
-  -- { -- Adds git related signs to the gutter, as well as utilities for managing changes
-  --   'lewis6990/gitsigns.nvim',
-  --   opts = {
-  --     signs = {
-  --       add = { text = '+' },
-  --       change = { text = '~' },
-  --       delete = { text = '_' },
-  --       topdelete = { text = '‾' },
-  --       changedelete = { text = '~' },
-  --     },
-  --   },
-  -- },
   {
     -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -924,46 +911,55 @@ require('lazy').setup {
     end,
   },
 
+  {
+	  'nvim-treesitter/nvim-treesitter-context',
+	  opts = {},
+	  config = function()
+		  vim.keymap.set("n", "gC", function()
+			  require("treesitter-context").go_to_context(vim.v.count1)
+		  end, { silent = true })	
+	  end
+  },
   { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-    opts = {
-      ensure_installed = {
-        'bash',
-        'c',
-        'diff',
-        'html',
-        'lua',
-        'luadoc',
-        'markdown',
-        'markdown_inline',
-        'query',
-        'vim',
-        'vimdoc',
-        'go',
-        'typescript',
-        'c_sharp',
-        'powershell',
-      },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      -- indent = { enable = true, disable = { 'ruby', 'sql' } },
-    },
-    -- There are additional nvim-treesitter modules that you can use to interact
-    -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+	  'nvim-treesitter/nvim-treesitter',
+	  build = ':TSUpdate',
+	  main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+	  -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+	  opts = {
+		  ensure_installed = {
+			  'bash',
+			  'c',
+			  'diff',
+			  'html',
+			  'lua',
+			  'luadoc',
+			  'markdown',
+			  'markdown_inline',
+			  'query',
+			  'vim',
+			  'vimdoc',
+			  'go',
+			  'typescript',
+			  'c_sharp',
+			  'powershell',
+		  },
+		  -- Autoinstall languages that are not installed
+		  auto_install = true,
+		  highlight = {
+			  enable = true,
+			  -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
+			  --  If you are experiencing weird indenting issues, add the language to
+			  --  the list of additional_vim_regex_highlighting and disabled languages for indent.
+			  additional_vim_regex_highlighting = { 'ruby' },
+		  },
+		  -- indent = { enable = true, disable = { 'ruby', 'sql' } },
+	  },
+	  -- There are additional nvim-treesitter modules that you can use to interact
+	  -- with nvim-treesitter. You should go explore a few and see what interests you:
+	  --
+	  --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+	  --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+	  --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the

@@ -12,12 +12,12 @@ alias dd="cd ~/dev_setup"
 
 # pd = project directory
 # spd is then a simple way to bookmark the curent project directory; pd then changes to that directory
-alias pd="cd /home/jackanderson/projects/CVS"
-alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
+# alias pd="cd /home/jackanderson/projects/CVS"
+# alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # wd = working directorty
-alias wd="cd /home/jackanderson/projects/CVS/cvs-nop"
-alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
+# alias wd="cd /home/jackanderson/projects/CVS/cvs-nop"
+# alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # Dot file sync
 alias dfu='
