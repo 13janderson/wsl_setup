@@ -93,7 +93,6 @@ vim.g.maplocalleader = ' '
 -- Yank to clipboard by prefixing with <leader>
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 
-
 vim.keymap.set('n', '<C-D>', '<C-D>zz')
 vim.keymap.set('n', '<C-U>', '<C-U>zz')
 
@@ -123,6 +122,7 @@ vim.opt.showmode = false
 vim.opt.breakindent = true
 vim.opt.wrap = false
 
+-- Nicer tabs
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
@@ -182,8 +182,11 @@ vim.keymap.set('n', '<leader><leader>', '<C-^>', {noremap = false, silent = true
 -- FZF current dir, using telescope instead
 -- vim.keymap.set('n', '<leader>pf', ':Files<CR>', {noremap = false, silent = true})
 
--- vim.api.nvim_set_current_win(window)
---
+vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', { noremap = false})
+vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', { noremap = false})
+
+-- Go between windows script
+-- problem with this is that this can often make us go to the diagnostic window that pops up
 vim.keymap.set('n', '<leader><Tab>', function()
   local current_win = vim.api.nvim_get_current_win()
   local wins = vim.api.nvim_tabpage_list_wins(0)
@@ -198,16 +201,9 @@ vim.keymap.set('n', '<leader><Tab>', function()
     local nextwindow = ((windex) % #wins) + 1
     vim.api.nvim_set_current_win(wins[nextwindow])
   end
-
 end
 )
 
-
-
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -722,12 +718,12 @@ require('lazy').setup {
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
       },
       'saadparwaiz1/cmp_luasnip',
@@ -816,13 +812,8 @@ require('lazy').setup {
           { name = 'path' },
           { name = 'nvim_lsp_signature_help' },
           { name = 'vim-dadbod-completion' },
-          -- { name = 'buffer' },
         },
       }
-      -- cmp.setup.filetype({ 'sql' }, {
-      --   sources = {
-      --   },
-      -- })
     end,
   },
 
@@ -928,7 +919,7 @@ require('lazy').setup {
 	  config = function()
 		  vim.keymap.set("n", "gC", function()
 			  require("treesitter-context").go_to_context(vim.v.count1)
-		  end, { silent = true })	
+		  end, { silent = true })
 	  end
   },
   { -- Highlight, edit, and navigate code
