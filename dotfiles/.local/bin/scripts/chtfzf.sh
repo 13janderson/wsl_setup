@@ -60,9 +60,11 @@ function getPath {
 
 function openSheet {
     if [[ -z "$1" ]]; then exit; fi # Exit if no argument provided
+    lang=$(echo "$*" | awk -F'/' '{print $1}')
+    echo $lang
     case "$openMode" in
-        tmux) tmux neww bash -c "curl -sg 'cht.sh/$*' | sed $'s/\x1b\[[0-9;]*m//g' | code -";;
-        bash) curl -sg "cht.sh/$*" | sed $'s/\x1b\[[0-9;]*m//g' | nvim -;;
+        tmux) tmux neww bash -c "curl -sg 'cht.sh/$*' | sed $'s/\x1b\[[0-9;]*m//g' | nvim -";;
+        bash) curl -sg "cht.sh/$*" | sed $'s/\x1b\[[0-9;]*m//g' | nvim -c "set filetype=$lang" -;;
         *) echo "Unknown openMode, set -t to use tmux, or no args to use bash directly"
     esac
 }

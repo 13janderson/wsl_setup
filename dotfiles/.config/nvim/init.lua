@@ -205,6 +205,8 @@ end
 )
 
 
+vim.g.python3_host_prog = "/usr/bin/python3"
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -223,6 +225,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       ]]
   end,
 })
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
