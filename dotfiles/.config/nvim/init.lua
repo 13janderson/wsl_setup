@@ -204,7 +204,6 @@ vim.keymap.set('n', '<leader><Tab>', function()
 end
 )
 
-
 vim.g.python3_host_prog = "/usr/bin/python3"
 
 -- Keybinds to make split navigation easier.
@@ -607,7 +606,7 @@ require('lazy').setup {
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
         severity_sort = true,
-        float = false,
+        float = {false},
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
           text = {
@@ -658,6 +657,7 @@ require('lazy').setup {
         dockerls = {},
         docker_compose_language_service = {},
         ts_ls = {},
+        pylsp = {},
         -- sqls = {
         --   settings = {
         --     sqls = {
