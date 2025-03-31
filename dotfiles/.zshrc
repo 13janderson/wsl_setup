@@ -19,6 +19,9 @@ alias dd="cd ~/dev_setup"
 # alias wd="cd /home/jackanderson/projects/CVS/cvs-nop"
 # alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
+# Add new project to tmux sesionizer path
+alias pad='sed -i -E "s|paths=\((.*)\)|paths=(\1 $(pwd))|" ~/.local/bin/scripts/tmux-sessionizer.sh'
+
 # Dot file sync
 alias dfu='
 # ls -ARp ~/dev_setup/dotfiles/ | grep -v / | sed -r "/^[\s,\.:]*$/d" | while IFS= read -r df; do
