@@ -62,7 +62,7 @@ function openSheet {
     if [[ -z "$1" ]]; then exit; fi # Exit if no argument provided
     case "$openMode" in
         tmux) tmux neww bash -c "curl -sg 'cht.sh/$*' | sed $'s/\x1b\[[0-9;]*m//g' | code -";;
-        bash) curl -sg "cht.sh/$*" | sed $'s/\x1b\[[0-9;]*m//g' | code -;;
+        bash) curl -sg "cht.sh/$*" | sed $'s/\x1b\[[0-9;]*m//g' | nvim -;;
         *) echo "Unknown openMode, set -t to use tmux, or no args to use bash directly"
     esac
 }
