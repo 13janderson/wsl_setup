@@ -93,8 +93,14 @@ vim.g.maplocalleader = ' '
 -- Yank to clipboard by prefixing with <leader>
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 
+
+-- Nicer up and down
 vim.keymap.set('n', '<C-D>', '<C-D>zz')
 vim.keymap.set('n', '<C-U>', '<C-U>zz')
+
+-- Nicer Searching
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>")
 
