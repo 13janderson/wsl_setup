@@ -4,7 +4,6 @@ eval "$(dircolors -b ~/.dircolors)"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-
 # Aliases
 # dd is the directory for dev_setup stuff
 alias dd="cd ~/dev_setup"
@@ -203,6 +202,7 @@ echo -e "\e[?12l"
 bindkey '^H' backward-kill-word
 
 
+export PATH="$PATH:$HOME/.local/bin/scripts/"
 # Add C-F outside of tmux to go into tmux sessionizer
 bindkey -s ^f "$HOME/.local/bin/scripts/tmux-sessionizer.sh\n;"
 

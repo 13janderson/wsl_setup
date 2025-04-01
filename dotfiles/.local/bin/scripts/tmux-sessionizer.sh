@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-paths=(~/projects/ ~/dev_setup  /home/jackanderson/projects/CVS/cvs-data-remediation)
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find "${paths[@]}" -mindepth 1 -maxdepth 2 -type d -not -path '*/.*' | fzf --preview '')
+    selected=$(find ~/projects ~/dev_setup -mindepth 1 -maxdepth 2 -type d -not -path '*/.*' | fzf --preview '')
 fi
 
 if [[ -z $selected ]]; then

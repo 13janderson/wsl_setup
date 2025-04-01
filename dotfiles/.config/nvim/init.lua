@@ -97,6 +97,10 @@ vim.keymap.set('n', '<C-D>', '<C-D>zz')
 vim.keymap.set('n', '<C-U>', '<C-U>zz')
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>")
+
+-- vim.keymap.set("n", "<C-f>", function()
+--     vim.fn.jobstart({ "tmux", "neww", "tmux-sessionizer.sh" }, { detach = true })
+-- end)
 --
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
@@ -606,7 +610,7 @@ require('lazy').setup {
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
         severity_sort = true,
-        float = {false},
+        float = false,
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
           text = {
@@ -657,7 +661,7 @@ require('lazy').setup {
         dockerls = {},
         docker_compose_language_service = {},
         ts_ls = {},
-        pylsp = {},
+        -- pylsp = {},
         -- sqls = {
         --   settings = {
         --     sqls = {
