@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-paths=(~/projects ~/dev_setup /home/jackanderson/projects/CVS/cvs-data-migration/scripts/Glue/ATI/documentMigration/provingsharepoint)
+paths=(home/jackanderson/projects/CVS/cvs-data-migration/scripts/Glue/ATI/documentMigration/provingsharepoint)
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find "${paths[@]}" -mindepth 1 -maxdepth 2 -type d -not -path '*/.*' | fzf --preview '')
+    selected=$( (printf "%s\n" "${paths[@]}"; find ~/projects ~/dev_setup -mindepth 1 -maxdepth 2 -type d -not -path '*/.*') | fzf --preview '')
 fi
 
 if [[ -z $selected ]]; then
