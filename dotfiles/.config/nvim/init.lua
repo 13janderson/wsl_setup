@@ -98,10 +98,6 @@ vim.keymap.set('n', '<C-U>', '<C-U>zz')
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>")
 
--- vim.keymap.set("n", "<C-f>", function()
---     vim.fn.jobstart({ "tmux", "neww", "tmux-sessionizer.sh" }, { detach = true })
--- end)
---
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
