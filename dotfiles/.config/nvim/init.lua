@@ -267,7 +267,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup {
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  -- 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- 'tpope/vim-sleuth', -- Detect tabstop and /hiftwidth automatically
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -292,64 +292,69 @@ require('lazy').setup {
   -- See `:help gitsigns` to understand what the configuration keys do
 
   {
-    {
-      'kristijanhusak/vim-dadbod-ui',
+      {
+          'kristijanhusak/vim-dadbod-ui',
+          dependencies = {
+              { 'tpope/vim-dadbod', lazy = true },
+              { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' } }, -- Remove lazy = true here
+          },
+          cmd = { 'DBUI', 'DBUIToggle', 'DBUIAddConnection', 'DBUIFindBuffer' },
+          init = function()
+              vim.g.dbs = {
+                  nop = 'mysql://root:password@127.0.0.1:3307/CVSBNOP',
+              }
+          end,
+      },
+  },
+  {
+      'numToStr/Comment.nvim',
+      opts = {
+          -- add any options here
+          --
+          toggler = {
+              ---Line-comment toggle keymap
+              line = '<C-_>',
+          },
+          ---LHS of operator-pending mappings in NORMAL and VISUAL mode
+          opleader = {
+              line = '<C-_>',
+              ---Block-comment keymap
+          },
+      },
+  },
+  {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+          harpoon = require('harpoon')
+          harpoon:setup {
+              settings = {
+                  save_on_toggle = true,
+                  save_on_ui_close = true,
+              },
+          }
+          vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+          vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+          -- Pseudo arrow keys for config
+          vim.keymap.set("n", "<C-i>", function() harpoon:list():select(1) end)
+          vim.keymap.set("n", "<C-j>", function() harpoon:list():select(2) end)
+          vim.keymap.set("n", "<C-k>", function() harpoon:list():select(3) end)
+          vim.keymap.set("n", "<C-l>", function() harpoon:list():select(4) end)
+          -- Toggle previous & next buffers stored within Harpoon list
+          -- vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+          -- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+      end
+  },
+  {
+      -- Fuzzy Finder (files, lsp, etc)
+      'nvim-telescope/telescope.nvim',
+      event = 'VimEnter',
+      branch = '0.1.x',
       dependencies = {
-        { 'tpope/vim-dadbod', lazy = true },
-        { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' } }, -- Remove lazy = true here
-      },
-      cmd = { 'DBUI', 'DBUIToggle', 'DBUIAddConnection', 'DBUIFindBuffer' },
-      init = function()
-        vim.g.dbs = {
-          nop = 'mysql://root:password@127.0.0.1:3307/CVSBNOP',
-        }
-      end,
-    },
-  },
-  {
-    'numToStr/Comment.nvim',
-    opts = {
-      -- add any options here
-      --
-      toggler = {
-        ---Line-comment toggle keymap
-        line = '<C-_>',
-      },
-      ---LHS of operator-pending mappings in NORMAL and VISUAL mode
-      opleader = {
-        line = '<C-_>',
-        ---Block-comment keymap
-      },
-    },
-  },
-  {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-        harpoon = require('harpoon')
-        harpoon.setup {}
-        vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-        vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-        -- Pseudo arrow keys for config
-        vim.keymap.set("n", "<C-i>", function() harpoon:list():select(1) end)
-        vim.keymap.set("n", "<C-j>", function() harpoon:list():select(2) end)
-        vim.keymap.set("n", "<C-k>", function() harpoon:list():select(3) end)
-        vim.keymap.set("n", "<C-l>", function() harpoon:list():select(4) end)
-        -- Toggle previous & next buffers stored within Harpoon list
-        -- vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
-        -- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
-    end
-  },
-  {
-    -- Fuzzy Finder (files, lsp, etc)
-    'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      { -- If encountering errors, see telescope-fzf-native README for installation instructions
-        'nvim-telescope/telescope-fzf-native.nvim',
+          'nvim-lua/plenary.nvim',
+          { -- If encountering errors, see telescope-fzf-native README for installation instructions
+              'nvim-telescope/telescope-fzf-native.nvim',
 
         -- `build` is used to run some command when the plugin is installed/updated.
         -- This is only run then, not every time Neovim starts up.
