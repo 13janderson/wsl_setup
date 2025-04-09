@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-paths=(home/jackanderson/projects/CVS/cvs-data-migration/scripts/Glue/ATI/documentMigration/provingsharepoint)
+paths=(home/jackanderson/projects/CVS/cvs-data-migration/scripts/Glue/ATI/documentMigration/provingsharepoint /home/jackanderson/projects/CVS/CVS-TAS-Document-Migration/function_app_update_permissions_sharepoint)
 
 if [[ $# -eq 1 ]]; then
     selected=$1

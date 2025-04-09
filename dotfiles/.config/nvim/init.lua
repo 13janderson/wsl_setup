@@ -478,6 +478,15 @@ require('lazy').setup {
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
   -- LSP Plugins
+  -- {
+  --     "daurnimator/lua-http",
+  --     lazy = false,
+  --     config = function()
+  --         local path = vim.fn.stdpath("data") .. "/lazy/lua-http"
+  --         vim.opt.runtimepath:append(path)
+  --         require("lua-http/http.request")
+  --     end
+  -- },
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
