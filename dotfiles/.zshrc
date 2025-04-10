@@ -207,3 +207,4 @@ export PATH="$PATH:$HOME/.local/bin/scripts/"
 bindkey -s ^f "$HOME/.local/bin/scripts/tmux-sessionizer.sh\n;"
 
 
+. "/home/jackanderson/.deno/env"

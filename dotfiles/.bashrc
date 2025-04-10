@@ -134,3 +134,4 @@ if grep -q "microsoft" /proc/version > /dev/null 2>&1; then
             --exec /usr/sbin/service docker start > /dev/null 2>&1
     fi
 fi
+. "/home/jackanderson/.deno/env"

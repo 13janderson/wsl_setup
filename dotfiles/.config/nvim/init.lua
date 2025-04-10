@@ -1014,8 +1014,18 @@ require('lazy').setup {
 	  --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
 	  --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 	  --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+      {
+          "toppair/peek.nvim",
+          event = { "VeryLazy" },
+          build = "deno task --quiet build:fast",
+          config = function()
+              require("peek").setup()
+              vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+              vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+          end,
+      },
   },
-
+  --
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
