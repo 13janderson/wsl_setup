@@ -204,10 +204,10 @@ bindkey '^H' backward-kill-word
 
 export PATH="$PATH:$HOME/.local/bin/scripts/"
 # Add C-F outside of tmux to go into tmux sessionizer
-bindkey -s ^f "$HOME/.local/bin/scripts/tmux-sessionizer.sh\n;"
-
+bindkey -s ^f "tmux-sessionizer.sh\n;"
 
 . "/home/jackanderson/.deno/env"
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"

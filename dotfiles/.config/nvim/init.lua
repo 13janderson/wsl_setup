@@ -1020,7 +1020,7 @@ require('lazy').setup {
           config = function()
               require("peek").setup({
                   app = 'browser',
-                  auto_load = false,
+                  auto_load = true,
               })
               vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
               vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
