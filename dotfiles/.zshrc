@@ -220,6 +220,4 @@ export BROWSER="chrome-wsl.sh"
 # bun completions
 [ -s "/home/jackanderson/.bun/_bun" ] && source "/home/jackanderson/.bun/_bun"
 # Add bun to path
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$PATH:$BUN_INSTALL/bin"
 export PATH="$PATH:$HOME/.bun/bin"
