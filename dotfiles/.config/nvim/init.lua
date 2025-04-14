@@ -1034,7 +1034,6 @@ require('lazy').setup {
                               peek.open()
                           end, 1)
                           vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>w', true, false, true), 'n', true)
-                          -- print("TEST")
                       end
                   end
               })
