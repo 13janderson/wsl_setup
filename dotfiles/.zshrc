@@ -202,7 +202,8 @@ echo -e "\e[?12l"
 bindkey '^H' backward-kill-word
 
 
-export PATH="$PATH:$HOME/.local/bin/scripts/"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin/scripts"
 # Add C-F outside of tmux to go into tmux sessionizer
 bindkey -s ^f "tmux-sessionizer.sh\n;"
 
@@ -219,4 +220,6 @@ export BROWSER="chrome-wsl.sh"
 # bun completions
 [ -s "/home/jackanderson/.bun/_bun" ] && source "/home/jackanderson/.bun/_bun"
 # Add bun to path
-export PATH="$PATH:~/.bun/bin/bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$PATH:$BUN_INSTALL/bin"
+export PATH="$PATH:$HOME/.bun/bin"
