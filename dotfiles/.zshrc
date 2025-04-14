@@ -214,3 +214,17 @@ eval "$(pyenv init - zsh)"
 
 
 export BROWSER="chrome-wsl.sh"
+
+# fnm
+FNM_PATH="/home/jackanderson/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/jackanderson/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
+
+# fnm
+FNM_PATH="/home/jackanderson/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/jackanderson/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi

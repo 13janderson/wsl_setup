@@ -677,17 +677,6 @@ require('lazy').setup {
         dockerls = {},
         docker_compose_language_service = {},
         ts_ls = {},
-        -- pylsp = {},
-        -- sqls = {
-        --   settings = {
-        --     sqls = {
-        --       connections = {
-        --         driver = 'mysql',
-        --         dataSourceName = 'root:password@tcp(127.0.0.1:3307)/CVSBNOP',
-        --       },
-        --     },
-        --   },
-        -- },
 
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -695,8 +684,6 @@ require('lazy').setup {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
-        --
 
         lua_ls = {
           -- cmd = { ... },
