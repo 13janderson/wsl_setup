@@ -130,9 +130,9 @@ vim.opt.wrap = false
 
 -- Nicer tabs
 vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 8
+vim.opt.tabstop = 8
+vim.opt.softtabstop = 8
 vim.opt.autoindent = true
 
 -- Save undo history
@@ -567,6 +567,7 @@ require('lazy').setup {
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+          map('m', vim.lsp.buf.hover, '[M]anual')
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
