@@ -575,7 +575,7 @@ require('lazy').setup {
           ---@param bufnr? integer some lsp support methods only in specific files
           ---@return boolean
           local function client_supports_method(client, method, bufnr)
-            if vim.fn.has 'nvim-0.11' == 1 then
+            if vim.fn.has 'nvim-0.12' == 1 then
               return client:supports_method(method, bufnr)
             else
               return client.supports_method(method, { bufnr = bufnr })
@@ -965,6 +965,7 @@ require('lazy').setup {
 	  'nvim-treesitter/nvim-treesitter',
 	  build = ':TSUpdate',
 	  main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+      auto_install = true,
 	  -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 	  opts = {
 		  ensure_installed = {
@@ -985,7 +986,6 @@ require('lazy').setup {
 			  'powershell',
 		  },
 		  -- Autoinstall languages that are not installed
-		  auto_install = true,
 		  highlight = {
 			  enable = true,
 			  -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.

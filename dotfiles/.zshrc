@@ -228,3 +228,5 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/jackanderson/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
+
+export PATH="$HOME/.asdf/shims:$PATH"
