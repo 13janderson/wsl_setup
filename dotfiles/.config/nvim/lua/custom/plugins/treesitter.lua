@@ -3,9 +3,9 @@ return{
 	  'nvim-treesitter/nvim-treesitter-context',
 	  opts = {},
 	  config = function()
-		  vim.keymap.set("n", "gC", function()
-			  require("treesitter-context").go_to_context(vim.v.count1)
-		  end, { silent = true })
+		  -- vim.keymap.set("n", "gC", function()
+			 --  require("treesitter-context").go_to_context(vim.v.count1)
+		  -- end, { silent = true })
 	  end
   },
   { -- Highlight, edit, and navigate code
@@ -41,7 +41,7 @@ return{
 			  --  the list of additional_vim_regex_highlighting and disabled languages for indent.
 			  additional_vim_regex_highlighting = { 'ruby' },
 		  },
-		  -- indent = { enable = true, disable = { 'ruby', 'sql' } },
+		  indent = { enable = true, disable = { 'ruby', 'sql' } },
 	  },
   },
 }
