@@ -229,4 +229,4 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 
-export PATH="$HOME/.asdf/shims:$PATH"
+# export PATH="$HOME/.asdf/shims:$PATH"
