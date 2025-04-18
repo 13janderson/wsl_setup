@@ -210,14 +210,6 @@ vim.keymap.set('n', '<leader><Tab>', function()
 end
 )
 
-vim.api.nvim_create_autocmd("BufEnter", {
-    pattern = "*.ts*",
-    callback = function(_)
-        vim.bo.filetype = "javascript"
-        print("js")
-    end
-})
-
 vim.g.python3_host_prog = "/usr/bin/python3"
 
 -- Keybinds to make split navigation easier.
@@ -1002,39 +994,32 @@ require('lazy').setup {
 			  --  the list of additional_vim_regex_highlighting and disabled languages for indent.
 			  additional_vim_regex_highlighting = { 'ruby' },
 		  },
-          
 		  -- indent = { enable = true, disable = { 'ruby', 'sql' } },
 	  },
-	  -- There are additional nvim-treesitter modules that you can use to interact
-	  -- with nvim-treesitter. You should go explore a few and see what interests you:
-	  --
-	  --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-	  --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-	  --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-      {
-          "toppair/peek.nvim",
-          build = "deno task --quiet build:fast",
-          config = function()
-              require("peek").setup({
-                  app = 'browser',
-                  auto_load = true,
-              })
-              vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-              vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-              vim.api.nvim_create_autocmd("BufEnter", {
-                  pattern = {"*.md"},
-                  callback = function (_)
-                      local peek = require("peek")
-                      if not peek.is_open() then
-                          peek.close()
-                          vim.defer_fn(function()
-                              peek.open()
-                          end, 1)
-                          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>w', true, false, true), 'n', true)
-                      end
+  },
+  {
+      "toppair/peek.nvim",
+      build = "deno task --quiet build:fast",
+      config = function()
+          require("peek").setup({
+              app = 'browser',
+              auto_load = true,
+          })
+          vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+          vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+          vim.api.nvim_create_autocmd("BufEnter", {
+              pattern = {"*.md"},
+              callback = function (_)
+                  local peek = require("peek")
+                  if not peek.is_open() then
+                      peek.close()
+                      vim.defer_fn(function()
+                          peek.open()
+                      end, 1)
+                      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>w', true, false, true), 'n', true)
                   end
-              })
-          end,
-      },
-  }
+              end
+          })
+      end,
+  },
 }
