@@ -105,6 +105,8 @@ vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 
+-- Vertical splits
+vim.opt.splitright = true
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
@@ -182,11 +184,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 
 -- Alternate between bufffers
-
 vim.keymap.set('n', '<leader><leader>', '<C-^>', {noremap = false, silent = true})
---
--- FZF current dir, using telescope instead
--- vim.keymap.set('n', '<leader>pf', ':Files<CR>', {noremap = false, silent = true})
 
 vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', { noremap = false})
 vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', { noremap = false})
