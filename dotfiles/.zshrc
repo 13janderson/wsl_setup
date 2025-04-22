@@ -205,7 +205,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/bin/scripts"
 
 # Add C-F outside of tmux to go into tmux sessionizer
-bindkey -s ^f "tmux-sessionizer.sh\n;"
+bindkey -s ^f "tmux-sessionizer.sh\n"
 
 . "/home/jackanderson/.deno/env"
 
