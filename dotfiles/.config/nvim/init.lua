@@ -117,10 +117,21 @@ vim.opt.wrap = false
 
 -- Nicer tabs
 vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.autoindent = true
+
+-- Format options. Done with Autocmd due to another plugin overriding just setting these once here.
+-- This option should work regardless of loading order
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('override-formatoptions', { clear = true }),
+  callback = function()
+    print(vim.inspect(vim.opt.formatoptions))
+  end,
+})
 
 -- Save undo history
 vim.opt.undofile = true
@@ -183,6 +194,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- Alternate between bufffers
 vim.keymap.set('n', '<leader><leader>', '<C-^>', {noremap = false, silent = true})
+
+-- Jump list forward
+vim.keymap.set('n', '<Tab>', '<C-I>')
 
 vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', { noremap = false})
 vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', { noremap = false})

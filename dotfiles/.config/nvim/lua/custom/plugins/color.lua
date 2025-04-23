@@ -39,7 +39,7 @@ local tokionight = {
         },
       }
 
-      -- vim.cmd.colorscheme 'tokyonight'
+      vim.cmd.colorscheme 'tokyonight'
     end,
 }
 
@@ -53,7 +53,7 @@ local onedark = {
 	      transparent = false,
       }
 
-      -- vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'onedark'
     end,
 }
 
