@@ -129,7 +129,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('override-formatoptions', { clear = true }),
   callback = function()
-    print(vim.inspect(vim.opt.formatoptions))
+    vim.opt.formatoptions = "jcrql"
   end,
 })
 

@@ -183,7 +183,7 @@ return{
       local servers = {
         -- clangd = {},
         gopls = {},
-        -- pyright = {},
+        pyright = {},
         powershell_es = {},
         csharp_ls = {},
         bashls = {},

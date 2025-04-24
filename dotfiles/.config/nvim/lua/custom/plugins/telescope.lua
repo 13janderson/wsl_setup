@@ -56,7 +56,6 @@ return{
 				      ["C-c>"] = "close",
 				      ["<C-j>"] = "move_selection_next",
 				      ["<C-k>"] = "move_selection_previous",
-              ["<CR>"] = "select_vertical"
 			      },
 		      },
 	      },
