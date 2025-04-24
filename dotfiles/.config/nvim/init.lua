@@ -195,9 +195,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Alternate between bufffers
 vim.keymap.set('n', '<leader><leader>', '<C-^>', {noremap = false, silent = true})
 
--- Jump list forward
-vim.keymap.set('n', '<Tab>', '<C-I>')
-
 vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', { noremap = false})
 vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', { noremap = false})
 
