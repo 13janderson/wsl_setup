@@ -12,7 +12,7 @@ return{
 	  'nvim-treesitter/nvim-treesitter',
 	  build = ':TSUpdate',
 	  main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-      auto_install = true,
+    auto_install = true,
 	  -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 	  opts = {
 		  ensure_installed = {
@@ -29,7 +29,7 @@ return{
 			  'vimdoc',
 			  'go',
 			  'typescript',
-              'javascript',
+        'javascript',
 			  'c_sharp',
 			  'powershell',
 		  },

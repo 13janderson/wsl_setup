@@ -11,11 +11,11 @@ alias dd="cd ~/dev_setup"
 
 # pd = project directory
 # spd is then a simple way to bookmark the curent project directory; pd then changes to that directory
-# alias pd="cd /home/jackanderson/projects/CVS"
+# alias pd="cd $HOME/projects/CVS"
 # alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # wd = working directorty
-# alias wd="cd /home/jackanderson/projects/CVS/cvs-nop"
+# alias wd="cd $HOME/projects/CVS/cvs-nop"
 # alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
 
 # Add new project to tmux sesionizer path
@@ -178,9 +178,9 @@ source $ZSH/oh-my-zsh.sh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Ensure Docker is running on WSL 2. This expects you've installed Docker and
 # Docker Compose directly within your WSL distro instead of Docker Desktop, such as:
@@ -207,25 +207,24 @@ export PATH="$PATH:$HOME/.local/bin/scripts"
 # Add C-F outside of tmux to go into tmux sessionizer
 bindkey -s ^f "tmux-sessionizer.sh\n"
 
-. "/home/jackanderson/.deno/env"
+. "$HOME/.deno/env"
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
-
 # Launch Windows chrome as browser
 export BROWSER="chrome-wsl.sh"
 
 # bun completions
-[ -s "/home/jackanderson/.bun/_bun" ] && source "/home/jackanderson/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 # Add bun to path
 export PATH="$PATH:$HOME/.bun/bin"
 
 # fnm
-FNM_PATH="/home/jackanderson/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/jackanderson/.local/share/fnm:$PATH"
+  export PATH="$HOME/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
 

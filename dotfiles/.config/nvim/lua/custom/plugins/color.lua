@@ -32,14 +32,14 @@ local tokionight = {
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
-        disable_background = false,
+        transparent = true,
         styles = {
           italic = false,
           bold = false,
         },
       }
 
-      vim.cmd.colorscheme 'tokyonight'
+      vim.cmd.colorscheme 'tokyonight-storm'
     end,
 }
 
@@ -49,8 +49,8 @@ local onedark = {
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('onedark').setup {
-	      style = 'darker',
-	      transparent = false,
+	      style = 'deep',
+	      transparent = true,
       }
 
       vim.cmd.colorscheme 'onedark'
@@ -58,5 +58,5 @@ local onedark = {
 }
 
 return{
-    rosepine
+  rosepine
 }
