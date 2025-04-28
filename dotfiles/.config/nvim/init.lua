@@ -124,7 +124,6 @@ vim.opt.autoindent = true
 
 -- Format options. Done with Autocmd due to another plugin overriding just setting these once here.
 -- This option should work regardless of loading order
-
 vim.api.nvim_create_autocmd('BufEnter', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('override-formatoptions', { clear = true }),
@@ -190,6 +189,11 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+
+-- Diagnostic errors
+vim.keymap.set("n", "e", function() vim.diagnostic.jump({count = 1}) end)
+vim.keymap.set("n", "E", function() vim.diagnostic.jump({count = -1}) end)
 
 
 -- Alternate between bufffers

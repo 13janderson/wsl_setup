@@ -80,6 +80,7 @@ return{
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
           map('m', vim.lsp.buf.hover, '[M]anual')
+          map('<leader>r', vim.lsp.buf.rename, '[R]ename')
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
