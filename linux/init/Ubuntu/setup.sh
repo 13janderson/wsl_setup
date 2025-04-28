@@ -24,3 +24,6 @@ apt-get install bat -y
 
 # Install neovim
 apt-get install neovim -y
+
+# Install tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
