@@ -192,8 +192,8 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 
 -- Diagnostic errors
-vim.keymap.set("n", "e", function() vim.diagnostic.jump({count = 1}) end)
-vim.keymap.set("n", "E", function() vim.diagnostic.jump({count = -1}) end)
+vim.keymap.set("n", "[e", function() vim.diagnostic.jump({count = 1}) end)
+vim.keymap.set("n", "]e", function() vim.diagnostic.jump({count = -1}) end)
 
 
 -- Alternate between bufffers
