@@ -184,9 +184,32 @@ return{
       local servers = {
         -- clangd = {},
         gopls = {},
-        pyright = {},
+        -- pyright = {},
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                -- formatter options
+                black = { enabled = true },
+                autopep8 = { enabled = false },
+                yapf = { enabled = false },
+                -- linter options
+                pylint = { enabled = false, executable = "pylint" },
+                pyflakes = { enabled = false },
+                pycodestyle = { enabled = false },
+                -- type checker
+                pylsp_mypy = { enabled = true },
+                -- auto-completion options
+                jedi_completion = { fuzzy = true },
+                -- import sorting
+                pyls_isort = { enabled = true },
+              },
+            },
+},
+        },
         powershell_es = {},
-        csharp_ls = {},
+        -- This is a big boy
+        omnisharp = {},
         bashls = {},
         dockerls = {},
         docker_compose_language_service = {},
