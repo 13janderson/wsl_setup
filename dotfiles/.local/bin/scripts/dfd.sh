@@ -13,5 +13,4 @@ dfd > /dev/null 2>&1
  
 # Reload shell
 echo "dotfiles reloaded"
-echo "test"
 exec $SHELL
