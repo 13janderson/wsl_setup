@@ -38,7 +38,11 @@ git push
 cd -
 
 '
-alias dfd='dfd.sh'
+alias dfd='
+cp -r ~/dev_setup/dotfiles/. ~
+# Additionally source .zshrc here as well 
+source ~/.zshrc
+'
 
 alias nv='nvim'
 alias vi='nvim'
