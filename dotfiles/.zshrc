@@ -22,46 +22,14 @@ alias dd="cd ~/dev_setup"
 alias pad='sed -i -E "s|paths=\((.*)\)|paths=(\1 $(pwd))|" ~/.local/bin/scripts/tmux-sessionizer.sh'
 
 # Dot file sync
-alias dfu='
-# ls -ARp ~/dev_setup/dotfiles/ | grep -v / | sed -r "/^[\s,\.:]*$/d" | while IFS= read -r df; do
-find ~/dev_setup/dotfiles/.* -type f | while IFS= read -r df; do
-  # Copy all dotfiles from system root directory to here
-  # We only want to copy  files that are actually in our dotfiles
-  # basename is not sufficient because we want to preserve the file dir structure
-  # within the dotfiles
-  rootdf=$(echo "$df" | sed -e "s|$HOME/dev_setup/dotfiles/||")
-  cp ~/$rootdf $df
-done
-cd ~/dev_setup/dotfiles/
-git commit -am "dotfile sync $(date)"
-git push
-cd -
-
-'
-alias dfd='
-cp -r ~/dev_setup/dotfiles/. ~
-# Additionally source .zshrc here as well 
-source ~/.zshrc
-'
+alias dfu='dfu.sh'
+alias dfd='dfd.sh'
 
 alias nv='nvim'
 alias vi='nvim'
 
 # VimBeGood
 alias vbg="docker run -it --rm brandoncc/vim-be-good:stable"
-
-set_fzf_defaults() {
-  # fzf default options, opens vs code if a file is picked and the command is not aborted
-  # export FZF_DEFAULT_OPTS="--bind='enter:(nvim {})' --preview 'batcat -n --color=always {}'"
-  export FZF_DEFAULT_OPTS="--preview 'batcat -n --color=always {}'"
-}
-set_fzf_defaults
-
-unset_fzf_defaults(){
-  unset FZF_DEFAULT_OPTS
-}
-
-alias cht="unset_fzf_defaults; ~/.local/bin/scripts/chtfzf.sh; set_fzf_defaults"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
