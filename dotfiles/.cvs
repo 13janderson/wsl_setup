@@ -1,0 +1,8 @@
+# CVS specific setup
+
+# Repos
+git clone https://dev.azure.com/DvsaDev/cvs-beta/_git/CVS-TAS-Document-Migration
+git clone https://github.com/dvsa/cvs-data-migration
+git clone https://github.com/dvsa/cvs-nop
+git clone https://github.com/dvsa/cvs-tf-glue
+git clone https://github.com/dvsa/cvs-data-remediation

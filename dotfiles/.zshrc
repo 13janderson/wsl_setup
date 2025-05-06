@@ -22,6 +22,7 @@ alias dd="cd ~/dev_setup"
 alias pad='sed -i -E "s|paths=\((.*)\)|paths=(\1 $(pwd))|" ~/.local/bin/scripts/tmux-sessionizer.sh'
 
 # Dot file sync
+<<<<<<< HEAD
 alias dfu='zsh $HOME/.local/bin/scripts/dfu.sh'
 alias dfd='zsh $HOME/.local/bin/scripts/dfd.sh'
 
