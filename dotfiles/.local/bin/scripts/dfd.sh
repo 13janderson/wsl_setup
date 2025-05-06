@@ -12,4 +12,5 @@ cd -
  
 # Reload shell
 echo "dotfiles reloaded"
-source ~/.zshrc
+exec $SHELL
+# source ~/.zshrc
