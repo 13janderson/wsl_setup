@@ -32,14 +32,14 @@ local tokionight = {
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
-        transparent = true,
+        transparent = false,
         styles = {
           italic = false,
           bold = false,
         },
       }
 
-      vim.cmd.colorscheme 'tokyonight-storm'
+      vim.cmd.colorscheme 'tokyonight-moon'
     end,
 }
 
@@ -49,12 +49,23 @@ local onedark = {
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('onedark').setup {
-	      style = 'deep',
 	      transparent = true,
+        disable_background = false,
       }
 
       vim.cmd.colorscheme 'onedark'
     end,
+}
+
+local catppuccin = {
+  "catppuccin/nvim",
+  name = "catppuccin",
+  disable_background = false,
+  transparent_background = false,
+  priority = 1000,
+  config = function()
+    vim.cmd.colorscheme = 'catppuccin'
+  end
 }
 
 return{

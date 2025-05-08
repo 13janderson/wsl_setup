@@ -232,6 +232,18 @@ vim.g.python3_host_prog = "/usr/bin/python3"
 --  See `:help lua-guide-autocommands`
 --
 --
+
+
+-- User commands for dfd and dfu scripts
+vim.api.nvim_create_user_command("Dfd", function()
+  vim.cmd("silent !dfd.sh")
+  print("dotfiles uploaded")
+end, {})
+vim.api.nvim_create_user_command("Dfu", function()
+  vim.cmd("silent !dfu.sh")
+end, {})
+
+vim.opt.termguicolors = true
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
@@ -302,6 +314,7 @@ require('lazy').setup({
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 },
+  -- Additional opts
   {
     change_detection = {
       enabled = true,

@@ -8,4 +8,4 @@ cd -
  
 # Reload shell
 echo "dotfiles reloaded"
-source ~/.zshrc
+zsh source ~/.zshrc
