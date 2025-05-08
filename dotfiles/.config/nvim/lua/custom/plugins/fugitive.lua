@@ -16,7 +16,7 @@ return{
     vim.keymap.set("n", "<leader>c", function ()
       vim.cmd("silent! G commit -a")
       vim.api.nvim_buf_set_lines(0, 0, 1, true, {"feat: "})
-      vim.api.nvim_feedkeys("<CR>", "n", true)
+      vim.api.nvim_feedkeys("wb", "n", true)
     end)
   end
 
