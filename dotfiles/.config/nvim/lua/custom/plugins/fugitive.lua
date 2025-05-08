@@ -1,4 +1,3 @@
-print("test")
 return{
   'tpope/vim-fugitive',
   config = function(_)
@@ -15,9 +14,8 @@ return{
       print("Fugitive ↓")
     end)
     vim.keymap.set("n", "<leader>c", function ()
-      vim.cmd("G commit -a")
+      vim.cmd("silent! G commit -a")
       vim.api.nvim_buf_set_lines(0, 0, 1, true, {"feat: "})
-      print("Fugitive →")
     end)
   end
 
