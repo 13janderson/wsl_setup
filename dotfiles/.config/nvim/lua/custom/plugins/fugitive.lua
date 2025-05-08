@@ -1,3 +1,4 @@
+print("test")
 return{
   'tpope/vim-fugitive',
   config = function(_)
