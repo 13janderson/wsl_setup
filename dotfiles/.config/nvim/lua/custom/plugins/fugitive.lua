@@ -1,3 +1,4 @@
+
 local CLEAR_AFTER_MS = 500
 return{
   'tpope/vim-fugitive',
