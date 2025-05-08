@@ -266,7 +266,7 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup {
+require('lazy').setup({
     -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
     -- 'tpope/vim-sleuth', -- Detect tabstop and /hiftwidth automatically
     -- NOTE: Plugins can also be added by using a table,
@@ -301,4 +301,14 @@ require('lazy').setup {
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
-}
+},
+  {
+    change_detection = {
+      enabled = true,
+      notify = false,
+    }
+  }
+)
+
+
+
