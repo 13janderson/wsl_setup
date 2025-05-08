@@ -1,3 +1,9 @@
+function clear_output(delay_ms)
+  local timer = vim.uv.new_timer()
+  timer:start(delay_ms, 0, vim.schedule_wrap(function()
+    vim.api.nvim_echo({{""}}, false, {})
+  end))
+end
 return{
   'tpope/vim-fugitive',
   config = function(_)
@@ -8,10 +14,12 @@ return{
     vim.keymap.set("n", "<leader>p", function ()
       vim.cmd("silent G push")
       print("Fugitive ↑")
+      clear_output(1250)
     end)
     vim.keymap.set("n", "<leader>P", function ()
       vim.cmd("silent G pull")
       print("Fugitive ↓")
+      clear_output(1250)
     end)
     vim.keymap.set("n", "<leader>c", function ()
       vim.cmd("G commit -a")
