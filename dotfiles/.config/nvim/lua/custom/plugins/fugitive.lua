@@ -1,5 +1,3 @@
-
-local CLEAR_AFTER_MS = 500
 return{
   'tpope/vim-fugitive',
   config = function(_)
@@ -10,12 +8,12 @@ return{
     vim.keymap.set("n", "<leader>p", function ()
       vim.cmd("silent G push")
       print("Fugitive ↑")
-      Clear(CLEAR_AFTER_MS)
+      Clear(1250)
     end)
     vim.keymap.set("n", "<leader>P", function ()
       vim.cmd("silent G pull")
       print("Fugitive ↓")
-      Clear(CLEAR_AFTER_MS)
+      Clear(1250)
     end)
     vim.keymap.set("n", "<leader>c", function ()
       vim.cmd("G commit -a")
