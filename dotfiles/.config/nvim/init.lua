@@ -236,11 +236,12 @@ vim.g.python3_host_prog = "/usr/bin/python3"
 
 -- User commands for dfd and dfu scripts
 vim.api.nvim_create_user_command("Dfd", function()
-  vim.cmd("silent !dfd.sh")
-  print("dotfiles uploaded")
+  vim.cmd("silent !(zsh $HOME/.local/bin/scripts/dfd.sh)")
+  print("dotfiles downloaded")
 end, {})
 vim.api.nvim_create_user_command("Dfu", function()
-  vim.cmd("silent !dfu.sh")
+  vim.cmd("silent !(zsh $HOME/.local/bin/scripts/dfu.sh)")
+  print("dotfiles uploaded")
 end, {})
 
 vim.opt.termguicolors = true
