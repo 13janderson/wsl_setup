@@ -15,7 +15,7 @@ return{
     end)
     vim.keymap.set("n", "<leader>c", function ()
       vim.cmd("G commit -a")
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("ifeature:", true, false, true), "n", false)
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("ifeature: ", true, false, true), "n", false)
     end)
   end
 
