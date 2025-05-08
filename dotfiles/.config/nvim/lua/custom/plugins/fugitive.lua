@@ -16,7 +16,6 @@ return{
     vim.keymap.set("n", "<leader>c", function ()
       vim.cmd("silent G commit -a")
       vim.api.nvim_buf_set_lines(0, 0, 1, true, {"feat: "})
-      -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("ifeature: ", true, false, true), "n", false)
     end)
   end
 
