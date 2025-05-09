@@ -242,12 +242,10 @@ vim.g.python3_host_prog = "/usr/bin/python3"
 vim.api.nvim_create_user_command("Dfd", function()
   vim.cmd("silent !(zsh $HOME/.local/bin/scripts/dfd.sh)")
   print("dotfiles downloaded")
-  clear_output(1250)
 end, {})
 vim.api.nvim_create_user_command("Dfu", function()
   vim.cmd("silent !(zsh $HOME/.local/bin/scripts/dfu.sh)")
   print("dotfiles uploaded")
-  clear_output(1250)
 end, {})
 
 vim.opt.termguicolors = true

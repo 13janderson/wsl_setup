@@ -8,7 +8,7 @@ return{
     vim.keymap.set("n", "<leader>p", function ()
       vim.cmd("silent G push")
       print("Fugitive ↑")
-      Clear(250)
+      Clear(25)
     end)
     vim.keymap.set("n", "<leader>P", function ()
       vim.cmd("silent G pull")
