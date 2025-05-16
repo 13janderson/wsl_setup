@@ -1,6 +1,6 @@
 # Load custom colors
 eval "$(dircolors -b ~/.dircolors)" 
-
+ 
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
@@ -24,6 +24,7 @@ alias pad='sed -i -E "s|paths=\((.*)\)|paths=(\1 $(pwd))|" ~/.local/bin/scripts/
 # Dot file sync
 alias dfu='zsh $HOME/.local/bin/scripts/dfu.sh'
 alias dfd='zsh $HOME/.local/bin/scripts/dfd.sh'
+alias ghs='zsh $HOME/.local/bin/scripts/ghswitch.sh'
 
 alias nv='nvim'
 alias vi='nvim'
