@@ -255,6 +255,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       vim.cmd [[
           highlight LineNr guifg=#ff8800 gui=bold
           highlight CursorLineNr guifg=#ff8800 gui=bold
+          highlight DiffAdd    guibg=#003300 guifg=#00ff00
+          highlight DiffDelete guibg=#330000 guifg=#ff4444
+          highlight DiffChange guibg=#1f1f00 guifg=#ffff00
+          highlight DiffText   guibg=#333300 guifg=#ffff00
       ]]
   end,
 })
@@ -282,6 +286,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+-- I think this means all plugins can then use global functions?
+-- I hope so at least
+require("globals")
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
     -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
