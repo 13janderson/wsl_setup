@@ -6,7 +6,6 @@ return{
     vim.keymap.set("n", "<leader>h", ":diffget //2<CR>")
     vim.keymap.set("n", "<leader>l", ":diffget //3<CR>")
     vim.keymap.set("n", "<leader>p", function ()
-      -- What if we did this in a pcall?
       vim.cmd("G push")
       Clear(250)
     end)
