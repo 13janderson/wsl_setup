@@ -7,12 +7,7 @@ return{
     vim.keymap.set("n", "<leader>l", ":diffget //3<CR>")
     vim.keymap.set("n", "<leader>p", function ()
       -- What if we did this in a pcall?
-      local success = pcall(vim.cmd("silent G push"))
-      if success then
-        print("/")
-      else
-        print("x")
-      end
+      vim.cmd("G push")
       Clear(250)
     end)
     vim.keymap.set("n", "<leader>P", function ()
