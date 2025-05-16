@@ -176,12 +176,6 @@ export PATH="$PATH:$HOME/.local/bin/scripts"
 # Add C-F outside of tmux to go into tmux sessionizer
 bindkey -s ^f "tmux-sessionizer.sh\n"
 
-. "$HOME/.deno/env"
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-
 # Launch Windows chrome as browser
 export BROWSER="chrome-wsl.sh"
 
