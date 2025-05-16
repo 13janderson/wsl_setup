@@ -13,7 +13,7 @@ return{
       vim.cmd("G pull")
       Clear(250)
     end)
-    vim.keymap.set("n", "<leader>C", function ()
+    vim.keymap.set("n", "<leader>c", function ()
       vim.cmd("G commit -a")
       vim.api.nvim_buf_set_lines(0, 0, 1, true, {"feat: "})
     end)
