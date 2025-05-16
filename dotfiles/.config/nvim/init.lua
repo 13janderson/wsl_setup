@@ -257,9 +257,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
           highlight CursorLineNr guifg=#ff8800 gui=bold
           highlight DiffAdd    guibg=#003300 guifg=#00ff00
           highlight DiffDelete guibg=#330000 guifg=#ff4444
-          highlight DiffChange guibg=#1f1f00 guifg=#ffff00
-          highlight DiffText   guibg=#333300 guifg=#ffff00
-      ]]
+      ]] 
   end,
 })
 
