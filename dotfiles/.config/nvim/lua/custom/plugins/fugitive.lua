@@ -11,7 +11,6 @@ return{
     end)
     vim.keymap.set("n", "<leader>P", function ()
       vim.cmd("G pull")
-      print("Fugitive ↓")
       Clear(250)
     end)
     vim.keymap.set("n", "<leader>c", function ()
