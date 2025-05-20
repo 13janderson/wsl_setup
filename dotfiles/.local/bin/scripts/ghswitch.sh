@@ -1,3 +1,3 @@
 gh auth switch
-email=$(gh api user --jq .email)
-git config --local user.email $email
+email=$(gh api user/emails --jq '.[].email')
+git config --global user.email $email
