@@ -6,7 +6,8 @@ curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm ge
 # Install gh cli
 apt-get install gh
 # Preferable to use SSH keys
-gh auth login 
+# Get user scope so that we can access the user email to quickly switch between different user accounts
+gh auth login -h github.com -s user
 gh auth setup-git 
 git config --global core.excludefile ~/.gitignore
 #git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
