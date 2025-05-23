@@ -32,6 +32,7 @@ return{
         'javascript',
 			  'c_sharp',
 			  'powershell',
+        'yaml',
 		  },
 		  -- Autoinstall languages that are not installed
 		  highlight = {

@@ -80,6 +80,7 @@ return{
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
           map('m', vim.lsp.buf.hover, '[M]anual')
+          map('<leader>f', vim.lsp.buf.format, '[F]ormat')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
@@ -214,6 +215,7 @@ return{
         dockerls = {},
         docker_compose_language_service = {},
         ts_ls = {},
+        yamlls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:

@@ -1,6 +1,12 @@
 return{
   'tpope/vim-fugitive',
   config = function(_)
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "dbout",
+      callback = function()
+        vim.wo.foldenable = false
+      end,
+    })
     -- Use navigating merge conflict defaults for now [c for previous ]c for next conflict
     -- Set keybindings for resolving merge conflicts
     vim.keymap.set("n", "<leader>(", ":diffget //2<CR>")
@@ -14,7 +20,7 @@ return{
       Clear(250)
     end)
     vim.keymap.set("n", "<leader>c", function ()
-      vim.cmd("G commit -a")
+      vim.cmd("G commit -a --no-verify")
       vim.api.nvim_buf_set_lines(0, 0, 1, true, {"feat: "})
     end)
   end
