@@ -1,3 +1,4 @@
+#!/bin/bash
 dfu () {
   cd ~/dev_setup/dotfiles
   git ls-files | while IFS= read -r df; do
