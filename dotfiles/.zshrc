@@ -21,7 +21,7 @@ alias dd="cd ~/dev_setup"
 # Add new project to tmux sesionizer path
 alias pad='sed -i -E "s|paths=\((.*)\)|paths=(\1 $(pwd))|" ~/.local/bin/scripts/tmux-sessionizer.sh'
 
-# Dot file sync
+# Handy script aliases
 alias dfu='zsh $HOME/.local/bin/scripts/dfu.sh'
 alias dfd='zsh $HOME/.local/bin/scripts/dfd.sh'
 alias ghs='zsh $HOME/.local/bin/scripts/ghswitch.sh'
@@ -175,6 +175,7 @@ export PATH="$PATH:$HOME/.local/bin/scripts"
 
 # Add C-F outside of tmux to go into tmux sessionizer
 bindkey -s ^f "tmux-sessionizer.sh\n"
+bindkey -s ^h "fzf-history.sh\n"
 
 # Launch Windows chrome as browser
 export BROWSER="chrome-wsl.sh"
