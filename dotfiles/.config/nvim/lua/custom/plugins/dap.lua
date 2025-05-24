@@ -43,6 +43,7 @@ return {
             program = "${file}",
             runtimeExecutable = "tsx",
             cwd = "${workspaceFolder}",
+            sourceMaps = true,
             console = "integratedTerminal",
             internalConsoleOptions = "neverOpen",
             skipFiles = { "<node_internals>/**", "${workspaceFolder}/node_modules/**" },
