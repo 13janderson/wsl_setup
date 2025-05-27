@@ -14,7 +14,8 @@ return{
     --   Clear(250)
     -- end)
     vim.keymap.set("n", "<leader>c", function ()
-      local success = pcall(vim.cmd("G commit -a --no-verify"))
+      local success = pcall(function() vim.cmd("silent G commit -a --no-verify")
+      end)
       if success then
         vim.api.nvim_buf_set_lines(0, 0, 1, true, {"feat: "})
       end
