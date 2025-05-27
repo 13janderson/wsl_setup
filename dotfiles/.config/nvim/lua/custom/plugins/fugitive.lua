@@ -18,14 +18,10 @@ return {
       local status = vim.fn.execute("G status --untracked-files=no --porcelain", 'silent')
       local status_len = string.len(status)
       print(status_len)
-      if status_len > 0 then
+      if status_len > 1 then
         vim.cmd("G commit -a --no-verify")
         vim.api.nvim_buf_set_lines(0, 0, 1, true, { "feat: " })
       end
-      -- print(diff)
-      -- if diff == "" then
-      --   print("No changes")
-      -- end
     end)
   end
 
