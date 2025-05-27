@@ -14,7 +14,7 @@ return {
         vim.api.nvim_buf_set_lines(0, 0, 1, true, { "feat: " })
       else
         print("No changes to commit")
-        Clear(250)
+        Clear(500)
       end
     end)
   end
