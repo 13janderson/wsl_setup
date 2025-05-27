@@ -13,7 +13,7 @@ export PATH="$PATH:$HOME/.bun/bin"
 FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$HOME/.local/share/fnm:$PATH"
-  eval "`fnm env`"
+  eval "$(fnm env)"
 fi
 
 . "/home/jackanderson/.deno/env"
