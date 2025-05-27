@@ -167,14 +167,13 @@ fi
 # Non blinking terminal cursor
 echo -e "\e[?12l"
 
-# Bind ctrl backspace to delete a word
-bindkey '^H' backward-kill-word
-
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/bin/scripts"
 
 # Add C-F outside of tmux to go into tmux sessionizer
 bindkey -s ^f "tmux-sessionizer.sh\n"
-bindkey -s ^h "zsh $HOME/.local/bin/scripts/fzf-history.sh\n"
+bindkey -s ^r "zsh $HOME/.local/bin/scripts/fzf-history.sh\n"
+bindkey '^H' backward-kill-word
 
-source "$HOME/config.sh"
+source "$HOME/.config.sh"
+
