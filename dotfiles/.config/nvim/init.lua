@@ -193,6 +193,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+-- Paste from buffer but do not overwrite buffer with what we paste over
+vim.keymap.set("x", "<leader>p", [["_dP]])
 
 
 -- Diagnostic errors
