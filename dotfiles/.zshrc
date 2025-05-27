@@ -178,4 +178,3 @@ bindkey -s ^f "tmux-sessionizer.sh\n"
 bindkey -s ^h "zsh $HOME/.local/bin/scripts/fzf-history.sh\n"
 
 source "$HOME/config.sh"
-. "/home/jackanderson/.deno/env"
