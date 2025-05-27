@@ -175,7 +175,7 @@ export PATH="$PATH:$HOME/.local/bin/scripts"
 
 # Add C-F outside of tmux to go into tmux sessionizer
 bindkey -s ^f "tmux-sessionizer.sh\n"
-bindkey -s ^h "fzf-history.sh"
+bindkey -s ^h "zsh $HOME/.local/bin/scripts/fzf-history.sh\n"
 
 # Launch Windows chrome as browser
 export BROWSER="chrome-wsl.sh"
