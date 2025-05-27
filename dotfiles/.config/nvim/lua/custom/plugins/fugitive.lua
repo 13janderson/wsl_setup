@@ -14,11 +14,13 @@ return{
     --   Clear(250)
     -- end)
     vim.keymap.set("n", "<leader>c", function ()
-      local success = pcall(function() vim.cmd("silent G commit -a --no-verify")
-      end)
-      if success then
-        vim.api.nvim_buf_set_lines(0, 0, 1, true, {"feat: "})
+      local diff = vim.cmd("G diff")
+      print(diff)
+      if diff == "" then
+        print("No changes")
       end
+      vim.cmd("G commit -a --no-verify")
+      vim.api.nvim_buf_set_lines(0, 0, 1, true, {"feat: "})
     end)
   end
 
