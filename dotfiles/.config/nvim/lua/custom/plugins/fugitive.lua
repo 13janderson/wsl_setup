@@ -1,4 +1,4 @@
-return{
+return {
   'tpope/vim-fugitive',
   config = function(_)
     -- Use navigating merge conflict defaults for now [c for previous ]c for next conflict
@@ -13,14 +13,19 @@ return{
     --   vim.cmd("G pull")
     --   Clear(250)
     -- end)
-    vim.keymap.set("n", "<leader>c", function ()
-      local diff = vim.cmd("G diff")
-      print(diff)
-      if diff == "" then
-        print("No changes")
+    vim.keymap.set("n", "<leader>c", function()
+      -- local diff = vim.cmd("G diff")
+      local status = vim.fn.execute("G status --untracked-files=no --porcelain", 'silent')
+      local status_len = string.len(status)
+      print(status_len)
+      if status_len > 0 then
+        vim.cmd("G commit -a --no-verify")
+        vim.api.nvim_buf_set_lines(0, 0, 1, true, { "feat: " })
       end
-      vim.cmd("G commit -a --no-verify")
-      vim.api.nvim_buf_set_lines(0, 0, 1, true, {"feat: "})
+      -- print(diff)
+      -- if diff == "" then
+      --   print("No changes")
+      -- end
     end)
   end
 
