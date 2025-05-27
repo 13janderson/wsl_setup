@@ -22,9 +22,9 @@ alias dd="cd ~/dev_setup"
 alias pad='sed -i -E "s|paths=\((.*)\)|paths=(\1 $(pwd))|" ~/.local/bin/scripts/tmux-sessionizer.sh'
 
 # Handy script aliases
-alias dfu='$HOME/.local/bin/scripts/dfu.sh'
-alias dfd='$HOME/.local/bin/scripts/dfd.sh'
-alias ghs='$HOME/.local/bin/scripts/ghswitch.sh'
+alias dfu='zsh $HOME/.local/bin/scripts/dfu.sh'
+alias dfd='zsh $HOME/.local/bin/scripts/dfd.sh'
+alias ghs='zsh $HOME/.local/bin/scripts/ghswitch.sh'
 
 alias nv='nvim'
 alias vi='nvim'
@@ -175,7 +175,7 @@ export PATH="$PATH:$HOME/.local/bin/scripts"
 
 # Add C-F outside of tmux to go into tmux sessionizer
 bindkey -s ^f "tmux-sessionizer.sh\n"
-bindkey -s ^h "fzf-history.sh\n"
+bindkey -s ^h "fzf-history.sh"
 
 # Launch Windows chrome as browser
 export BROWSER="chrome-wsl.sh"
