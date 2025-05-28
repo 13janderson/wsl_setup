@@ -7,15 +7,15 @@ return {
     vim.keymap.set("n", "<leader>)", ":diffget //3<CR>")
     vim.keymap.set("n", "<leader>c", function()
       -- local diff = vim.cmd("G diff")
-      local status = vim.fn.execute("G status --untracked-files=no --porcelain", 'silent')
-      local status_len = string.len(status)
-      if status_len > 1 then
-        vim.cmd("G commit -a --no-verify")
-        vim.api.nvim_buf_set_lines(0, 0, 1, true, { "feat: " })
-      else
-        print("No changes to commit")
-        Clear(1250)
-      end
+      -- local status = vim.fn.execute("G status --untracked-files=no --porcelain", 'silent')
+      -- local status_len = string.len(status)
+      -- if status_len > 1 then
+      vim.cmd("G commit -a --no-verify")
+      vim.api.nvim_buf_set_lines(0, 0, 1, true, { "feat: " })
+      -- else
+      --   print("No changes to commit")
+      --   Clear(1250)
+      -- end
     end)
   end
 
