@@ -14,6 +14,7 @@ return{
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
+    version = "v2.2.0",
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
@@ -58,6 +59,9 @@ return{
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
+
+      vim.lsp.set_log_level("info")
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -83,6 +87,7 @@ return{
           map('<leader>f', vim.lsp.buf.format, '[F]ormat')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
