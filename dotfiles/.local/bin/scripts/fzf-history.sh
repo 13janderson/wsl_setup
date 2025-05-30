@@ -4,10 +4,9 @@ fzf-history-widget() {
   me=$(basename "$0")
   selected=$(tac ~/.zsh_history | sed -E "/$me/d" | sed -E 's/(.*;)(.*)/\2/' | fzf)
   if [[ -n "$selected" ]]; then
-    eval "$selected" & 
-    print -s "$selected"
-    fc -W
-    zle accept-line
+    # Write the selected cmd to the current zshell
+    print -z "$selected"
+    zle accept-line # this doesn't do what the docs say it does, it's meant to execute the cmd 
   fi
 }
 
