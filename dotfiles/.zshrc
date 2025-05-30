@@ -172,8 +172,9 @@ export PATH="$PATH:$HOME/.local/bin/scripts"
 
 # Add C-F outside of tmux to go into tmux sessionizer
 bindkey -s ^f "tmux-sessionizer.sh\n"
-bindkey -s ^r "zsh $HOME/.local/bin/scripts/fzf-history.sh\n"
+# bindkey -s ^r "zsh $HOME/.local/bin/scripts/fzf-history.sh\n"
 bindkey '^H' backward-kill-word
 
+source "$HOME/.local/bin/scripts/fzf-history.sh"
 source "$HOME/.config.sh"
 
