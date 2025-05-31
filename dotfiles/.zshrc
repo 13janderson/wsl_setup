@@ -178,7 +178,9 @@ bindkey '^H' backward-kill-word
 
 source "$HOME/.config.sh"
 
+# Only do this when we aren't in a tmux session already
 if [ ! "$TMUX" ]; then
+  # tmux is already running, attach to last session
   if tmux run 2>/dev/null; then
     tmux attach
   else
