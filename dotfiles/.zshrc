@@ -178,3 +178,4 @@ bindkey '^H' backward-kill-word
 
 source "$HOME/.config.sh"
 
+
