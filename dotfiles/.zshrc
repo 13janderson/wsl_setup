@@ -178,4 +178,11 @@ bindkey '^H' backward-kill-word
 
 source "$HOME/.config.sh"
 
+if [ ! "$TMUX" ]; then
+  if tmux run 2>/dev/null; then
+    tmux attach
+  else
+    source "tmux-sessionizer.sh"
+  fi
+fi
 
