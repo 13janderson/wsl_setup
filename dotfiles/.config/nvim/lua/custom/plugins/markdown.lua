@@ -23,20 +23,20 @@ return {
           end
         end
       })
-      vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = { "*.md" },
-        group = vim.api.nvim_create_augroup('PeekOpenOnEnter', { clear = true }),
-        callback = function(_)
-          local peek = require("peek")
-          if not peek.is_open() then
-            peek.close()
-            vim.defer_fn(function()
-              peek.open()
-            end, 1)
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>w', true, false, true), 'n', true)
-          end
-        end
-      })
+      -- vim.api.nvim_create_autocmd("BufEnter", {
+      --   pattern = { "*.md" },
+      --   group = vim.api.nvim_create_augroup('PeekOpenOnEnter', { clear = true }),
+      --   callback = function(_)
+      --     local peek = require("peek")
+      --     if not peek.is_open() then
+      --       peek.close()
+      --       vim.defer_fn(function()
+      --         peek.open()
+      --       end, 1)
+      --       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>w', true, false, true), 'n', true)
+      --     end
+      --   end
+      -- })
     end
   },
   {
@@ -59,7 +59,7 @@ return {
       workspaces = {
         {
           name = "Notes",
-          path = "~/Vault/",
+          path = "~/vault/",
         },
       },
     },
