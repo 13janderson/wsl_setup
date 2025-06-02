@@ -86,7 +86,7 @@ return {
               on_list = function(options)
                 if options.items and #options.items > 1 then
                   -- Jump to first item. You can do whatever you want here, such as filtering out React d.ts.
-                  vim.fn.setqflist({}, " ", options) -- Close quicifix list
+                  vim.fn.setqflist({}, " ", options) -- Close quickfix list
                   vim.cmd("cfirst")        -- Jump to first
                 elseif options.items and #options.items == 1 then
                   local item = options.items[1]
@@ -95,7 +95,7 @@ return {
                 else
                   print("No definition found")
                 end
-                Clear(0)
+                Clear(0) -- Not sure where but output comes from this process, just get rid of it immediately.
               end,
             })
           end

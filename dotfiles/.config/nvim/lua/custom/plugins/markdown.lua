@@ -28,8 +28,13 @@ return {
         if not peek.is_open() then
           peek.close()
           vim.defer_fn(function()
-            peek.open()
-            print("Markdown preview opened")
+            local filetype = vim.bo.filetype
+            if filetype == "markdown" then
+              peek.open()
+              print("Markdown preview opened")
+            else
+              print("Filetype must be markdown")
+            end
             Clear(500)
           end, 1)
           vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>w', true, false, true), 'n', true)
