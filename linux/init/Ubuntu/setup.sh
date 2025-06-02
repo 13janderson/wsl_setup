@@ -7,7 +7,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm ge
 apt-get install gh
 # Preferable to use SSH keys
 # Get user scope so that we can access the user email to quickly switch between different user accounts
-gh auth login -h github.com -s user
+gh auth login -h github.com -s user,read:project,delete:project,workflow 
 gh auth setup-git 
 git config --global core.excludefile ~/.gitignore
 #git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
@@ -28,3 +28,6 @@ apt-get install neovim -y
 
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Extra
+sudo apt install xclip
