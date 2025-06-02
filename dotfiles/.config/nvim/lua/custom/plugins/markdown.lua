@@ -1,5 +1,14 @@
 return {
   {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
+  {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",
     config = function()
@@ -47,7 +56,8 @@ return {
     -- requires xclip for copying images from clipboard in linux
     version = "*", -- recommended, use latest release instead of latest commit
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-    cond = vim.startswith(vim.fn.getcwd(), vim.fn.expand "~/vault/"),
+    lazy = false,
+    -- cond = vim.startswith(vim.fn.getcwd(), vim.fn.expand "~/vault/"),
     dependencies = {
       -- Required.
       "nvim-lua/plenary.nvim",
@@ -59,66 +69,57 @@ return {
           path = "~/vault/",
         },
       },
-    },
-    new_notes_location = "current_dir",
-    open_notes_in = "current",
-    completion = {
-      -- Set to false to disable completion.
-      nvim_cmp = true,
-      -- Trigger completion at 2 chars.
-      min_chars = 2,
-    },
-
-    -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
-    -- way then set 'mappings = {}'.
-    mappings = {
-      -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-      ["gf"] = {
-        action = function()
-          return require("obsidian").util.gf_passthrough()
-        end,
-        opts = { noremap = false, expr = true, buffer = true },
+      new_notes_location = "current_dir",
+      open_notes_in = "current",
+      completion = {
+        -- Set to false to disable completion.
+        nvim_cmp = true,
+        -- Trigger completion at 1 chars.
+        min_chars = 1,
       },
-      -- Toggle check-boxes.
-      ["<leader>ch"] = {
-        action = function()
-          return require("obsidian").util.toggle_checkbox()
-        end,
-        opts = { buffer = true },
+      ui = {
+        enable = false,
       },
-      -- Smart action depending on context, either follow link or toggle checkbox.
-      ["<cr>"] = {
-        action = function()
-          return require("obsidian").util.smart_action()
+      -- Specify how to handle attachments.
+      attachments = {
+        -- The default folder to place images in via `:ObsidianPasteImg`.
+        -- If this is a relative path it will be interpreted as relative to the vault root.
+        -- You can always override this per image by passing a full path to the command instead of just a filename.
+        img_folder = "assets/imgs", -- This is the default
+
+        -- Optional, customize the default name or prefix when pasting images via `:ObsidianPasteImg`.
+        ---@return string
+        img_name_func = function()
+          -- Prefix image names with timestamp.
+          return string.format("%s", os.time())
         end,
-        opts = { buffer = true, expr = true },
-      }
+
+        -- A function that determines the text to insert in the note when pasting an image.
+        -- It takes two arguments, the `obsidian.Client` and an `obsidian.Path` to the image file.
+        -- This is the default implementation.
+        ---@param client obsidian.Client
+        ---@param path obsidian.Path the absolute path to the image file
+        ---@return string
+        img_text_func = function(client, path)
+          path = client:vault_relative_path(path) or path
+          return string.format("![%s](%s)", path.name, path)
+        end,
+      },
     },
-
-    -- Specify how to handle attachments.
-    attachments = {
-      -- The default folder to place images in via `:ObsidianPasteImg`.
-      -- If this is a relative path it will be interpreted as relative to the vault root.
-      -- You can always override this per image by passing a full path to the command instead of just a filename.
-      img_folder = "assets/imgs", -- This is the default
-
-      -- Optional, customize the default name or prefix when pasting images via `:ObsidianPasteImg`.
-      ---@return string
-      img_name_func = function()
-        -- Prefix image names with timestamp.
-        return string.format("%s-", os.time())
-      end,
-
-      -- A function that determines the text to insert in the note when pasting an image.
-      -- It takes two arguments, the `obsidian.Client` and an `obsidian.Path` to the image file.
-      -- This is the default implementation.
-      ---@param client obsidian.Client
-      ---@param path obsidian.Path the absolute path to the image file
-      ---@return string
-      img_text_func = function(client, path)
-        path = client:vault_relative_path(path) or path
-        return string.format("![%s](%s)", path.name, path)
-      end,
-    },
+    config = function(_, opts)
+      local obsidian = require("obsidian")
+      obsidian.setup(opts)
+      -- Keymappings here
+      vim.keymap.set("n", "gf", obsidian.util.gf_passthrough, nil)
+      vim.keymap.set("n", "<M-x>", obsidian.util.toggle_checkbox, nil)
+      vim.keymap.set("n", "<M-i>", function()
+        vim.cmd(string.format("ObsidianPasteImg %s", opts.attachments.img_name_func()))
+        local vault = vim.fn.expand "~/vault/"
+        local keys = string.format("_ci(%s<C-C>p", vault)
+        local termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
+        vim.api.nvim_feedkeys(termcodes, "n", false)
+      end, nil)
+      vim.keymap.set("n", "<cr>", obsidian.util.smart_action, nil)
+    end,
   }
 }
