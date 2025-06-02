@@ -8,7 +8,8 @@ return {
     vim.keymap.set("n", "<leader>c", function()
       vim.cmd("G commit -a --no-verify")
       vim.api.nvim_buf_set_lines(0, 0, 1, true, { "feat: " })
-      vim.api.nvim_feedkeys("<CR>", "n", true)
+      print("Done")
+      vim.api.nvim_feedkeys(" ", "n", true)
     end)
   end
 
