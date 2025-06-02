@@ -1,4 +1,4 @@
-return{
+return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
@@ -24,7 +24,7 @@ return{
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -79,10 +79,29 @@ return{
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
 
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
-          --  For example, in C this would take you to the header.
+          -- Needed in the case that there are multiple defintitions.
+          -- VSCode behaviour is going to the first. Without this, the options are put into the quickfix list.
+          local function go_to_first_definition()
+            vim.lsp.buf.definition({
+              on_list = function(options)
+                if options.items and #options.items > 1 then
+                  -- Jump to first item. You can do whatever you want here, such as filtering out React d.ts.
+                  vim.fn.setqflist({}, " ", options) -- Close quicifix list
+                  vim.cmd("cfirst")        -- Jump to first
+                elseif options.items and #options.items == 1 then
+                  local item = options.items[1]
+                  vim.fn.setqflist({ item }, "r")
+                  vim.cmd("cfirst")
+                else
+                  print("No definition found")
+                end
+                Clear(0)
+              end,
+            })
+          end
+
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-          map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+          map('gd', go_to_first_definition, '[G]oto [D]efinition')
           map('m', vim.lsp.buf.hover, '[M]anual')
           map('<leader>f', vim.lsp.buf.format, '[F]ormat')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
@@ -212,7 +231,7 @@ return{
                 pyls_isort = { enabled = true },
               },
             },
-},
+          },
         },
         powershell_es = {},
         -- This is a big boy
