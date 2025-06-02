@@ -111,10 +111,10 @@ return {
         time_format = "%H:%M",
         substitutions = {
           yesterday = function()
-            return os.date("%Y-%m-%d", os.time() - 86400)
+            return os.date("%Y-%m-%d-%a", os.time() - 86400)
           end,
           tomorrow = function()
-            return os.date("%Y-%m-%d", os.time() + 86400)
+            return os.date("%Y-%m-%d-%a", os.time() + 86400)
           end
         }
       },
@@ -123,7 +123,7 @@ return {
         -- Optional, if you keep daily notes in a separate directory.
         folder = "daily",
         -- Optional, if you want to change the date format for the ID of daily notes.
-        date_format = "%Y-%m-%d",
+        date_format = "%Y-%m-%d-%a",
         -- Optional, if you want to change the date format of the default alias of daily notes.
         alias_format = "%B %-d, %Y",
         -- Optional, default tags to add to each new daily note created.
@@ -164,16 +164,33 @@ return {
         })
       end
 
+      local jumpToString = function(to)
+        -- Jump to first section, i.e. Admin and go into insert mode below it
+        local termcodes = vim.api.nvim_replace_termcodes(string.format("/%s<CR>o", to), true, false, true)
+        vim.api.nvim_feedkeys(termcodes, "n", false)
+      end
+
       -- Create new note from a template
       vim.keymap.set("n", "<M-n>", function()
+        doOnNewBuffer(function()
+          vim.api.nvim_feedkeys("learn.md", "n", false)
+          local actions = require("telescope.actions")
+
+          -- Function to select the current entry
+          local function select_current_entry(prompt_bufnr)
+            actions.select_default(prompt_bufnr)
+          end
+          vim.defer_fn(function()
+            select_current_entry(vim.api.nvim_get_current_buf())
+            jumpToString("Overview")
+          end, 50)
+        end)
         vim.cmd("ObsidianNewFromTemplate")
       end)
 
       -- Create new daily note, daily notes use the template as specified in opts
       local dailyJumpTo = function()
-        -- Jump to first section, i.e. Admin and go into insert mode below it
-        local termcodes = vim.api.nvim_replace_termcodes("/Admin<CR>o", true, false, true)
-        vim.api.nvim_feedkeys(termcodes, "n", false)
+        jumpToString("Admin")
       end
 
       -- Create new daily note
