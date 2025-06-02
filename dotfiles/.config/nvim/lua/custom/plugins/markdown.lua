@@ -175,13 +175,10 @@ return {
         doOnNewBuffer(function()
           vim.api.nvim_feedkeys("learn.md", "n", false)
           local actions = require("telescope.actions")
-
-          -- Function to select the current entry
-          local function select_current_entry(prompt_bufnr)
-            actions.select_default(prompt_bufnr)
-          end
+          -- Defer to allow feedkeys call to complete, allow 50ms for this
           vim.defer_fn(function()
-            select_current_entry(vim.api.nvim_get_current_buf())
+            -- select option and jump to Overview, going into insert just below
+            actions.select_default(vim.api.nvim_get_current_buf())
             jumpToString("Overview")
           end, 50)
         end)
