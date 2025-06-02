@@ -168,6 +168,7 @@ return {
         -- Jump to first section, i.e. Admin and go into insert mode below it
         local termcodes = vim.api.nvim_replace_termcodes(string.format("/%s<CR>", to), true, false, true)
         vim.api.nvim_feedkeys(termcodes, "n", false)
+        Clear(250)
       end
 
 
