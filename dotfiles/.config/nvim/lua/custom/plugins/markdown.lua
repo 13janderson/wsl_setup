@@ -170,6 +170,11 @@ return {
         vim.api.nvim_feedkeys(termcodes, "n", false)
       end
 
+
+      local learnJumpTo = function ()
+        jumpToString("Overview")
+      end
+
       -- Create new note from a template
       vim.keymap.set("n", "<M-n>", function()
         doOnNewBuffer(function()
@@ -177,10 +182,11 @@ return {
           local actions = require("telescope.actions")
           -- Defer to allow feedkeys call to complete, allow 50ms for this
           vim.defer_fn(function()
+            doOnNewBuffer(learnJumpTo)
             -- select option and jump to Overview, going into insert just below
             actions.select_default(vim.api.nvim_get_current_buf())
-            jumpToString("Overview")
-          end, 50)
+            -- Register new autocmd for new buffer opening
+          end, 100)
         end)
         vim.cmd("ObsidianNewFromTemplate")
       end)
