@@ -56,8 +56,7 @@ return {
     -- requires xclip for copying images from clipboard in linux
     version = "*", -- recommended, use latest release instead of latest commit
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-    lazy = false,
-    -- cond = vim.startswith(vim.fn.getcwd(), vim.fn.expand "~/vault/"),
+    cond = vim.startswith(vim.fn.getcwd(), vim.fn.expand "~/vault/"),
     dependencies = {
       -- Required.
       "nvim-lua/plenary.nvim",
@@ -65,7 +64,7 @@ return {
     opts = {
       workspaces = {
         {
-          name = "Notes",
+          name = "Vault",
           path = "~/vault/",
         },
       },
@@ -105,6 +104,33 @@ return {
           return string.format("![%s](%s)", path.name, path)
         end,
       },
+
+      templates = {
+        folder = "templates",
+        date_format = "%Y-%m-%d-%a",
+        time_format = "%H:%M",
+        substitutions = {
+          yesterday = function()
+            return os.date("%Y-%m-%d", os.time() - 86400)
+          end,
+          tomorrow = function()
+            return os.date("%Y-%m-%d", os.time() + 86400)
+          end
+        }
+      },
+
+      daily_notes = {
+        -- Optional, if you keep daily notes in a separate directory.
+        folder = "daily",
+        -- Optional, if you want to change the date format for the ID of daily notes.
+        date_format = "%Y-%m-%d",
+        -- Optional, if you want to change the date format of the default alias of daily notes.
+        alias_format = "%B %-d, %Y",
+        -- Optional, default tags to add to each new daily note created.
+        default_tags = { "daily" },
+        -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+        template = "daily.md"
+      },
     },
     config = function(_, opts)
       local obsidian = require("obsidian")
@@ -113,13 +139,60 @@ return {
       vim.keymap.set("n", "gf", obsidian.util.gf_passthrough, nil)
       vim.keymap.set("n", "<M-x>", obsidian.util.toggle_checkbox, nil)
       vim.keymap.set("n", "<M-i>", function()
-        vim.cmd(string.format("ObsidianPasteImg %s", opts.attachments.img_name_func()))
-        local vault = vim.fn.expand "~/vault/"
-        local keys = string.format("_ci(%s<C-C>p", vault)
-        local termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
-        vim.api.nvim_feedkeys(termcodes, "n", false)
+        local filetype = vim.bo.filetype
+        if filetype == "markdown" then
+          vim.cmd(string.format("ObsidianPasteImg %s", opts.attachments.img_name_func()))
+          local vault = vim.fn.expand "~/vault/"
+          -- Add the full path to the vault by prepending the expansion of ~/vault
+          local keys = string.format("_ci(%s<C-C>p", vault)
+          local termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
+          vim.api.nvim_feedkeys(termcodes, "n", false)
+        else
+          print("This feature is only enabled for markdown files")
+        end
       end, nil)
       vim.keymap.set("n", "<cr>", obsidian.util.smart_action, nil)
+
+
+      -- Note creation keybindings
+
+      local doOnNewBuffer = function(run)
+        vim.api.nvim_create_autocmd("BufEnter", {
+          callback = run,
+          group = vim.api.nvim_create_augroup("OneShotCommand", { clear = true }),
+          once = true,
+        })
+      end
+
+      -- Create new note from a template
+      vim.keymap.set("n", "<M-n>", function()
+        vim.cmd("ObsidianNewFromTemplate")
+      end)
+
+      -- Create new daily note, daily notes use the template as specified in opts
+      local dailyJumpTo = function()
+        -- Jump to first section, i.e. Admin and go into insert mode below it
+        local termcodes = vim.api.nvim_replace_termcodes("/Admin<CR>o", true, false, true)
+        vim.api.nvim_feedkeys(termcodes, "n", false)
+      end
+
+      -- Create new daily note
+      vim.keymap.set("n", "<M-d>", function()
+        doOnNewBuffer(dailyJumpTo)
+        vim.cmd("ObsidianToday")
+      end)
+
+      -- Navigate to yesterday's daily note
+      vim.keymap.set("n", "<M-y>", function()
+        doOnNewBuffer(dailyJumpTo)
+        vim.cmd("ObsidianYesterday")
+      end)
+
+      -- Create daily note for tomorrow
+      vim.keymap.set("n", "<M-o>", function()
+        doOnNewBuffer(dailyJumpTo)
+        vim.cmd("ObsidianTomorrow")
+      end)
     end,
   }
 }
