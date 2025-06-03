@@ -178,17 +178,17 @@ return {
 
       -- Create new note from a template
       vim.keymap.set("n", "<M-n>", function()
-        doOnNewBuffer(function()
-          vim.api.nvim_feedkeys("learn.md", "n", false)
-          local actions = require("telescope.actions")
-          -- Defer to allow feedkeys call to complete, allow 50ms for this
-          vim.defer_fn(function()
-            doOnNewBuffer(learnJumpTo)
-            -- select option and jump to Overview, going into insert just below
-            actions.select_default(vim.api.nvim_get_current_buf())
-            -- Register new autocmd for new buffer opening
-          end, 100)
-        end)
+        -- doOnNewBuffer(function()
+        --   vim.api.nvim_feedkeys("learn.md", "n", false)
+        --   local actions = require("telescope.actions")
+        --   -- Defer to allow feedkeys call to complete, allow 50ms for this
+        --   vim.defer_fn(function()
+        --     doOnNewBuffer(learnJumpTo)
+        --     -- select option and jump to Overview, going into insert just below
+        --     actions.select_default(vim.api.nvim_get_current_buf())
+        --     -- Register new autocmd for new buffer opening
+        --   end, 100)
+        -- end)
         vim.cmd("ObsidianNewFromTemplate")
       end)
 
