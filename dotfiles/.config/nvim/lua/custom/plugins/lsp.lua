@@ -14,7 +14,7 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
-    version = "v2.2.0",
+    version = "v2.0.0",
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
@@ -87,7 +87,7 @@ return {
                 if options.items and #options.items > 1 then
                   -- Jump to first item. You can do whatever you want here, such as filtering out React d.ts.
                   vim.fn.setqflist({}, " ", options) -- Close quickfix list
-                  vim.cmd("cfirst")        -- Jump to first
+                  vim.cmd("cfirst")                  -- Jump to first
                 elseif options.items and #options.items == 1 then
                   local item = options.items[1]
                   vim.fn.setqflist({ item }, "r")
@@ -235,7 +235,10 @@ return {
         },
         powershell_es = {},
         -- This is a big boy
-        omnisharp = {},
+        omnisharp = {
+          -- previously lsp was trying to use omnisharp as executable. This is now called OmniSharp
+          cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+        },
         bashls = {},
         dockerls = {},
         docker_compose_language_service = {},
