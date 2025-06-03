@@ -118,6 +118,14 @@ vim.opt.swapfile = false
 -- Enable break indent
 vim.opt.breakindent = true
 vim.opt.wrap = false
+vim.api.nvim_create_autocmd('BufEnter', {
+  desc = 'Turn on linewrap for markdown files',
+  pattern = { "*.md" },
+  group = vim.api.nvim_create_augroup('MarkdownWrapOn', { clear = true }),
+  callback = function()
+    vim.opt.wrap = true
+  end,
+})
 
 -- Nicer tabs
 vim.opt.expandtab = true
