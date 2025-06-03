@@ -233,8 +233,7 @@ return {
             },
           },
         },
-        powershell_es = {},
-        -- This is a big boy
+        powershell_es = {},        -- This is a big boy
         omnisharp = {
           -- previously lsp was trying to use omnisharp as executable. This is now called OmniSharp
           cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },

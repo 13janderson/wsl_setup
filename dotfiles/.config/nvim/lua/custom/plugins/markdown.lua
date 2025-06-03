@@ -1,12 +1,11 @@
 return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
-    opts = {},
   },
   {
     "toppair/peek.nvim",
@@ -84,7 +83,7 @@ return {
         -- The default folder to place images in via `:ObsidianPasteImg`.
         -- If this is a relative path it will be interpreted as relative to the vault root.
         -- You can always override this per image by passing a full path to the command instead of just a filename.
-        img_folder = "assets/imgs", -- This is the default
+        img_folder = "/assets/imgs", -- This is the default
 
         -- Optional, customize the default name or prefix when pasting images via `:ObsidianPasteImg`.
         ---@return string
@@ -135,6 +134,15 @@ return {
     config = function(_, opts)
       local obsidian = require("obsidian")
       obsidian.setup(opts)
+
+      local doOnNewBuffer = function(run)
+        vim.api.nvim_create_autocmd("BufEnter", {
+          callback = run,
+          group = vim.api.nvim_create_augroup("OneShotCommand", { clear = true }),
+          once = true,
+        })
+      end
+
       -- Keymappings here
       vim.keymap.set("n", "gf", obsidian.util.gf_passthrough, nil)
       vim.keymap.set("n", "<M-x>", obsidian.util.toggle_checkbox, nil)
@@ -147,22 +155,19 @@ return {
           local keys = string.format("_ci(%s<C-C>p", vault)
           local termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
           vim.api.nvim_feedkeys(termcodes, "n", false)
+
+          -- Horrible hack to get this weird formatting to disappear.
+          -- Maybe a better terminal emulator like wezterm would fix this?
+          vim.defer_fn(function() 
+            ReloadCurentBuffer()
+          end, 250)
         else
           print("This feature is only enabled for markdown files")
         end
       end, nil)
       vim.keymap.set("n", "<cr>", obsidian.util.smart_action, nil)
 
-
       -- Note creation keybindings
-
-      local doOnNewBuffer = function(run)
-        vim.api.nvim_create_autocmd("BufEnter", {
-          callback = run,
-          group = vim.api.nvim_create_augroup("OneShotCommand", { clear = true }),
-          once = true,
-        })
-      end
 
       local jumpToString = function(to)
         -- Jump to first section, i.e. Admin and go into insert mode below it
@@ -171,8 +176,7 @@ return {
         Clear(250)
       end
 
-
-      local learnJumpTo = function ()
+      local learnJumpTo = function()
         jumpToString("Overview")
       end
 
