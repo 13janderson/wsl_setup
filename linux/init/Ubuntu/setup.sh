@@ -29,5 +29,8 @@ apt-get install neovim -y
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+# Clone obsidian notes into ~/vault
+git clone https://github.com/13janderson/obsidian_notes ~/vault
+
 # Extra
 sudo apt install xclip
