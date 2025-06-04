@@ -4,7 +4,7 @@ return {
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
+    ---@module 'render-markdown"onedark"'
     ---@type render.md.UserConfig
   },
   {
@@ -132,6 +132,7 @@ return {
       },
     },
     config = function(_, opts)
+      ColourMyPencils("everforest")
       local obsidian = require("obsidian")
       obsidian.setup(opts)
 
@@ -139,7 +140,7 @@ return {
         vim.api.nvim_create_autocmd("BufEnter", {
           callback = run,
           group = vim.api.nvim_create_augroup("OneShotCommand", { clear = true }),
-          once = true,
+          once = true, -- this command clears itself upon completion
         })
       end
 

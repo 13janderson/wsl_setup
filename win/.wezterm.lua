@@ -1,0 +1,1 @@
+/mnt/c/Users/jack.anderson/.wezterm.lua

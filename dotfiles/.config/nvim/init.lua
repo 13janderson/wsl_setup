@@ -259,17 +259,17 @@ vim.api.nvim_create_user_command("Dfu", function()
 end, {})
 
 vim.opt.termguicolors = true
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-      vim.cmd [[
-          highlight LineNr guifg=#ff8800 gui=bold
-          highlight CursorLineNr guifg=#ff8800 gui=bold
-          highlight DiffAdd    guifg=#2ECC71 gui=bold
-          highlight DiffDelete guifg=#D75A49 gui=bold
-      ]] 
-  end,
-})
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--   pattern = "*",
+--   callback = function()
+--       vim.cmd [[
+--           highlight LineNr guifg=#ff8800 gui=bold
+--           highlight CursorLineNr guifg=#ff8800 gui=bold
+--           highlight DiffAdd    guifg=#2ECC71 gui=bold
+--           highlight DiffDelete guifg=#D75A49 gui=bold
+--       ]] 
+--   end,
+-- })
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -297,6 +297,7 @@ vim.opt.rtp:prepend(lazypath)
 -- I think this means all plugins can then use global functions?
 -- I hope so at least
 require("globals")
+
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
     -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
