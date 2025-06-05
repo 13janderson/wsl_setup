@@ -258,6 +258,23 @@ vim.api.nvim_create_user_command("Dfu", function()
   print("dotfiles uploaded")
 end, {})
 
+
+-- User command to try to turn editor into VSCode, for ease of co-workers
+-- this command can be used as a toggle using a global variable vscode
+vim.api.nvim_create_user_command("VSCode", function()
+  local vs_code_on = vim.g.vscode or false
+  if vs_code_on then
+    -- We assume that this function gives us a default colourscheme when no arguments are passed
+    print "turning if off"
+    ColourMyPencils()
+    vim.wo.relativenumber = true
+  else
+    ColourMyPencils("tokionight")
+    vim.wo.relativenumber = false
+    vim.g.vscode = true
+  end
+end, {})
+
 vim.opt.termguicolors = true
 -- vim.api.nvim_create_autocmd("ColorScheme", {
 --   pattern = "*",

@@ -21,6 +21,9 @@ function ColourMyPencils(colour)
     vim.cmd.colorscheme 'oxocarbon'
   elseif colour == "everforest" then
     vim.cmd.colorscheme 'everforest'
+  else
+    -- Default
+    vim.cmd.colorscheme 'rose-pine-moon'
   end
 end
 
@@ -70,8 +73,8 @@ local onedark = {
   config = function()
     ---@diagnostic disable-next-line: missing-fields
     require('onedark').setup {
-      transparent = true,
-      disable_background = true,
+      transparent = false,
+      disable_background = false,
     }
   end,
 }
@@ -101,7 +104,7 @@ local everforest = {
   lazy = false,
   priority = 1000,
   config = function()
-    vim.g.everforest_background = "soft" -- or "medium", "hard"
+    vim.g.everforest_background = "soft" -- "soft" "medium", "hard"
     vim.g.everforest_transparent_background = true
   end,
 }
