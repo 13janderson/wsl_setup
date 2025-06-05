@@ -37,7 +37,8 @@ git clone https://github.com/13janderson/obsidian_notes ~/vault
 # we copy .wezterm.lua from ../../../win/ to  the Windows HOME.
 # Finally, we can make a sylink on our WSL machine so that we can edit the wezterm config freely
 # within WSL.
-ln -s /mnt/c/Users/jack.anderson/.wezterm.lua ../../../win/.wezterm.lua
+# Change this depending on system
+# ln -s /mnt/c/Users/jack.anderson/.wezterm.lua ../../../win/.wezterm.lua
 
 # Extra
 sudo apt install xclip

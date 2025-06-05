@@ -1,9 +1,5 @@
 function ColourMyPencils(colour)
   -- Diff higlighting
-  vim.cmd [[
-  highlight DiffAdd    guifg=#2ECC71 gui=bold
-    highlight DiffDelete guifg=#D75A49 gui=bold
-  ]]
   if colour == "rosepine" then
     -- Line number highlighting, specificly fits rosepine
     vim.cmd [[

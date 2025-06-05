@@ -265,28 +265,33 @@ vim.api.nvim_create_user_command("VSCode", function()
   local vs_code_on = vim.g.vscode or false
   if vs_code_on then
     -- We assume that this function gives us a default colourscheme when no arguments are passed
-    print "turning if off"
     ColourMyPencils()
     vim.wo.relativenumber = true
+    vim.g.vscode = false
+    print "Exiting VSCode, wise choice"
+    Clear(500)
   else
     ColourMyPencils("tokionight")
     vim.wo.relativenumber = false
     vim.g.vscode = true
+    print "Entering VSCode, unlucky friend"
+    Clear(500)
   end
 end, {})
 
 vim.opt.termguicolors = true
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   pattern = "*",
---   callback = function()
---       vim.cmd [[
---           highlight LineNr guifg=#ff8800 gui=bold
---           highlight CursorLineNr guifg=#ff8800 gui=bold
---           highlight DiffAdd    guifg=#2ECC71 gui=bold
---           highlight DiffDelete guifg=#D75A49 gui=bold
---       ]] 
---   end,
--- })
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = "*",
+  group = vim.api.nvim_create_augroup('LineColors', { clear = true }),
+  callback = function()
+      vim.cmd [[
+          highlight LineNr guifg=#ff8800 gui=bold
+          highlight CursorLineNr guifg=#ff8800 gui=bold
+          highlight DiffAdd    guifg=#2ECC71 gui=bold
+          highlight DiffDelete guifg=#D75A49 gui=bold
+      ]] 
+  end,
+})
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
