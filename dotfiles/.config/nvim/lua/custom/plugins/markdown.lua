@@ -55,7 +55,7 @@ return {
     -- requires xclip for copying images from clipboard in linux
     version = "*", -- recommended, use latest release instead of latest commit
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-    cond = vim.startswith(vim.fn.getcwd(), vim.fn.expand "~/vault/"),
+    cond = vim.startswith(vim.fn.getcwd(), vim.fn.expand "~/vault"),
     dependencies = {
       -- Required.
       "nvim-lua/plenary.nvim",
@@ -83,7 +83,7 @@ return {
         -- The default folder to place images in via `:ObsidianPasteImg`.
         -- If this is a relative path it will be interpreted as relative to the vault root.
         -- You can always override this per image by passing a full path to the command instead of just a filename.
-        img_folder = "/assets/imgs", -- This is the default
+        img_folder = "assets/imgs", -- This is the default
 
         -- Optional, customize the default name or prefix when pasting images via `:ObsidianPasteImg`.
         ---@return string

@@ -60,7 +60,7 @@ return {
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
 
-      vim.lsp.set_log_level("debug")
+      vim.lsp.set_log_level("error")
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -102,7 +102,6 @@ return {
 
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           map('gd', go_to_first_definition, '[G]oto [D]efinition')
-          map('m', vim.lsp.buf.hover, '[M]anual')
           map('<leader>f', vim.lsp.buf.format, '[F]ormat')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
@@ -210,30 +209,52 @@ return {
       local servers = {
         -- clangd = {},
         gopls = {},
-        -- pyright = {},
-        pylsp = {
+        pyright = {
+          flags = {
+            debounce_text_changes = 100, -- in ms
+          },
           settings = {
-            pylsp = {
-              plugins = {
-                -- formatter options
-                black = { enabled = true },
-                autopep8 = { enabled = false },
-                yapf = { enabled = false },
-                -- linter options
-                pylint = { enabled = false, executable = "pylint" },
-                pyflakes = { enabled = false },
-                pycodestyle = { enabled = false },
-                -- type checker
-                pylsp_mypy = { enabled = true },
-                -- auto-completion options
-                jedi_completion = { fuzzy = true },
-                -- import sorting
-                pyls_isort = { enabled = true },
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace", -- or "openFilesOnly"
+                typeCheckingMode = "basic", -- Keep it basic
+                strictListInference = true, -- Better type inference for lists
+                strictDictionaryInference = true,
+                strictSetInference = true,
+                reportUnknownMemberType = true, -- Warn on unknown members
+                reportAttributeAccessIssues = true, -- Catch things like 'iterows' typo
+                reportMissingTypeStubs = false, -- You can turn this off to reduce noise
+                reportGeneralTypeIssues = true,
               },
             },
           },
         },
-        powershell_es = {},        -- This is a big boy
+        -- pylsp = {
+        --   flags = {
+        --     debounce_text_changes = 500 -- in ms
+        --   },
+        --   settings = {
+        --     pylsp = {
+        --       plugins = {
+        --         -- formatter options
+        --         black = { enabled = true },
+        --         autopep8 = { enabled = true },
+        --         yapf = { enabled = true },
+        --         -- linter options
+        --         pylint = { enabled = true },
+        --         -- pyflakes = { enabled = true },
+        --         pycodestyle = { enabled = false },
+        --         -- type checker
+        --         pylsp_mypy = { enabled = true },
+        --         -- auto-completion options
+        --         pyls_isort = { enabled = true },
+        --       },
+        --     },
+        --   },
+        -- },
+        powershell_es = {}, -- This is a big boy
         omnisharp = {
           -- previously lsp was trying to use omnisharp as executable. This is now called OmniSharp
           cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },

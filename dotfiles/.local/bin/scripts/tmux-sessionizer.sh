@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-paths=("$HOME/projects/CVS/CVS-TAS-Document-Migration/function_app_update_permissions_sharepoint")
+custom_paths=("$HOME/vault/" "$HOME/projects/CVS/CVS-TAS-Document-Migration/function_app_update_permissions_sharepoint")
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-  selected=$( (printf "%s\n" "${paths[@]}"; find $HOME/projects $HOME/projects/CVS $HOME/dev_setup $HOME/vault -mindepth 1 -maxdepth 1 -type d -not -path '*/.*') | sed -E "s|$HOME/||" |   fzf --preview '')
+  selected=$( (printf "%s\n" "${custom_paths[@]}"; find $HOME/projects $HOME/projects/CVS $HOME/dev_setup -mindepth 1 -maxdepth 1 -type d -not -path '*/.*') | sed -E "s|$HOME/||" |   fzf --preview '')
 fi
 
 if [[ -z $selected ]]; then
