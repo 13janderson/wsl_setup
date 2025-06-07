@@ -1,13 +1,13 @@
-return{
+return {
   {
-      -- Fuzzy Finder (files, lsp, etc)
-      'nvim-telescope/telescope.nvim',
-      event = 'VimEnter',
-      branch = '0.1.x',
-      dependencies = {
-          'nvim-lua/plenary.nvim',
-          { -- If encountering errors, see telescope-fzf-native README for installation instructions
-              'nvim-telescope/telescope-fzf-native.nvim',
+    -- Fuzzy Finder (files, lsp, etc)
+    'nvim-telescope/telescope.nvim',
+    event = 'VimEnter',
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {     -- If encountering errors, see telescope-fzf-native README for installation instructions
+        'nvim-telescope/telescope-fzf-native.nvim',
 
         -- `build` is used to run some command when the plugin is installed/updated.
         -- This is only run then, not every time Neovim starts up.
@@ -22,7 +22,7 @@ return{
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -47,28 +47,36 @@ return{
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
-	      -- You can put your default mappings / updates / etc. in here
-	      --  All the info you're looking for is in `:help telescope.setup()`
-	      --
-	      defaults = {
-		      mappings = {
-			      i = {
-				      ["C-c>"] = "close",
-				      ["<C-j>"] = "move_selection_next",
-				      ["<C-k>"] = "move_selection_previous",
-			      },
-		      },
-	      },
-	      pickers = {
-              find_files = {
-                  hidden = true,
-              },
+        -- You can put your default mappings / updates / etc. in here
+        --  All the info you're looking for is in `:help telescope.setup()`
+        --
+        defaults = {
+          mappings = {
+            i = {
+              ["C-c>"] = "close",
+              ["<C-j>"] = "move_selection_next",
+              ["<C-k>"] = "move_selection_previous",
+            },
           },
-	      extensions = {
-		      ['ui-select'] = {
-			      require('telescope.themes').get_dropdown(),
-		      },
-	      },
+          file_ignore_patterns = {
+            "%.git/",             -- ignore .git folder
+            "node_modules/",      -- ignore node_modules
+            "%.lock",             -- ignore lock files
+            "%.jpg", "%.png", "%.jpeg", -- ignore image files
+            "%.exe", "%.dll",     -- ignore binary files
+            "build/", "dist/",    -- ignore build folders
+          },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+        },
+        extensions = {
+          ['ui-select'] = {
+            require('telescope.themes').get_dropdown(),
+          },
+        },
       }
 
       -- Enable Telescope extensions if they are installed
@@ -118,4 +126,4 @@ return{
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
- }
+}
