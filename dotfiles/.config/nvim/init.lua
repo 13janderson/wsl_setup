@@ -195,7 +195,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- Tmux sessionizer
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>")
 -- Yank to system clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -206,15 +206,15 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 
 -- Diagnostic errors
-vim.keymap.set("n", "[e", function() vim.diagnostic.jump({count = 1}) end)
-vim.keymap.set("n", "]e", function() vim.diagnostic.jump({count = -1}) end)
+vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = 1 }) end)
+vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = -1 }) end)
 
 
 -- Alternate between bufffers
-vim.keymap.set('n', '<leader><leader>', '<C-^>', {noremap = false, silent = true})
+vim.keymap.set('n', '<leader><leader>', '<C-^>', { noremap = false, silent = true })
 
-vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', { noremap = false})
-vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', { noremap = false})
+vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', { noremap = false })
+vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', { noremap = false })
 
 -- Go between windows script
 -- problem with this is that this can often make us go to the diagnostic window that pops up
@@ -269,7 +269,7 @@ vim.api.nvim_create_user_command("VSCode", function()
     vim.wo.relativenumber = true
     vim.g.vscode = false
     print "Exiting VSCode, wise choice"
-    Clear(500)
+    Clear(250)
   else
     ColourMyPencils("tokionight")
     vim.wo.relativenumber = false
@@ -284,12 +284,12 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = "*",
   group = vim.api.nvim_create_augroup('LineColors', { clear = true }),
   callback = function()
-      vim.cmd [[
+    vim.cmd [[
           highlight LineNr guifg=#ff8800 gui=bold
           highlight CursorLineNr guifg=#ff8800 gui=bold
           highlight DiffAdd    guifg=#2ECC71 gui=bold
           highlight DiffDelete guifg=#D75A49 gui=bold
-      ]] 
+      ]]
   end,
 })
 
@@ -336,27 +336,27 @@ require('lazy').setup({
     --
 
     {
-        import = "custom/plugins"
+      import = "custom/plugins"
     },
 
-  -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
-  --
-  -- This is often very useful to both group configuration, as well as handle
-  -- lazy loading plugins that don't need to be loaded immediately at startup.
-  --
-  -- For example, in the following configuration, we use:
-  --  event = 'VimEnter'
-  --
-  -- Then, because we use the `opts` key (recommended), the configuration runs
-  -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
+    -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
+    --
+    -- This is often very useful to both group configuration, as well as handle
+    -- lazy loading plugins that don't need to be loaded immediately at startup.
+    --
+    -- For example, in the following configuration, we use:
+    --  event = 'VimEnter'
+    --
+    -- Then, because we use the `opts` key (recommended), the configuration runs
+    -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
-  -- NOTE: Plugins can specify dependencies.
-  --
-  -- The dependencies are proper plugin specifications as well - anything
-  -- you do for a plugin at the top level, you can do for a dependency.
-  --
-  -- Use the `dependencies` key to specify the dependencies of a particular plugin
-},
+    -- NOTE: Plugins can specify dependencies.
+    --
+    -- The dependencies are proper plugin specifications as well - anything
+    -- you do for a plugin at the top level, you can do for a dependency.
+    --
+    -- Use the `dependencies` key to specify the dependencies of a particular plugin
+  },
   -- Additional opts
   {
     change_detection = {
@@ -365,6 +365,3 @@ require('lazy').setup({
     }
   }
 )
-
-
-

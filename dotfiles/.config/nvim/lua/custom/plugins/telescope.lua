@@ -88,6 +88,12 @@ return{
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = '[S]earch [M]arks' })
 
+      vim.api.nvim_create_user_command("TelescopeColors", function()
+        builtin.colorscheme({
+          enable_preview = true,
+        })
+      end, {})
+
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
