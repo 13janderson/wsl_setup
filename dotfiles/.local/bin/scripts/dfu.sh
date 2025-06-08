@@ -6,6 +6,7 @@ dfu () {
     if [ -h $df ]; then
       echo "Copying sylimked file"
       symlink_df=symlinks/$df
+      mkdir -p $symlink_df
       cp $(readlink $df) $symlink_df 
       # Ensure this file is added to git
       git add $symlink_df > /dev/null 2>&1
