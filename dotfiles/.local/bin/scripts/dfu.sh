@@ -12,7 +12,7 @@ dfu () {
 
     # If file is a symlink, read the contents of the file to a local copy
     if [ -h $df ]; then
-      cp $(readlink $df) $symlink_dr/$df
+      cp $(readlink $df) $symlink_dir/$df
       # Ensure this file is added to git
       git add $symlink_df > /dev/null 2>&1
     else
