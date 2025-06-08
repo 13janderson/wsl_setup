@@ -14,6 +14,6 @@
 	useHttpPath=true
 [user]
 	name = Jack Anderson
-	email = jackanderson02@outlook.com
+	email = jack.anderson@bjss.com
 [core]
 	excludesfile = /home/jackanderson/.gitignore
