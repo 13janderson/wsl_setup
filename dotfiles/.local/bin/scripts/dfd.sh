@@ -3,9 +3,9 @@
 cd ~/dev_setup/dotfiles
 git ls-files | while IFS= read -r df; do
 # Copy all files tracked by git
-# cp "$df" "$HOME/$df"
-if [ -h $df ]; then
-  echo "$df is a symlink"
+if ! [ -h $df ]; then
+  cp "$df" "$HOME/$df"
+else
 fi
 done
 cd - 
