@@ -1,11 +1,12 @@
 #!/bin/zsh
 # Only want to copy files tracked by git
 cd ~/dev_setup/dotfiles
+symlink_dir=symlinks
+
 git ls-files | while IFS= read -r df; do
 # Copy all files tracked by git
-if ! [ -h $df ]; then
+if ! [[ -h $df ]] && ! [[ $df == *"$symlink_dir"* ]]; then
   cp "$df" "$HOME/$df"
-else
 fi
 done
 cd - 
