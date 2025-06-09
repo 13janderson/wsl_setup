@@ -33,9 +33,10 @@ config.keys = {
 
 -- or, changing the font size and color scheme.
 config.font_size = 10
+
 -- You can specify some parameters to influence the font selection;
 -- for example, this selects a Bold, Italic font variant.
-config.font = wezterm.font('JetBrains', { weight = 'ExtraBold', italic = false })
+config.font = wezterm.font('JetBrains Mono', { weight = 'Black', italic = false})
 config.color_scheme = "Adventure"
 
 -- Finally, return the configuration to wezterm:
