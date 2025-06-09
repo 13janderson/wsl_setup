@@ -103,6 +103,7 @@ return {
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           map('gd', go_to_first_definition, '[G]oto [D]efinition')
           map('<leader>f', vim.lsp.buf.format, '[F]ormat')
+          map('<leader>co', vim.lsp.completion.get, '[F]ormat')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
