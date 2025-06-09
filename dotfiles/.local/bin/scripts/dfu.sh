@@ -5,7 +5,6 @@ dfu () {
   mkdir -p $symlink_dir
   git ls-files | while IFS= read -r df; do
     if [[ $df == *"$symlink_dir"* ]]; then
-      echo "Skipping sylimk file for copy"
       continue
     fi
 
