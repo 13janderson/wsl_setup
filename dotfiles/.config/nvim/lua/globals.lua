@@ -12,12 +12,21 @@ end
 
 -- Run a function when the next buffer is loaded.
 -- This is a one-time function to run striclty on the next buffer loading
-function DoOnNewBuffer(run)
+function DoOnNewBuffer(run, timeout_ms)
+  if not timeout_ms then
+    timeout_ms = 5000
+  end
+
+  local augroup_name = "OneShotCommand"
   vim.api.nvim_create_autocmd("BufEnter", {
     callback = run,
-    group = vim.api.nvim_create_augroup("OneShotCommand", { clear = true }),
+    group = vim.api.nvim_create_augroup(augroup_name, { clear = true }),
     once = true, -- this command clears itself upon completion
   })
+  vim.defer_fn(function()
+    print("Deleting auggroup")
+    vim.api.nvim_del_augroup_by_name(augroup_name)
+  end, timeout_ms)
 end
 
 -- Does not refresh the contents of the buffer but rather forces the contents to be reloaded
@@ -32,3 +41,4 @@ function ReloadCurentBuffer()
     vim.api.nvim_buf_delete(scratch_buf_nr, {})
   end, 100)
 end
+
