@@ -135,14 +135,6 @@ return {
       local obsidian = require("obsidian")
       obsidian.setup(opts)
 
-      local doOnNewBuffer = function(run)
-        vim.api.nvim_create_autocmd("BufEnter", {
-          callback = run,
-          group = vim.api.nvim_create_augroup("OneShotCommand", { clear = true }),
-          once = true, -- this command clears itself upon completion
-        })
-      end
-
       -- Keymappings here
       vim.keymap.set("n", "gf", obsidian.util.gf_passthrough, nil)
       vim.keymap.set("n", "<M-x>", obsidian.util.toggle_checkbox, nil)
@@ -203,19 +195,19 @@ return {
 
       -- Create new daily note
       vim.keymap.set("n", "<M-d>", function()
-        doOnNewBuffer(dailyJumpTo)
+        DoOnNewBuffer(dailyJumpTo)
         vim.cmd("ObsidianToday")
       end)
 
       -- Navigate to yesterday's daily note
       vim.keymap.set("n", "<M-y>", function()
-        doOnNewBuffer(dailyJumpTo)
+        DoOnNewBuffer(dailyJumpTo)
         vim.cmd("ObsidianYesterday")
       end)
 
       -- Create daily note for tomorrow
       vim.keymap.set("n", "<M-o>", function()
-        doOnNewBuffer(dailyJumpTo)
+        DoOnNewBuffer(dailyJumpTo)
         vim.cmd("ObsidianTomorrow")
       end)
     end,

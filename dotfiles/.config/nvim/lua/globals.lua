@@ -10,6 +10,16 @@ function Print(tbl)
   print(vim.inspect(tbl))
 end
 
+-- Run a function when the next buffer is loaded.
+-- This is a one-time function to run striclty on the next buffer loading
+function DoOnNewBuffer(run)
+  vim.api.nvim_create_autocmd("BufEnter", {
+    callback = run,
+    group = vim.api.nvim_create_augroup("OneShotCommand", { clear = true }),
+    once = true, -- this command clears itself upon completion
+  })
+end
+
 -- Does not refresh the contents of the buffer but rather forces the contents to be reloaded
 -- in the same buffer. This is achieved by creating a temporary buffer and then switching back
 -- to the original.
