@@ -24,7 +24,6 @@ function DoOnNewBuffer(run, timeout_ms)
     once = true, -- this command clears itself upon completion
   })
   vim.defer_fn(function()
-    print("Deleting auggroup")
     vim.api.nvim_del_augroup_by_name(augroup_name)
   end, timeout_ms)
 end

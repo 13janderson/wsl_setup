@@ -105,9 +105,9 @@ local everforest = {
   end,
 }
 
--- User command to try to turn editor into VSCode, for ease of co-workers
--- this command can be used as a toggle using a global variable vscode
-vim.api.nvim_create_user_command("VSCode", function()
+-- Try to make editor mo VSCodey, for ease of co-workers
+-- this function can be used as a toggle using a global variable vscode
+local function vs_code()
   local vs_code_on = vim.g.vscode or false
   if vs_code_on then
     -- We assume that this function gives us a default colourscheme when no arguments are passed
@@ -123,7 +123,13 @@ vim.api.nvim_create_user_command("VSCode", function()
     print "Entering VSCode, unlucky friend"
     Clear(500)
   end
+end
+
+vim.api.nvim_create_user_command("VSCode", function()
+  vs_code()
 end, {})
+
+vim.keymap.set('n', '<leader>vs', vs_code, { desc = 'Toggle VSCode display with vs_code function.' })
 
 return {
   rosepine,

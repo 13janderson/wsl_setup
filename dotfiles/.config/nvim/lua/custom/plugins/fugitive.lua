@@ -7,9 +7,8 @@ return {
     vim.keymap.set("n", "<leader>)", ":diffget //3<CR>")
 
     vim.keymap.set("n", "<leader>c", function()
-      DoOnNewBuffer(function() 
+      DoOnNewBuffer(function()
         -- Only set the lines if a new buffer is made within 2 seconds
-        print("Setting lines")
         vim.api.nvim_buf_set_lines(0, 0, 1, true, { "feat: " })
       end, 2000)
       vim.cmd("G commit -a --no-verify")
