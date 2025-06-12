@@ -7,6 +7,7 @@ git ls-files | while IFS= read -r df; do
 # Copy all files tracked by git
 # echo $(dirname $df) 
 if ! [[ -h $df ]] && ! [[ $(dirname $df) == $symlink_dir ]]; then
+  mkdir -p $HOME/$(dirname $df)
   cp "$df" "$HOME/$df"
 fi
 done
@@ -14,3 +15,4 @@ cd -
  
 # Reload shell
 source ~/.zshrc
+

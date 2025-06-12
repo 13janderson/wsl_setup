@@ -1,4 +1,3 @@
--- Pull in the wezterm API
 local wezterm = require 'wezterm'
 
 -- This will hold the configuration.
@@ -20,7 +19,7 @@ config.automatically_reload_config = true
 config.hide_tab_bar_if_only_one_tab = true
 config.enable_tab_bar = false
 config.integrated_title_buttons = { 'Close' }
-config.window_decorations = "RESIZE"
+config.window_decorations = "TITLE | RESIZE"
 
 -- Ctrl+V for paste
 config.keys = {
