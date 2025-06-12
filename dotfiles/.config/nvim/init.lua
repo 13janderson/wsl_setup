@@ -137,7 +137,7 @@ vim.opt.autoindent = true
 -- Format options. Done with Autocmd due to another plugin overriding just setting these once here.
 -- This option should work regardless of loading order
 vim.api.nvim_create_autocmd('BufEnter', {
-  desc = 'Highlight when yanking (copying) text',
+  desc = 'Override buffer format options',
   group = vim.api.nvim_create_augroup('override-formatoptions', { clear = true }),
   callback = function()
     vim.opt.formatoptions = "jcrql"
