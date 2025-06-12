@@ -319,7 +319,6 @@ require('lazy').setup({
     {
       import = "custom/plugins"
     },
-
     {
       import = "custom/macros"
     },
