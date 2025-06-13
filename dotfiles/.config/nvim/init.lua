@@ -268,8 +268,8 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     vim.cmd [[
           highlight LineNr guifg=#ff8800 gui=bold
           highlight CursorLineNr guifg=#ff8800 gui=bold
-          highlight DiffAdd    guifg=#2ECC71 gui=bold
-          highlight DiffDelete guifg=#D75A49 gui=bold
+          " highlight DiffAdd    guifg=#2ECC71 gui=bold 
+          " highlight DiffDelete guifg=#D75A49 gui=bold
       ]]
   end,
 })

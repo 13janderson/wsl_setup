@@ -1,4 +1,5 @@
 function ColourMyPencils(colour)
+  -- TODO refactor this shite, wrap setting colour in pcall maybe?
   -- Diff higlighting
   if colour == "rosepine" then
     -- Line number highlighting, specificly fits rosepine
@@ -105,6 +106,7 @@ local everforest = {
   end,
 }
 
+
 -- Try to make editor mo VSCodey, for ease of co-workers
 -- this function can be used as a toggle using a global variable vscode
 local function vs_code()
@@ -114,21 +116,16 @@ local function vs_code()
     ColourMyPencils()
     vim.wo.relativenumber = true
     vim.g.vscode = false
-    print "Exiting VSCode, wise choice"
     Clear(250)
   else
     ColourMyPencils("tokionight")
     vim.wo.relativenumber = false
     vim.g.vscode = true
-    print "Entering VSCode, unlucky friend"
     Clear(500)
   end
 end
 
-vim.api.nvim_create_user_command("VSCode", function()
-  vs_code()
-end, {})
-
+vim.api.nvim_create_user_command("VSCode", vs_code, {})
 vim.keymap.set('n', '<leader>vs', vs_code, { desc = 'Toggle VSCode display with vs_code function.' })
 
 return {

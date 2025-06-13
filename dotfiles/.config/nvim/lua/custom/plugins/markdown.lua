@@ -150,16 +150,14 @@ return {
 
           -- Horrible hack to get this weird formatting to disappear.
           -- Maybe a better terminal emulator like wezterm would fix this?
-          vim.defer_fn(function()
-            ReloadCurentBuffer()
-          end, 250)
+          -- vim.defer_fn(function()
+          --   ReloadCurentBuffer()
+          -- end, 250)
         else
           print("This feature is only enabled for markdown files")
         end
       end, nil)
-      vim.keymap.set("n", "<cr>", obsidian.util.smart_action, nil)
-
-      -- Note creation keybindings
+      vim.keymap.set("n", "<cr>", obsidian.util.smart_action, { buffer = true, expr = true })
 
       local jumpToString = function(to)
         -- Jump to first section, i.e. Admin and go into insert mode below it
@@ -210,6 +208,17 @@ return {
         DoOnNewBuffer(dailyJumpTo)
         vim.cmd("ObsidianTomorrow")
       end)
+
+
+      -- Auto commands specifically for obsidian related buffers
+      vim.api.nvim_create_autocmd('BufNewFile', {
+        desc = 'Turn on linewrap for markdown files',
+        pattern = { vim.fn.expand "~/vault" .. "*.md"},
+        group = vim.api.nvim_create_augroup('NewVaultFile', { clear = true }),
+        callback = function(e)
+          -- TODO, what do we want to do with this?
+        end,
+      })
     end,
   }
 }
