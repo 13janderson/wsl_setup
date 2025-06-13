@@ -186,26 +186,18 @@ return {
         vim.cmd("ObsidianNewFromTemplate")
       end)
 
-      -- Create new daily note, daily notes use the template as specified in opts
-      local dailyJumpTo = function()
-        jumpToString("Admin")
-      end
-
       -- Create new daily note
       vim.keymap.set("n", "<M-d>", function()
-        DoOnNewBuffer(dailyJumpTo)
         vim.cmd("ObsidianToday")
       end)
 
       -- Navigate to yesterday's daily note
       vim.keymap.set("n", "<M-y>", function()
-        DoOnNewBuffer(dailyJumpTo)
         vim.cmd("ObsidianYesterday")
       end)
 
       -- Create daily note for tomorrow
       vim.keymap.set("n", "<M-o>", function()
-        DoOnNewBuffer(dailyJumpTo)
         vim.cmd("ObsidianTomorrow")
       end)
 

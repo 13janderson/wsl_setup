@@ -2,7 +2,6 @@
 dfu () {
   cd ~/dev_setup/dotfiles
   symlink_dir=.symlinks
-  echo $symlink_dir
   mkdir -p $symlink_dir
   git ls-files | while IFS= read -r df; do
     if [[ $df == *"$symlink_dir"* ]]; then
