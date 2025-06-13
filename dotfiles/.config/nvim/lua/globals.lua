@@ -23,8 +23,9 @@ function DoOnNewBuffer(run, timeout_ms)
     group = vim.api.nvim_create_augroup(augroup_name, { clear = true }),
     once = true, -- this command clears itself upon completion
   })
+  -- Remove the autocmd after timeout
   vim.defer_fn(function()
-    pcall(vim.api.nvim_del_augroup_by_name(augroup_name))
+    vim.api.nvim_del_augroup_by_name(augroup_name)
   end, timeout_ms)
 end
 

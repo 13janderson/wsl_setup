@@ -103,8 +103,8 @@ return {
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           map('gd', go_to_first_definition, '[G]oto [D]efinition')
           map('<leader>f', vim.lsp.buf.format, '[F]ormat')
-          map('<leader>?', vim.lsp.completion.get, '[C]ompletion')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
+          map('<leader>qr', vim.lsp.buf.references, '[Q]uickfix [R]eferences')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
 
