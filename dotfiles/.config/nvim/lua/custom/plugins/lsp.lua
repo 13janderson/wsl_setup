@@ -254,7 +254,9 @@ return {
         --     },
         --   },
         -- },
-        -- powershell_es = {}, 
+        powershell_es = {
+          filetypes = {"ps1", "psm1", "psd1"},
+        }, 
         -- This is a big boy
         omnisharp = {
           -- previously lsp was trying to use omnisharp as executable. This is now called OmniSharp
