@@ -14,7 +14,7 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
-    version = "v2.0.0",
+    version = "*",
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
@@ -104,7 +104,6 @@ return {
           map('gd', go_to_first_definition, '[G]oto [D]efinition')
           map('<leader>f', vim.lsp.buf.format, '[F]ormat')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
-          map('<leader>qr', vim.lsp.buf.references, '[Q]uickfix [R]eferences')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
 
@@ -255,7 +254,8 @@ return {
         --     },
         --   },
         -- },
-        powershell_es = {}, -- This is a big boy
+        -- powershell_es = {}, 
+        -- This is a big boy
         omnisharp = {
           -- previously lsp was trying to use omnisharp as executable. This is now called OmniSharp
           cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },

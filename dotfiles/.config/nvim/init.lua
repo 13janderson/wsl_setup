@@ -85,6 +85,10 @@ vim.api.nvim_create_autocmd('BufEnter', {
 -- Save undo history
 vim.opt.undofile = true
 
+-- Disable command history q:
+vim.keymap.set('n', 'q:', '<NOP>', { noremap = true, silent = true })
+
+--
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -124,7 +128,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "<CR>", "<CR>", { buffer = true, silent = true })
   end,
 })
-
 
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
