@@ -218,45 +218,22 @@ return {
               analysis = {
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
-                diagnosticMode = "workspace", -- or "openFilesOnly"
-                typeCheckingMode = "basic", -- Keep it basic
-                strictListInference = true, -- Better type inference for lists
+                diagnosticMode = "openFilesOnly",
+                typeCheckingMode = "standard",
+                strictListInference = true,
                 strictDictionaryInference = true,
                 strictSetInference = true,
                 reportUnknownMemberType = true, -- Warn on unknown members
-                reportAttributeAccessIssues = true, 
+                reportAttributeAccessIssues = true,
                 reportMissingTypeStubs = false, -- You can turn this off to reduce noise
                 reportGeneralTypeIssues = true,
               },
             },
           },
         },
-        -- pylsp = {
-        --   flags = {
-        --     debounce_text_changes = 500 -- in ms
-        --   },
-        --   settings = {
-        --     pylsp = {
-        --       plugins = {
-        --         -- formatter options
-        --         black = { enabled = true },
-        --         autopep8 = { enabled = true },
-        --         yapf = { enabled = true },
-        --         -- linter options
-        --         pylint = { enabled = true },
-        --         -- pyflakes = { enabled = true },
-        --         pycodestyle = { enabled = false },
-        --         -- type checker
-        --         pylsp_mypy = { enabled = true },
-        --         -- auto-completion options
-        --         pyls_isort = { enabled = true },
-        --       },
-        --     },
-        --   },
-        -- },
         powershell_es = {
-          filetypes = {"ps1", "psm1", "psd1"},
-        }, 
+          filetypes = { "ps1", "psm1", "psd1" },
+        },
         -- This is a big boy
         omnisharp = {
           -- previously lsp was trying to use omnisharp as executable. This is now called OmniSharp
@@ -266,9 +243,8 @@ return {
         dockerls = {},
         docker_compose_language_service = {},
         ts_ls = {},
-        prismals= {
+        prismals = {
         },
-
         yamlls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
