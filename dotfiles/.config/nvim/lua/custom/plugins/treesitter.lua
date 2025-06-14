@@ -33,7 +33,8 @@ return{
 			  'c_sharp',
 			  'powershell',
         'yaml',
-        -- 'python',
+        'python',
+        'prisma'
 		  },
 		  -- Autoinstall languages that are not installed
 		  highlight = {
