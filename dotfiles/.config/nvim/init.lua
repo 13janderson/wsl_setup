@@ -159,25 +159,6 @@ vim.keymap.set('n', '<leader><leader>', '<C-^>', { noremap = false, silent = tru
 vim.api.nvim_set_keymap('c', '<C-j>', '<C-n>', { noremap = false })
 vim.api.nvim_set_keymap('c', '<C-k>', '<C-p>', { noremap = false })
 
--- Go between windows script
--- problem with this is that this can often make us go to the diagnostic window that pops up
-vim.keymap.set('n', '<leader><Tab>', function()
-  local current_win = vim.api.nvim_get_current_win()
-  local wins = vim.api.nvim_tabpage_list_wins(0)
-  local windex = -1
-  for index, value in ipairs(wins) do
-    if value == current_win then
-      windex = index
-      break
-    end
-  end
-  if windex ~= -1 then
-    local nextwindow = ((windex) % #wins) + 1
-    vim.api.nvim_set_current_win(wins[nextwindow])
-  end
-end
-)
-
 vim.g.python3_host_prog = "/usr/bin/python3"
 
 
