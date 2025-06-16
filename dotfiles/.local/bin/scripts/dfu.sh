@@ -12,6 +12,7 @@ git ls-files | while IFS= read -r df; do
   if [[ ${encrypt[@]} =~ $df ]]; then
     # TODO, read in password from system rather asking user for new password every time
     openssl aes-256-cbc -salt -a -e -in $HOME/$df -out $df
+    continue
   fi
 
   # If file is a symlink, read the contents of the file to a local copy
