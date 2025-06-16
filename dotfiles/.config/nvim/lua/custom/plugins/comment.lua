@@ -12,7 +12,7 @@ return {
       opleader = {
         line = '<C-_>',
         ---Block-comment keymap
-        block = '<C-_>',
+        -- block = '<C-_>',
       },
     },
   },
