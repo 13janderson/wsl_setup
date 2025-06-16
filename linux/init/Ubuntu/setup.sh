@@ -2,6 +2,7 @@
 
 # docker setup
 curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm get-docker.sh;
+sudo usermod -aG docker $USER
 
 # Install gh cli
 apt-get install gh
@@ -32,13 +33,12 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Clone obsidian notes into ~/vault
 git clone https://github.com/13janderson/obsidian_notes ~/vault
 
-# Wezterm symbolic link to where the file originally gets copiied from in the install script
-# Initial PowerShell setup script installs Wezterm to our Windows machine using winget, then 
-# we copy .wezterm.lua from ../../../win/ to  the Windows HOME.
-# Finally, we can make a sylink on our WSL machine so that we can edit the wezterm config freely
-# within WSL.
-# Change this depending on system
-# ln -s /mnt/c/Users/jack.anderson/.wezterm.lua ../../../win/.wezterm.lua
+# Wezterm symbolics 
+
+# Copy wezterm file from symlinks directory of dotfiles
+cp ../../../dotfiles/.symlinks/.wezterm.lua /mnt/c/Users/jack.anderson/.wezterm.lua 
+# Set up symlink between that new file and the root of our dotfiles.
+ln -s /mnt/c/Users/jack.anderson/.wezterm.lua ../../../dotfiles/.wezterm.lua
 
 # Extra
 sudo apt install xclip

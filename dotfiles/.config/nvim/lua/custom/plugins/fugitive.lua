@@ -13,6 +13,8 @@ return {
       end, 2000)
       vim.cmd("G commit -a --no-verify")
     end)
+    vim.keymap.set("n", "[c", "[czz")
+    vim.keymap.set("n", "]c", "]czz")
   end
 
 }

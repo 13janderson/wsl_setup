@@ -1,14 +1,24 @@
-#!/bin/zsh
+#!/bin/bash
+
+# We only want this under version control to push it up to github
+# this is never something we will manually modify.
+skip=(".zsh_history" ".gitconfig")
+
 # Only want to copy files tracked by git
 cd ~/dev_setup/dotfiles
 symlink_dir=.symlinks
 
 git ls-files | while IFS= read -r df; do
-# Copy all files tracked by git
-if ! [[ -h $df ]] && ! [[ $(dirname $df) == $symlink_dir ]]; then
-  mkdir -p $HOME/$(dirname $df)
-  cp "$df" "$HOME/$df"
-fi
+  if [[ ${skip[@]} =~ $df ]]; then
+    # Skip certian files that we do not want to overwrite when copying down our changes
+    continue
+  fi
+
+  if ! [[ -h $df ]] && ! [[ $(dirname $df) == $symlink_dir ]]; then
+    mkdir -p $HOME/$(dirname $df)
+    cp "$df" "$HOME/$df"
+  fi
+
 done
 cd - 
  
