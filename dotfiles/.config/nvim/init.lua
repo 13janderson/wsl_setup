@@ -149,21 +149,18 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("n", "[d", "[dzz")
-vim.keymap.set("n", "]d", "]dzz")
 
-vim.keymap.set("n", "[q", "[qzz")
-vim.keymap.set("n", "]q", "]qzz")
+--[[ vim.keymap.set("n", "[q", "[qzz")
+vim.keymap.set("n", "]q", "]qzz") ]]
 
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 -- Paste from buffer but do not overwrite buffer with what we paste over
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
-
 -- Diagnostic errors
-vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = 1 }) end)
-vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = -1 }) end)
+--[[ vim.keymap.set("n", "[dzz", function() vim.diagnostic.jump({ count = 1 }) end)
+vim.keymap.set("n", "]dzz", function() vim.diagnostic.jump({ count = -1 }) end) ]]
 
 -- Alternate between bufffers
 vim.keymap.set('n', '<leader><leader>', '<C-^>', { noremap = false, silent = true })
