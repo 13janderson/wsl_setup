@@ -41,4 +41,3 @@ function ReloadCurentBuffer()
     vim.api.nvim_buf_delete(scratch_buf_nr, {})
   end, 100)
 end
-

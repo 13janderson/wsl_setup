@@ -85,6 +85,10 @@ vim.api.nvim_create_autocmd('BufEnter', {
 -- Save undo history
 vim.opt.undofile = true
 
+-- Disable command history q:
+vim.keymap.set('n', 'q:', '<NOP>', { noremap = true, silent = true })
+
+--
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -126,7 +130,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -143,15 +146,21 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+
+--[[ vim.keymap.set("n", "[q", "[qzz")
+vim.keymap.set("n", "]q", "]qzz") ]]
+
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 -- Paste from buffer but do not overwrite buffer with what we paste over
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
-
 -- Diagnostic errors
-vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = 1 }) end)
-vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = -1 }) end)
+--[[ vim.keymap.set("n", "[dzz", function() vim.diagnostic.jump({ count = 1 }) end)
+vim.keymap.set("n", "]dzz", function() vim.diagnostic.jump({ count = -1 }) end) ]]
 
 -- Alternate between bufffers
 vim.keymap.set('n', '<leader><leader>', '<C-^>', { noremap = false, silent = true })

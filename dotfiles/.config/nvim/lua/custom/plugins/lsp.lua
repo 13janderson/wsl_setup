@@ -14,7 +14,7 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
-    version = "v2.0.0",
+    version = "*",
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
@@ -104,7 +104,6 @@ return {
           map('gd', go_to_first_definition, '[G]oto [D]efinition')
           map('<leader>f', vim.lsp.buf.format, '[F]ormat')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
-          map('<leader>qr', vim.lsp.buf.references, '[Q]uickfix [R]eferences')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
 
@@ -219,43 +218,23 @@ return {
               analysis = {
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
-                diagnosticMode = "workspace", -- or "openFilesOnly"
-                typeCheckingMode = "basic", -- Keep it basic
-                strictListInference = true, -- Better type inference for lists
+                diagnosticMode = "openFilesOnly",
+                typeCheckingMode = "standard",
+                strictListInference = true,
                 strictDictionaryInference = true,
                 strictSetInference = true,
                 reportUnknownMemberType = true, -- Warn on unknown members
-                reportAttributeAccessIssues = true, 
+                reportAttributeAccessIssues = true,
                 reportMissingTypeStubs = false, -- You can turn this off to reduce noise
                 reportGeneralTypeIssues = true,
               },
             },
           },
         },
-        -- pylsp = {
-        --   flags = {
-        --     debounce_text_changes = 500 -- in ms
-        --   },
-        --   settings = {
-        --     pylsp = {
-        --       plugins = {
-        --         -- formatter options
-        --         black = { enabled = true },
-        --         autopep8 = { enabled = true },
-        --         yapf = { enabled = true },
-        --         -- linter options
-        --         pylint = { enabled = true },
-        --         -- pyflakes = { enabled = true },
-        --         pycodestyle = { enabled = false },
-        --         -- type checker
-        --         pylsp_mypy = { enabled = true },
-        --         -- auto-completion options
-        --         pyls_isort = { enabled = true },
-        --       },
-        --     },
-        --   },
-        -- },
-        powershell_es = {}, -- This is a big boy
+        powershell_es = {
+          filetypes = { "ps1", "psm1", "psd1" },
+        },
+        -- This is a big boy
         omnisharp = {
           -- previously lsp was trying to use omnisharp as executable. This is now called OmniSharp
           cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
@@ -264,6 +243,8 @@ return {
         dockerls = {},
         docker_compose_language_service = {},
         ts_ls = {},
+        prismals = {
+        },
         yamlls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --

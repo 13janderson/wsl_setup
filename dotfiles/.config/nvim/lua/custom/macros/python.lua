@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   }),
   callback = function(_)
     -- Format string macro @p on current word
-    vim.fn.setreg("p", 'yiwoprint()if""hpa: {}hpo')
+    vim.fn.setreg("p", 'yiwoprint()if""hpa: {}hp_')
   end
 })
 
