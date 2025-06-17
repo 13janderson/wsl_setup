@@ -1,6 +1,8 @@
 #!/bin/bash
 me=$(basename "$0")
-selected=$(tac ~/.zsh_history | sed -E "/$me/d" | sed -E 's/(.*;)(.*)/\2/' | awk '!seen[$0]++' | fzf)
+# selected=$(tac ~/.zsh_history | sed -E "/$me/d" | sed -E 's/(.*;)(.*)/\2/' | awk '!seen[$0]++' | fzf)
+selected=$(tac ~/.zsh_history | sed -E "/$me/d" | sed -E 's/(.*;)(.*)/\2/' | awk '!seen[$0]++ { order[++i] = $0 } { count[$0]++ } END { for (j = 1; j <= i; j++) print "(" count[order[j]] ")", order[j] }' \
+  | fzf)
 
 if [[ -n "$selected" ]]; then
   # Send keys to current tmux window and hit enter, I love tmux.
