@@ -129,7 +129,8 @@ return {
     config = function(_, opts)
       -- Set a custom colourscheme when this plugin is loaded, gives the illusion
       -- that we are in another application specifically for editing text.
-      ColourMyPencils("tokionight")
+      -- ColourMyPencils("tokionight")
+
       local obsidian = require("obsidian")
       obsidian.setup(opts)
 
@@ -147,10 +148,11 @@ return {
           vim.api.nvim_feedkeys(termcodes, "n", false)
 
           -- Horrible hack to get this weird formatting to disappear.
-          -- Maybe a better terminal emulator like wezterm would fix this?
-          -- vim.defer_fn(function()
-          --   ReloadCurentBuffer()
-          -- end, 250)
+          -- This seems to happen regardless of terminal emulator but this hack this infact work 
+          -- and I hate it.
+          vim.defer_fn(function()
+            ReloadCurentBuffer()
+          end, 250)
         else
           print("This feature is only enabled for markdown files")
         end
