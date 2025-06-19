@@ -7,8 +7,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
   }),
   callback = function(_)
     -- Format string macro @p on current word
+    -- While this is horrible to look at, it just works for python
+    -- and is much easier to implemet than registering auto commands.
+     -- Also allos us to make use of macros as opposed to keybindings or 
+    -- auto-commands.
     vim.fn.setreg("p", 'yiwoprint()if""hpa: {}hp_')
-  end
+  end,
+  once = true,
 })
 
 return {

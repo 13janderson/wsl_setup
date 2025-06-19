@@ -142,7 +142,8 @@ return {
         if filetype == "markdown" then
           vim.cmd(string.format("ObsidianPasteImg %s", opts.attachments.img_name_func()))
           local vault = vim.fn.expand "~/vault/"
-          -- Add the full path to the vault by prepending the expansion of ~/vault
+          -- Hack add the full path to the vault by prepending the expansion of ~/vault
+          -- since thats where our images live.
           local keys = string.format("_ci(%s<C-C>p", vault)
           local termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
           vim.api.nvim_feedkeys(termcodes, "n", false)
