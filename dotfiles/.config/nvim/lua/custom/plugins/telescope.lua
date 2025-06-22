@@ -6,7 +6,7 @@ return {
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      {     -- If encountering errors, see telescope-fzf-native README for installation instructions
+      { -- If encountering errors, see telescope-fzf-native README for installation instructions
         'nvim-telescope/telescope-fzf-native.nvim',
 
         -- `build` is used to run some command when the plugin is installed/updated.
@@ -56,12 +56,12 @@ return {
             },
           },
           file_ignore_patterns = {
-            "%.git/",             -- ignore .git folder
-            "node_modules/",      -- ignore node_modules
-            "%.lock",             -- ignore lock files
+            "%.git/",                   -- ignore .git folder
+            "node_modules/",            -- ignore node_modules
+            "%.lock",                   -- ignore lock files
             "%.jpg", "%.png", "%.jpeg", -- ignore image files
-            "%.exe", "%.dll",     -- ignore binary files
-            "build/", "dist/",    -- ignore build folders
+            "%.exe", "%.dll",           -- ignore binary files
+            "build/", "dist/",          -- ignore build folders
           },
         },
         pickers = {

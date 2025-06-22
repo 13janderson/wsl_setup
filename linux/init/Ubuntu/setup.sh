@@ -42,3 +42,4 @@ ln -s /mnt/c/Users/jack.anderson/.wezterm.lua ../../../dotfiles/.wezterm.lua
 
 # Extra
 sudo apt install xclip
+sudo apt install jq # Nice JSON output, this is amazing

@@ -116,12 +116,10 @@ local function vs_code()
     ColourMyPencils()
     vim.wo.relativenumber = true
     vim.g.vscode = false
-    Clear(250)
   else
     ColourMyPencils("tokionight")
     vim.wo.relativenumber = false
     vim.g.vscode = true
-    Clear(500)
   end
 end
 
