@@ -1,12 +1,6 @@
 function ColourMyPencils(colour)
   -- TODO refactor this shite, wrap setting colour in pcall maybe?
-  -- Diff higlighting
   if colour == "rosepine" then
-    -- Line number highlighting, specificly fits rosepine
-    vim.cmd [[
-          highlight LineNr guifg=#ff8800 gui=bold
-          highlight CursorLineNr guifg=#ff8800 gui=bold
-      ]]
     vim.cmd.colorscheme 'rose-pine-moon'
   elseif colour == "tokionight" then
     vim.cmd.colorscheme 'tokyonight-night'
@@ -23,6 +17,25 @@ function ColourMyPencils(colour)
     vim.cmd.colorscheme 'rose-pine-moon'
   end
 end
+
+function ColourMyLines()
+  vim.cmd [[
+          highlight LineNr guifg=#ff8800 gui=bold
+          highlight CursorLineNr guifg=#ff8800 gui=bold
+          " highlight DiffAdd    guifg=#2ECC71 gui=bold
+          " highlight DiffDelete guifg=#D75A49 gui=bold
+      ]]
+  vim.cmd [[
+          highlight LineNr guifg=#ff8800 gui=bold
+          highlight CursorLineNr guifg=#ff8800 gui=bold
+      ]]
+end
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = "*",
+  group = vim.api.nvim_create_augroup('LineColors', { clear = true }),
+  callback = ColourMyLines
+})
 
 local rosepine = { -- You can easily change to a different colorscheme.
   -- Change the name of the colorscheme plugin below, and then
@@ -107,7 +120,7 @@ local everforest = {
 }
 
 
--- Try to make editor mo VSCodey, for ease of co-workers
+-- Try to make editor more VSCodey, for ease of co-workers
 -- this function can be used as a toggle using a global variable vscode
 local function vs_code()
   local vs_code_on = vim.g.vscode or false
@@ -117,10 +130,11 @@ local function vs_code()
     vim.wo.relativenumber = true
     vim.g.vscode = false
   else
-    ColourMyPencils("tokionight")
+    -- ColourMyPencils("tokionight")
     vim.wo.relativenumber = false
     vim.g.vscode = true
   end
+  ColourMyLines()
 end
 
 vim.api.nvim_create_user_command("VSCode", vs_code, {})

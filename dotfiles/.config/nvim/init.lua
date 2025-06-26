@@ -61,7 +61,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   pattern = { "*.md" },
   group = vim.api.nvim_create_augroup('MarkdownWrapOn', { clear = true }),
   callback = function()
-    vim.opt.wrap = true
+    vim.opt.wrap = trueinit
   end,
 })
 
@@ -184,18 +184,6 @@ end, {})
 
 
 vim.opt.termguicolors = true
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = "*",
-  group = vim.api.nvim_create_augroup('LineColors', { clear = true }),
-  callback = function()
-    vim.cmd [[
-          highlight LineNr guifg=#ff8800 gui=bold
-          highlight CursorLineNr guifg=#ff8800 gui=bold
-          " highlight DiffAdd    guifg=#2ECC71 gui=bold
-          " highlight DiffDelete guifg=#D75A49 gui=bold
-      ]]
-  end,
-})
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
