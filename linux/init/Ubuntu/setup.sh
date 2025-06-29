@@ -15,11 +15,11 @@ git config --global core.excludefile ~/.gitignore
 #git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
 
 # Install zsh and pre-configure it with oh-my-zsh
-apt-get install zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-# Install powerlevel10k, config in dotfiles. Set as default theme in .zshrc
-git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+# apt-get install zsh
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+#
+# # Install powerlevel10k, config in dotfiles. Set as default theme in .zshrc
+# git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/.powerlevel10k
 
 # Install fzf. Default opts configured in dotfiles
 apt-get install fzf -y
