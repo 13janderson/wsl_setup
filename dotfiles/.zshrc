@@ -179,7 +179,7 @@ bindkey '^H' backward-kill-word
 source "$HOME/.config.sh"
 
 # Only do this when tmux is installed and we aren't in a tmux session already
-if [[command -v tmux >/dev/null 2>&1]] && [ ! "$TMUX" ]; then
+if [[ -x "command -v tmux >/dev/null 2>&1" ]] && [[ ! "$TMUX" ]]; then
   # tmux is already running, attach to last session
   if tmux run 2>/dev/null; then
     tmux attach
