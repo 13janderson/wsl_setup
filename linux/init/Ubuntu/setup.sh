@@ -19,7 +19,7 @@ apt-get install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install powerlevel10k, config in dotfiles. Set as default theme in .zshrc
-git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
 # Install fzf. Default opts configured in dotfiles
 apt-get install fzf -y
