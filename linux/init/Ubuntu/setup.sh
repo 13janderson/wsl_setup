@@ -16,7 +16,7 @@ git config --global core.excludefile ~/.gitignore
 
 # Install zsh and pre-configure it with oh-my-zsh
 apt-get install zsh -y
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh --unattended
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install powerlevel10k, config in dotfiles. Set as default theme in .zshrc
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
@@ -42,5 +42,5 @@ cp ../../../dotfiles/.symlinks/.wezterm.lua /mnt/c/Users/jack.anderson/.wezterm.
 ln -s /mnt/c/Users/jack.anderson/.wezterm.lua ../../../dotfiles/.wezterm.lua
 
 # Extra
-sudo apt install xclip -y 
+sudo apt install xclip
 sudo apt install jq -y # Nice JSON output, this is amazing
