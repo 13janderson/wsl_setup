@@ -15,11 +15,11 @@ git config --global core.excludefile ~/.gitignore
 #git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
 
 # Install zsh and pre-configure it with oh-my-zsh
-# apt-get install zsh
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-#
-# # Install powerlevel10k, config in dotfiles. Set as default theme in .zshrc
-# git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+apt-get install zsh -y
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh --unattended
+
+# Install powerlevel10k, config in dotfiles. Set as default theme in .zshrc
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
 # Install fzf. Default opts configured in dotfiles
 apt-get install fzf -y
@@ -42,5 +42,5 @@ cp ../../../dotfiles/.symlinks/.wezterm.lua /mnt/c/Users/jack.anderson/.wezterm.
 ln -s /mnt/c/Users/jack.anderson/.wezterm.lua ../../../dotfiles/.wezterm.lua
 
 # Extra
-sudo apt install xclip
-sudo apt install jq # Nice JSON output, this is amazing
+sudo apt install xclip -y 
+sudo apt install jq -y # Nice JSON output, this is amazing
