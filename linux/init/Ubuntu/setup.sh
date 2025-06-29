@@ -16,7 +16,7 @@ git config --global core.excludefile ~/.gitignore
 
 # Install zsh and pre-configure it with oh-my-zsh
 apt-get install zsh
-curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install powerlevel10k, config in dotfiles. Set as default theme in .zshrc
 git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/.powerlevel10k
