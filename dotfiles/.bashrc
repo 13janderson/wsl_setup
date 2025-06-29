@@ -2,8 +2,6 @@ difference
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-alias code="/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe "
-alias wr="cd /mnt/c/Users/jack.anderson"
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -134,4 +132,3 @@ if grep -q "microsoft" /proc/version > /dev/null 2>&1; then
             --exec /usr/sbin/service docker start > /dev/null 2>&1
     fi
 fi
-. "/home/jackanderson/.deno/env"
