@@ -29,9 +29,6 @@ alias ghs='zsh $HOME/.local/bin/scripts/ghswitch.sh'
 alias nv='nvim'
 alias vi='nvim'
 
-# VimBeGood
-alias vbg="docker run -it --rm brandoncc/vim-be-good:stable"
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
