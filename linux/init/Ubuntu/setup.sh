@@ -14,6 +14,7 @@ git config --global core.excludefile ~/.gitignore
 # For using window credential manager inside WSL.
 #git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
 
+apt-get install zsh -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install powerlevel10k, config in dotfiles. Set as default theme in .zshrc
