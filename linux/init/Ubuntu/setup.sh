@@ -6,9 +6,11 @@ apt-get update
 # gcc
 apt-get install build-essential
 
-# Node via nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash 
-nvm install node
+# Node via fnm
+curl -o- https://fnm.vercel.app/install | bash
+fnm install 22
+# Install nice to have packages
+npm install -g typescript ts-node tsx tldr
 
 # docker setup
 curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm get-docker.sh;
@@ -25,7 +27,7 @@ git config --global core.excludefile ~/.gitignore
 #git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
 
 apt-get install zsh -y
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" 
 
 # Install powerlevel10k, config in dotfiles. Set as default theme in .zshrc
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
