@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Get newest packages
+apt-get update
+
+# gcc
+apt-get install build-essential
+
+# Node via nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash 
+nvm install node
+
 # docker setup
 curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm get-docker.sh;
 sudo usermod -aG docker $USER
@@ -25,7 +35,10 @@ apt-get install fzf -y
 apt-get install bat -y
 
 # Install neovim
-apt-get install neovim -y
+curl -LO https://github.com/neovim/neovim/releases/0.12.0/download/nvim-linux-x86_64.appimage
+chmod u+x nvim-linux-x86_64.appimage
+./nvim-linux-x86_64.appimage
+mv nvim-linux-x86_64.appimage /usr/bin/nvim
 
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
