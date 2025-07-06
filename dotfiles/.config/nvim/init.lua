@@ -121,6 +121,8 @@ vim.opt.confirm = false
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- Disable CR keybinding, strange things were happening ngl
+vim.keymap.set('n', '<CR>', '<NOP>', { noremap = true, silent = true })
 -- Quickfix list <CR> selection
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "qf",
