@@ -6,7 +6,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
     clear = true,
   }),
   callback = function(_)
-    print("Registering JS Macros")
     -- Format string macro @p on current word
     vim.fn.setreg("p", 'yiwoconsole.log()i``hpa:${}hp_')
   end,
