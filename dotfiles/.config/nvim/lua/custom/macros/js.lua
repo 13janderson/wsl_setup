@@ -11,4 +11,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+-- Removing these auto commands on BufLeave would be nice as well
+
 return {}
