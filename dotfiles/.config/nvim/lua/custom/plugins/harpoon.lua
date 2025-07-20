@@ -53,6 +53,7 @@ return {
 
           -- Harpoon adds buffers relative to the cwd
           local new_name = vim.api.nvim_buf_get_name(e.buf)
+          -- 
           local relative_newname = new_name:gsub("^" .. vim.fn.getcwd() .. "/", "")
 
           local relative_oldname = rename_map[e.buf]
