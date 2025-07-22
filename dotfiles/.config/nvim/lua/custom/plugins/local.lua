@@ -1,14 +1,11 @@
 return {
   {
-    dir = "~/projects/plugins/chtsht",
+    "13janderson/chtsht-nvim",
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
     config = function()
       require("chtsht").setup()
-    end
-  },
-  {
-    dir = "~/projects/plugins/runner",
-    config = function()
-      -- require("runner").setup()
     end
   }
 }
