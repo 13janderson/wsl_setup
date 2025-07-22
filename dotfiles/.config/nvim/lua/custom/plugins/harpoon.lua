@@ -1,9 +1,16 @@
 local rename_map = {}
 return {
   {
+    "13janderson/harpoon-float.nvim",
+    dependencies = {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2"
+    },
+  },
+  {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    event = "VimEnter",
+    -- event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       local harpoon = require('harpoon')
@@ -21,13 +28,14 @@ return {
       vim.keymap.set("n", "<C-b>", function() harpoon:list():select(2) end)
       vim.keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
       vim.keymap.set("n", "<C-m>", function() harpoon:list():select(4) end)
+
       -- Toggle previous & next buffers stored within Harpoon list
       -- vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
       -- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
 
 
       -- Auto-commands to capture changes in buffer renames
-      -- this can be used in conjunction with GRename to rename files 
+      -- this can be used in conjunction with GRename to rename files
       -- and have those changes update in harpoon.
       vim.api.nvim_create_autocmd('BufFilePre', {
         desc = 'Capture old name of buffers before they were renamed.',
@@ -53,7 +61,7 @@ return {
 
           -- Harpoon adds buffers relative to the cwd
           local new_name = vim.api.nvim_buf_get_name(e.buf)
-          -- 
+          --
           local relative_newname = new_name:gsub("^" .. vim.fn.getcwd() .. "/", "")
 
           local relative_oldname = rename_map[e.buf]

@@ -10,11 +10,5 @@ return {
     config = function()
       -- require("runner").setup()
     end
-  },
-  {
-    dir = "~/projects/plugins/harpoon-float",
-    config = function()
-      -- require("runner").setup()
-    end
   }
 }

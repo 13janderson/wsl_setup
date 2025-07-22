@@ -131,7 +131,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -148,8 +147,10 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Not sure I like these
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 
 --[[ vim.keymap.set("n", "[q", "[qzz")
@@ -182,8 +183,6 @@ vim.api.nvim_create_user_command("Dfu", function()
   vim.cmd("silent !(zsh $HOME/.local/bin/scripts/dfu.sh)")
   print("dotfiles uploaded")
 end, {})
-
-
 
 vim.opt.termguicolors = true
 
@@ -228,7 +227,6 @@ require('lazy').setup({
     -- Alternatively, use `config = function() ... end` for full control over the configuration.
     -- If you prefer to call `setup` explicitly, use:
     --
-
     {
       import = "custom/plugins"
     },
