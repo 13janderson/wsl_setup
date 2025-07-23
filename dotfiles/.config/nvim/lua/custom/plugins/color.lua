@@ -1,3 +1,4 @@
+
 function ColourMyPencils(colour)
   -- TODO refactor this shite, wrap setting colour in pcall maybe?
   if colour == "rosepine" then
