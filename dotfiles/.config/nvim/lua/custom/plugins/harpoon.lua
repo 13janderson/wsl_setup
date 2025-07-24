@@ -10,7 +10,7 @@ return {
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    -- event = "VimEnter",
+    event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       local harpoon = require('harpoon')
@@ -32,7 +32,6 @@ return {
       -- Toggle previous & next buffers stored within Harpoon list
       -- vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
       -- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
-
 
       -- Auto-commands to capture changes in buffer renames
       -- this can be used in conjunction with GRename to rename files
