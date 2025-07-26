@@ -176,8 +176,6 @@ bindkey -s ^r "fzf-history.sh\n"
 # bindkey -s ^r "zsh $HOME/.local/bin/scripts/fzf-history.sh\n"
 bindkey '^H' backward-kill-word
 
-bindkey '^m' 'echo 1'
-
 source "$HOME/.config.sh"
 
 # Only do this when we aren't in a tmux session already
