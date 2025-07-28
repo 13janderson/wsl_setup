@@ -106,6 +106,22 @@ return {
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
+          -- Format on save
+          vim.api.nvim_create_autocmd('BufWritePost', {
+            desc = 'LSP format on save',
+            group = vim.api.nvim_create_augroup('lsp-format-on-save', { clear = true }),
+            callback = function(e)
+              local bufnr = e.buf
+              if (#vim.lsp.get_clients({ bufnr = bufnr }) > 0) then
+                vim.lsp.buf.format({
+                  bufnr = e.buf,
+                })
+                Clear()
+              end
+            end,
+          })
+
+
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
@@ -243,6 +259,7 @@ return {
         dockerls = {},
         docker_compose_language_service = {},
         ts_ls = {},
+        jsonls = {},
         prismals = {
         },
         yamlls = {},

@@ -28,8 +28,10 @@ o====================================================================
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.o.winborder = "rounded"
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -61,7 +63,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   pattern = { "*.md" },
   group = vim.api.nvim_create_augroup('MarkdownWrapOn', { clear = true }),
   callback = function()
-    vim.opt.wrap = trueinit
+    vim.opt.wrap = true
   end,
 })
 
@@ -144,6 +146,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>")
 -- Yank to system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>e", ":Ex<CR>")
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -197,16 +200,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Format on save
-vim.api.nvim_create_autocmd('BufWritePost', {
-  desc = 'LSP format on save',
-  group = vim.api.nvim_create_augroup('lsp-format-on-save', { clear = true }),
-  callback = function(e)
-    vim.lsp.buf.format({
-      bufnr = e.buf,
-    })
-  end,
-})
 
 
 -- [[ Install `lazy.nvim` plugin manager ]]
