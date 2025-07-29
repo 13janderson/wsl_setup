@@ -111,12 +111,22 @@ return {
             desc = 'LSP format on save',
             group = vim.api.nvim_create_augroup('lsp-format-on-save', { clear = true }),
             callback = function(e)
+              local weirdos = { "yamlls" }
               local bufnr = e.buf
-              if (#vim.lsp.get_clients({ bufnr = bufnr }) > 0) then
-                vim.lsp.buf.format({
-                  bufnr = e.buf,
-                })
-                Clear()
+              local clients = vim.lsp.get_clients({ bufnr = bufnr })
+              if (#clients > 0) then
+                for _, client in ipairs(clients) do
+                  -- Strange behaviour with yamlls, it says it support format
+                  -- but really it doesn't; absolute weirdo
+                  if client:supports_method("format", bufnr) and not vim.tbl_contains(weirdos, client.name, {}) then
+                    vim.lsp.buf.format({
+                      bufnr = e.buf,
+                      name = client.name,
+                      id = client.id,
+                    })
+                    return
+                  end
+                end
               end
             end,
           })
