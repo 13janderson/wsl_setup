@@ -8,7 +8,7 @@ return {
       skip_confirm_for_simple_edits = true,
       prompt_save_on_select_new_entry = true,
       git = {
-        add = function(_) return true end,
+        -- add = function(_) return true end,
         mv = function(_) return true end,
         rm = function(_) return true end
       },
@@ -19,7 +19,7 @@ return {
         ["<C-h>"] = {},
         ["<C-t>"] = {},
         ["<C-p>"] = "actions.preview",
-        ["<C-c>"] = { "actions.close", mode = "n" },
+        ["<C-c>"] = {},
         ["<C-l>"] = "actions.refresh",
         ["-"] = { "actions.parent", mode = "n" },
         ["_"] = { "actions.open_cwd", mode = "n" },
