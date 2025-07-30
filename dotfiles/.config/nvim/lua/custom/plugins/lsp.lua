@@ -116,7 +116,6 @@ return {
               if (#clients > 0) then
                 for _, client in ipairs(clients) do
                   if client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting, bufnr) then
-                    print(client.name, "supports method")
                     vim.lsp.buf.format({
                       bufnr = e.buf,
                       name = client.name,
