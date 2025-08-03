@@ -40,3 +40,25 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/bin/scripts"
 export PATH="$PATH:$HOME/.local/bin/scripts/sh_tools/"
 
+
+# Aliases
+# dd is the directory for dev_setup stuff
+alias dd="cd ~/dev_setup"
+# alias sdd='sed -i -E "s|(dd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
+
+# pd = project directory
+# spd is then a simple way to bookmark the curent project directory; pd then changes to that directory
+# alias pd="cd $HOME/projects/CVS"
+# alias spd='sed -i -E "s|(pd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
+
+# wd = working directorty
+# alias wd="cd $HOME/projects/CVS/cvs-nop"
+# alias swd='sed -i -E "s|(wd=\"cd )[^\"]*(\")|\1$(pwd)\2|" ~/.zshrc; source ~/.zshrc'
+
+# Add new project to tmux sesionizer path
+alias pad='sed -i -E "s|paths=\((.*)\)|paths=(\1 $(pwd))|" ~/.local/bin/scripts/tmux-sessionizer.sh'
+
+# Handy script aliases
+alias dfu='zsh $HOME/.local/bin/scripts/dfu.sh'
+alias dfd='zsh $HOME/.local/bin/scripts/dfd.sh'
+
