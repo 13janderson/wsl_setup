@@ -18,7 +18,7 @@ git ls-files | while IFS= read -r df; do
   if ! [[ -h $df ]] && ! [[ $(dirname $df) == $symlink_dir ]]; then
     mkdir -p $HOME/$(dirname $df)
     if [[ -d $df ]]; then
-      cp -r "$df" "$HOME/$df"
+      cp -r "$df/." "$HOME/$df"
     else
       cp "$df" "$HOME/$df"
     fi
