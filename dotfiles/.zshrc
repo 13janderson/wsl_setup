@@ -151,32 +151,13 @@ source $ZSH/oh-my-zsh.sh
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
-# Ensure Docker is running on WSL 2. This expects you've installed Docker and
-# Docker Compose directly within your WSL distro instead of Docker Desktop, such as:
-#   - https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
-#   - https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
-#   - https://docs.docker.com/compose/install/linux/
-if grep -q "microsoft" /proc/version > /dev/null 2>&1; then
-    if service docker status 2>&1 | grep -q "is not running"; then
-        wsl.exe --distribution "${WSL_DISTRO_NAME}" --user root \
-            --exec /usr/sbin/service docker start > /dev/null 2>&1
-    fi
-fi
-
-
 # Non blinking terminal cursor
 echo -e "\e[?12l"
-
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/.local/bin/scripts"
-export PATH="$PATH:$HOME/.local/bin/scripts/sh_tools/"
-
-# Add C-F outside of tmux to go into tmux sessionizer
+bindkey '^H' backward-kill-word
 bindkey -s ^f "tmux-sessionizer.sh\n"
 bindkey -s ^r "fzf-history.sh\n"
-# bindkey -s ^r "zsh $HOME/.local/bin/scripts/fzf-history.sh\n"
-bindkey '^H' backward-kill-word
 
+# Add branch specific configurations in .config.sh
 source "$HOME/.config.sh"
 
 # Only do this when we aren't in a tmux session already
