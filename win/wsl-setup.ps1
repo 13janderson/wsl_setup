@@ -60,14 +60,14 @@ if($install)
 
   Write-Host "running setup script for $distro." -foregroundcolor green
   # pull down setup repo into wsl instance
-  wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/dev_setup.git; cd dev_setup; cd wsl-linux/init/$distro; sudo bash setup.sh"
+  wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/wsl_setup.git; cd wsl_setup; cd wsl-linux/init/$distro; sudo bash setup.sh"
 
   # Run dfd script to copy down dotfiles to HOME
   wsl -d $distro --exec bash -c "cd; source ./det_setup/dotfiles/.local/bin/scripts/dfd.sh"
 
   # Restart
-    wsl -d $distro --shutdown
-    wsl -d $distro --cd ~
+  wsl -d $distro --shutdown
+  wsl -d $distro --cd ~
 
 }
 
