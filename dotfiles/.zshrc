@@ -169,6 +169,7 @@ echo -e "\e[?12l"
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/bin/scripts"
+export PATH="$PATH:$HOME/.local/bin/scripts/sh_tools/"
 
 # Add C-F outside of tmux to go into tmux sessionizer
 bindkey -s ^f "tmux-sessionizer.sh\n"
