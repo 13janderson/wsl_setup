@@ -29,9 +29,6 @@ alias ghs='zsh $HOME/.local/bin/scripts/ghswitch.sh'
 alias nv='nvim'
 alias vi='nvim'
 
-# VimBeGood
-alias vbg="docker run -it --rm brandoncc/vim-be-good:stable"
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -178,8 +175,8 @@ bindkey '^H' backward-kill-word
 
 source "$HOME/.config.sh"
 
-# Only do this when we aren't in a tmux session already
-if [ ! "$TMUX" ]; then
+# Only do this when tmux is installed and we aren't in a tmux session already
+if [[ -x "command -v tmux >/dev/null 2>&1" ]] && [[ ! "$TMUX" ]]; then
   # tmux is already running, attach to last session
   if tmux run 2>/dev/null; then
     tmux attach

@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Get newest packages
+apt-get update
+
+# gcc
+apt-get install build-essential
+
+# Node via fnm
+curl -o- https://fnm.vercel.app/install | bash
+fnm install 22
+# Install nice to have packages
+npm install -g typescript ts-node tsx tldr
+
 # docker setup
 curl -fsSL https://get.docker.com -o get-docker.sh; sudo sh get-docker.sh; rm get-docker.sh;
 sudo usermod -aG docker $USER
@@ -11,21 +23,24 @@ apt-get install gh
 gh auth login -h github.com -s user,read:project,delete:project,workflow 
 gh auth setup-git 
 git config --global core.excludefile ~/.gitignore
+# For using window credential manager inside WSL.
 #git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
 
-# Instal zsh and pre-configure it with oh-my-zsh
-apt-get install zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+apt-get install zsh -y
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" 
 
 # Install powerlevel10k, config in dotfiles. Set as default theme in .zshrc
-git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
 # Install fzf. Default opts configured in dotfiles
 apt-get install fzf -y
 apt-get install bat -y
 
 # Install neovim
-apt-get install neovim -y
+curl -LO https://github.com/neovim/neovim/releases/0.12.0/download/nvim-linux-x86_64.appimage
+chmod u+x nvim-linux-x86_64.appimage
+./nvim-linux-x86_64.appimage
+mv nvim-linux-x86_64.appimage /usr/bin/nvim
 
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -41,5 +56,5 @@ cp ../../../dotfiles/.symlinks/.wezterm.lua /mnt/c/Users/jack.anderson/.wezterm.
 ln -s /mnt/c/Users/jack.anderson/.wezterm.lua ../../../dotfiles/.wezterm.lua
 
 # Extra
-sudo apt install xclip
-sudo apt install jq # Nice JSON output, this is amazing
+sudo apt install xclip -y 
+sudo apt install jq -y # Nice JSON output, this is amazing

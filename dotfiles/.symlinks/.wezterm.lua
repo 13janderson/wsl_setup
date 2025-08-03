@@ -7,7 +7,7 @@ config.default_domain = 'WSL:Ubuntu'
 -- This is where you actually apply your config choices.
 -- For example, changing the initial geometry for new windows:
 config.initial_cols = 120
-config.initial_rows = 28
+config.initial_rows = 20
 
 config.window_close_confirmation = "NeverPrompt"
 
@@ -22,7 +22,7 @@ config.automatically_reload_config = true
 config.hide_tab_bar_if_only_one_tab = true
 config.enable_tab_bar = false
 -- config.integrated_title_buttons = { 'Close' }
-config.window_decorations = "TITLE | RESIZE" 
+config.window_decorations = "TITLE | RESIZE"
 
 -- Ctrl+V for paste
 config.keys = {
