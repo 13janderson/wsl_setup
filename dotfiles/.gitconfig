@@ -17,3 +17,6 @@
 	email = jackanderson02@outlook.com
 [core]
 	excludesfile = /home/jackanderson/.gitignore
+
+[includeIf "gitdir:**/*.git/"]
+  path = ~/.gitconfig
