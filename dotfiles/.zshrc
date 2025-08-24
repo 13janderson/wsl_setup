@@ -4,6 +4,8 @@ eval "$(dircolors -b ~/.dircolors)"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
+export PATH=$PATH:local/bin/scripts
+export PATH=$PATH:local/bin/scripts/sh_tools
 alias ghs='zsh $HOME/.local/bin/scripts/sh_tools/ghswitch.sh'
 
 alias nv='nvim'
