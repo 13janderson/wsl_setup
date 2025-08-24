@@ -1,45 +1,13 @@
 param(
   [switch]$install,
   [switch]$uninstall,
-  [switch]$reinstall,
-  [switch]$compile,
   [string]$distro = "Ubuntu"
 )
-
-
-# Generate executables and add to path
-$binPath = "$PSScriptRoot\bin"
-$userPath = [Environment]::GetEnvironmentVariable("Path","User")
-if(!$userPath.Contains($binPath) -or $compile )
-{
-  # Install ps2exe module
-  if($null -eq (Get-Module -ListAvailable -Name ps2exe))
-  {
-    Install-Module -Name ps2exe -Repository PSGallery -Scope CurrentUser
-  }
-  $userPathWithBinPath = "$userPath;$binPath"
-  [Environment]::SetEnvironmentVariable("Path",$userPathWithBinPath,"User")
-  if(!(Test-Path -Path $binPath))
-  {
-    New-Item -ItemType Directory -Path $binPath | Out-Null
-  }
-  $env:path += $binPath
-  $files = Get-ChildItem -Path $PSScriptRoot 
-  $files | ForEach-Object {
-    if($_.Extension -eq ".ps1")
-    {
-      ps2exe $_ -outputFile "$binPath/$($_.Name.Replace($_.Extension, '')).exe" -
-    }
-  }
-} else
-{
-}
 
 if(-not ($install -xor $uninstall -xor $setup))
 {
   exit "only specify one option at once."
 }
-
 
 if($install)
 {
@@ -60,10 +28,10 @@ if($install)
 
   Write-Host "running setup script for $distro." -foregroundcolor green
   # pull down setup repo into wsl instance
-  wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/wsl_setup.git; cd wsl_setup; cd wsl-linux/init/$distro; sudo bash setup.sh"
+  wsl -d $distro --exec bash -c "cd; git clone https://github.com/13janderson/wsl_setup.git; cd wsl_setup/linux; sudo bash setup.sh"
 
-  # Run dfd script to copy down dotfiles to HOME
-  wsl -d $distro --exec bash -c "cd; source ./det_setup/dotfiles/.local/bin/scripts/dfd.sh"
+  # Run dfd script to copy down dotfiles to $HOME
+  wsl -d $distro --exec bash -c "cd; source ./wsl_setup/dotfiles/.local/bin/scripts/dfd.sh"
 
   # Restart
   wsl -d $distro --shutdown
