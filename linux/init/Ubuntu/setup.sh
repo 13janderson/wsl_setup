@@ -21,11 +21,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # Install fzf. Default opts configured in dotfiles
-apt-get install fzf -y
-apt-get install bat -y
-
-# Install neovim
-apt-get install neovim -y
+sudo apt-get install fzf -y
+sudo apt-get install bat -y
 
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
