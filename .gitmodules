@@ -1,6 +1,3 @@
-[submodule "dotfiles/.config/nvim"]
-	path = dotfiles/.config/nvim
-	url = https://github.com/13janderson/nvim.git
-[submodule "dotfiles/.local/bin/scripts/sh_tools"]
-	path = dotfiles/.local/bin/scripts/sh_tools
-	url = https://github.com/13janderson/sh_tools
+[submodule "dotfiles"]
+	path = dotfiles
+	url = https://github.com/13janderson/dotfiles
